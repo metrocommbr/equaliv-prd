@@ -1,0 +1,30 @@
+<?php
+if($this->getConfig('porto_settings/general/show_site_notice')) {
+    $static_block_id = $this->getConfig('porto_settings/general/custom_notice_block'); 
+    $bg_color = $this->getConfig('porto_design/header/notice_bgcolor');
+    $text_color = $this->getConfig('porto_design/header/notice_text_color');
+    $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+    if($block) {
+        $block->setBlockId($static_block_id);
+    }
+?>
+<div class="porto-block-html-top">
+  <div class="background-color-<?php echo $bg_color;?> text-color-<?php echo $text_color;?><?php if($this->getConfig('porto_settings/general/show_site_notice_button')):?> d-none<?php endif;?>">
+    <?php  if($block) echo $block->toHtml(); ?>
+  </div>
+</div>
+<?php if($this->getConfig('porto_settings/general/show_site_notice_button')) {?>
+<script type="text/javascript">
+  require([
+      'jquery'
+  ], function ($) {
+      $('.porto-block-html-top > div').removeClass('d-none').append('<button class="mfp-close">×</button>');
+      $('body').on('click', '.porto-block-html-top .mfp-close', function() {
+        $(this).parent().fadeOut();
+      });
+  });
+</script>
+<?php
+}
+}
+?>

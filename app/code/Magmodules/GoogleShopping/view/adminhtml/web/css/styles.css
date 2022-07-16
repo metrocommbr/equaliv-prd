@@ -1,0 +1,322 @@
+.mm-comment-googleshopping {
+    font-size: 12px;
+    border-left: 2px solid #F1F1F1;
+    padding-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    line-height: 1.6;
+    color: #373330;
+}
+
+.mm-comment-googleshopping b, strong {
+    color: #54463D;
+}
+
+.mm-heading-googleshopping {
+    color: #666;
+    text-align: left;
+    border: 1px solid rgba(229, 229, 229, 0.27);
+    border-left: 2px solid #EA4C00;
+    font-size: 14px;
+    margin: 20px 0 0;
+    padding: 5px 5px 5px 10px;
+    background: #F8F8F8;
+}
+
+.mm-block-googleshopping {
+    background: #F8F8F8 no-repeat 8px;
+    border: 1px solid #E5E5E5;
+    border-left: 2px solid #EA4C00;
+    font-size: 12px;
+    color: #303030;
+    margin-bottom: 0;
+    padding: 1.5rem 1.5rem 1.5rem 75px;
+    background-size: 55px;
+}
+
+.mm-comment-hover:before {
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    line-height: 1;
+    color: #514943;
+    content: '\e633';
+    /*noinspection CssNoGenericFontName*/
+    font-family: 'Admin Icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: 400;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+    float: right;
+    margin-top: -29px;
+    margin-right: 2px;
+}
+
+.mm-block-googleshopping strong {
+    font-weight: 600;
+    color: #514943;
+}
+
+.mm-block-googleshopping p {
+    font-size: 12px;
+    margin-left: 9px;
+}
+
+.mm-block-googleshopping tr a {
+    color: #6D6761;
+}
+
+.mm-block-googleshopping tr td {
+    padding: 5px 25px 0 0;
+}
+
+.mm-block-googleshopping .helpbutton {
+    color: #FFF;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px 10px;
+    font-weight: 700;
+    float: right;
+    background: #514943;
+}
+
+@media only screen and (min-width: 1375px) {
+    .mm-block-googleshopping .helpbutton {
+        color: #FFF;
+        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+        padding: 20px 20px 20px 50px;
+        font-weight: 700;
+        float: right;
+        background: url(../images/icons.png) no-repeat scroll 7px -84px #514943;
+        background-size: 35px;
+    }
+}
+
+.mm-block-googleshopping .helpbutton:hover {
+    background-color: #373330;
+    text-decoration: none;
+}
+
+.mm-block-googleshopping .icon1 {
+    background: url(../images/icons.png) no-repeat scroll 2px -3px;
+    background-size: 30px;
+    width: 35px;
+    height: 27px;
+    float: left;
+}
+
+.mm-block-googleshopping .icon2 {
+    background: url(../images/icons.png) no-repeat scroll 2px -31px;
+    background-size: 31px;
+    width: 35px;
+    height: 25px;
+    float: left;
+}
+
+.mm-comment-hover .readmore {
+    cursor: help !important;
+    float: right;
+    margin-top: -30px;
+    border: 0;
+    background-color: transparent !important;
+    opacity: 1 !important;
+    color: #524A43 !important;
+    font-size: 12px;
+    text-align: right;
+    margin-right: 0;
+    padding-right: 30px;
+}
+
+@media only screen and (max-width: 1070px) {
+    .mm-comment-hover .readmore {
+        width: 30px;
+        margin-right: 0;
+        padding-right: 0;
+    }
+
+    .mm-comment-hover:before {
+        display: none;
+    }
+}
+
+.mm-comment-hover #content {
+    display: none;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.mm-comment-hover input[type="text"] {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+    padding: 6px 12px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.mm-comment-hover input[type="text"]:focus {
+    outline: none;
+}
+
+.mm-comment-hover input:focus + div#content {
+    display: block;
+}
+
+.mm-block-googleshopping-feeds {
+}
+
+.mm-block-googleshopping-feeds .title {
+    clear: both;
+    color: #0A0A0A;
+    cursor: pointer;
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: .025em;
+    padding: 1.9rem 2.8rem 1.9rem 0;
+    position: relative;
+    text-decoration: none;
+    transition: color .15s linear;
+}
+
+.mm-block-googleshopping-feed-table {
+    border-top: 1px solid rgba(81, 73, 67, 0.15);
+    width: 99%;
+    color: #666;
+    text-align: left;
+    border-right: 1px solid rgb(223, 222, 221);
+    border-left: 2px solid #EA4C00;
+    font-size: 14px;
+    margin: 20px 0 0;
+    padding: 20px;
+    background: #F8F8F8;
+}
+
+.mm-block-googleshopping-feed-table tr {
+    border-bottom: 1px solid #DFDEDD;
+}
+
+.mm-block-googleshopping-feed-table tr td {
+    padding: 10px;
+}
+
+.mm-block-googleshopping-feed-table a.generate {
+    color: #EB5202;
+    line-height: 2em;
+}
+
+/*noinspection CssNoGenericFontName*/
+.mm-block-googleshopping-feed-table a.generate:before {
+    content: '\e610';
+    font-family: 'Admin Icons';
+    margin-right: 9px;
+    font-size: 16px;
+    float: left;
+}
+
+.mm-block-googleshopping-feed-table a.preview {
+    color: #185B00;
+    line-height: 2em;
+}
+
+/*noinspection CssNoGenericFontName*/
+.mm-block-googleshopping-feed-table a.preview:before {
+    content: '\e60f';
+    font-family: 'Admin Icons';
+    margin-right: 9px;
+    font-size: 9px;
+    float: left;
+}
+
+.mm-block-googleshopping-feed-table .enable {
+    color: #EB5203;
+    line-height: 2em;
+}
+
+.mm-block-googleshopping-feed-table .enable small {
+    color: grey;
+}
+
+/*noinspection CssNoGenericFontName*/
+.mm-block-googleshopping-feed-table .enable:before {
+    content: '\e623';
+    font-family: 'Admin Icons';
+    margin-right: 9px;
+    font-size: 12px;
+    float: left;
+}
+
+/*noinspection CssNoGenericFontName*/
+.mm-block-googleshopping-feed-table a.download:before {
+    content: '\e616';
+    font-family: 'Admin Icons';
+    font-size: 15px;
+    margin-right: 10px;
+    float: left;
+}
+
+.mm-block-googleshopping-feed-table a.download {
+    color: #666666;
+    line-height: 2em;
+}
+
+.openmodal {
+    cursor: help;
+}
+
+.conditional-modal {
+    text-decoration: underline;
+    color: #EB5203;
+    cursor: help;
+    font-size: 13px;
+}
+
+.conditional-modal:after {
+    content: ' \2197';
+    font-style: normal;
+}
+
+.multisource-modal {
+    text-decoration: underline;
+    color: #EB5203;
+    cursor: help;
+    font-size: 13px;
+}
+
+.multisource-modal:after {
+    content: ' \2197';
+    font-style: normal;
+}
+
+.mm-link {
+    border-bottom: 1px dotted #007CB4;
+    color: #007CB4;
+    cursor: pointer;
+}
+
+.mm-link:hover {
+    border-bottom: 1px dotted #EB5203;
+    color: #EB5203 !important;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.support-link {
+    border-bottom: 1px dotted #007CB4;
+    color: #007CB4;
+    cursor: pointer;
+}
+
+.support-link:hover {
+    border-bottom: 1px dotted #EB5203;
+    color: #EB5203;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#row_magmodules_googleshopping_general_version .admin__field-value {
+    padding-top: 0 !important;
+}
+
+#row_magmodules_googleshopping_general_support .admin__field-value {
+    padding-top: 0 !important;
+}

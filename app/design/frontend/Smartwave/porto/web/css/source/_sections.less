@@ -1,0 +1,282 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+  .product.data.items {
+      .lib-data-accordion();
+      .item.title {
+          color: #818692;
+          padding: 15px 0;
+          font-weight: 700;
+          text-transform: uppercase;
+          background: none;
+          border-bottom: 2px solid #e7e7e7;
+          >.switch {
+            font-size: 13px;
+            display: inline-block;
+            border: none;
+            height: auto;
+            padding: 0 !important;
+            color: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            background: none !important;
+            display: block;
+            &:hover {
+              color: inherit;
+              background: none;
+            }
+          }
+          &.active {
+            color: #222529;
+            border-color: #222529;
+            >.switch {
+              color: inherit;
+              background: none;
+              padding: 0;
+              &:hover,&:focus {
+                padding: 0;
+                color: inherit;
+                background: none;
+              }
+            }
+          }
+          &:hover {
+            border-color: #222529;
+            color: #222529;
+            >.switch {
+              color: inherit;
+              padding: 0;
+            }
+          }
+          a {
+              position: relative;
+              &:after {
+                  font-family: 'porto-icons';
+                  content: @icon-down;
+                  position: absolute;
+                  right: @accordion-control__padding-right;
+                  top: @accordion-control__padding-top;
+              }
+          }
+          &.active a:after {
+              content: @icon-up;
+              font-family: 'porto-icons';
+          }
+      }
+      > .item {
+          &.content {
+            border: none;
+            box-shadow: none;
+            padding: 30px 0 15px;
+            background: none;
+            p {
+              font-size: 14px;
+              font-weight: 400;
+              letter-spacing: .005em;
+              line-height: 1.9;
+            }
+          }
+      }
+      .value p:last-child {
+          margin-bottom: 0;
+      }
+      .table-wrapper {
+          margin: 0;
+      }
+  }
+  .porto-info-list,.product.description ul {
+    padding-left: 38.5px;
+    margin-bottom: 20px;
+    li {
+        list-style: none;
+        line-height: 1.5;
+        padding-top: .5em;
+        padding-bottom: .5em;
+        margin: 0;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    .porto-info-icon, [class^=porto-icon-] {
+        margin-right: 16.5px;
+        line-height: 1.3;
+        position: relative;
+        top: 2px;
+        color: #21293c;
+        font-size: 16px;
+    }
+    .porto-icon-ok:before {
+      content: '\e8c1';
+    }
+    .porto-info-list-item .porto-info-icon {
+        width: auto;
+        display: inline-block;
+    }
+  }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .product.data.items {
+        .lib-data-tabs();
+        border-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+        .item.title a:after {
+            display: none;
+        }
+        > .item {
+            &.title {
+                margin: 0 35px 0 0;
+                color: #818692;
+                padding: 7px 0;
+                font-weight: 700;
+                text-transform: uppercase;
+                background: none;
+                border-bottom: 2px solid transparent;
+                >.switch {
+                  font-size: 13px;
+                  display: inline-block;
+                  border: none;
+                  height: auto;
+                  padding: 0 !important;
+                  color: inherit;
+                  font-weight: inherit;
+                  line-height: inherit;
+                  background: none !important;
+                  display: block;
+                  &:hover,&:active,&:focus {
+                    color: inherit !important;
+                    border-color: inherit  !important;
+                    background: none;
+                  }
+                }
+                &.active {
+                  color: #222529;
+                  border-color: #222529;
+                  >.switch {
+                    color: inherit;
+                    background: none;
+                    padding: 0;
+                    &:hover,&:focus {
+                      padding: 0;
+                      color: inherit;
+                      background: none;
+                    }
+                  }
+                }
+                &:hover {
+                  border-color: #222529;
+                  >.switch {
+                    color: inherit;
+                    padding: 0;
+                  }
+                }
+            }
+            &.content {
+              border: none;
+              border-top: solid 1px #e7e7e7;
+              box-shadow: none;
+              padding: 30px 0 15px;
+              margin-top: 40px;
+              background: none;
+            }
+        }
+        .vertical & {
+          > .item {
+            &.title {
+              max-width: 20%;
+              text-align: left;
+              float: none;
+              border: none;
+              padding: 0;
+              margin: 0;
+              margin-bottom: 13px;
+              overflow: hidden;
+              position: relative;
+              >.switch {
+                padding: 3px 0 10px !important;
+                display: inline-block;
+                &::before {
+                  content: '';
+                  position: absolute;
+                  width: 100%;
+                  bottom: 0;
+                  border-bottom: 1px solid #dae2e6;
+                  z-index: 1;
+                }
+                &::after {
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  width: 30vw;
+                  bottom: 0;
+                  border-bottom: 1px solid #dae2e6;
+                  z-index: 0;
+                  left: 0;
+                }
+              }
+              &.active,&:hover {
+                >.switch {
+                  &::before {
+                    border-width: 2px;
+                    border-bottom-color: inherit;
+                  }
+                }
+              }
+            }
+            &.content {
+              position: absolute;
+              float: none;
+              margin: 0;
+              width: 80%;
+              right: 0;
+              top: 0;
+              padding-top: 0;
+              border-top: none;
+              padding-left: 30px;
+              min-height: 180px;
+            }
+          }
+        }
+        .accordion & {
+          & > .item.title {
+            border-color: #e7e7e7;
+            &.active {
+              border-color: inherit;
+            }
+          }
+          & > .item.title, & > .item.content {
+              float: none;
+              margin: 0;
+              display: block;
+          }
+          & > .item.content {
+            border: none;
+          }
+        }
+        .sticky & {
+          & > .item.title {
+            &.active {
+              color: inherit;
+              border-color: transparent;
+            }
+            &:hover {
+              color: inherit;
+              border-color: inherit;
+            }
+          }
+        }
+    }
+}

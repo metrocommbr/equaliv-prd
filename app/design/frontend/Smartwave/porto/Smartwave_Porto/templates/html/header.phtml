@@ -1,0 +1,1489 @@
+<?php
+    $_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $header_type = $this->getConfig('porto_settings/header/header_type');
+    $header2_text = $this->getConfig('porto_settings/header/header2_text');
+    $show_notice = $this->getConfig('porto_settings/general/show_site_notice');
+    if ($show_notice && $show_notice == 1)
+        echo $this->getChildHtml("porto_custom_notice");
+?>
+<?php if($header_type == 10): ?>
+<div class="position-relative">
+<?php endif;?>
+<header class="page-header type<?php echo $header_type; ?>" >
+<?php echo $this->getChildHtml("header_customer_form_login"); ?>
+<?php if($header_type == 1): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-center">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account m-l-xs mr-1 mr-lg-2" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-1 mr-lg-2 pr-lg-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <?php echo $this->getChildHtml("navigation.sections"); ?>
+<?php elseif($header_type == 2): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <?php echo $header2_text;?>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <span class="separator"></span>
+                  <div class="panel header">
+                    <?php echo $this->getChildHtml("currency"); ?>
+                    <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-center">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <?php echo $this->getChildHtml("navigation.sections"); ?>
+<?php elseif($header_type == 3): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <?php echo $header2_text;?>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <span class="separator"></span>
+                  <div class="panel header">
+                    <?php echo $this->getChildHtml("currency"); ?>
+                    <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-right">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <div class="header-contact">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 4): ?>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-center">
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <div class="panel header">
+          <?php echo $this->getChildHtml("currency"); ?>
+          <?php echo $this->getChildHtml("store_language"); ?>
+        </div>
+        <div class="header-links panel header show-icon">
+          <div class="top-links-icon">
+            <a href="javascript:;"><?php echo __('Links');?></a>
+          </div>
+          <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+        <div class="header-contact">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account mr-1 mr-lg-2" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 5): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+        <span class="separator"></span>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+        </div>
+        <span class="separator"></span>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 6): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                    <?php echo $this->getChildHtml("currency"); ?>
+                    <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <span class="separator"></span>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+        </div>
+      </div>
+      <div class="header-center">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <?php echo $this->getChildHtml("navigation.sections"); ?>
+<?php elseif($header_type == 7): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-center">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account m-l-xs mr-1 mr-lg-2" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-1 mr-lg-2 pr-lg-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <div class="main-menu-wrap">
+    <div class="container">
+      <?php
+          $toggle_text = $this->getConfig('porto_settings/header/toggle_text');
+          $custom_block_id_7 =$this->getConfig('porto_settings/header/static_block_7');
+      ?>
+      <div class="row">
+        <div class="col-lg-3 sidebar">
+          <div class="drop-menu">
+            <a href="javascript:void(0)">
+              <?php echo $toggle_text; ?>
+            </a>
+            <?php echo $this->getChildHtml("navigation.sections"); ?>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <?php
+            $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+            if($block) {
+                $block->setBlockId($custom_block_id_7);
+            }
+            if($block){
+                echo $block->toHtml();
+            }
+          ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  require([
+      'jquery'
+  ], function ($) {
+      $(document).ready(function(){
+          $(".drop-menu > a").off("click").on("click", function(){
+              if($(this).parent().children(".nav-sections").hasClass("visible")) {
+                  $(this).parent().children(".nav-sections").removeClass("visible");
+                  $(this).removeClass("active");
+              }
+              else {
+                  $(this).parent().children(".nav-sections").addClass("visible");
+                  $(this).addClass("active");
+              }
+          });
+      });
+  });
+  </script>
+<?php elseif($header_type == 8): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="panel header">
+                    <?php echo $this->getChildHtml("currency"); ?>
+                    <?php echo $this->getChildHtml("store_language"); ?>
+                </div>
+                <div class="header-cart">
+                  <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+                  <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+                  <?php echo $this->getChildHtml("minicart"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+      <div class="header-center">
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+        <div class="panel header">
+          <div class="top-links-icon">
+            <a href="javascript:;"><?php echo __('Links');?></a>
+          </div>
+          <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+      </div>
+      <div class="header-right">
+        <?php echo $this->getChildHtml("custom_block"); ?>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  require([
+      'jquery'
+  ], function ($) {
+    if($(".page-header.type8").length > 0) {
+      $(".page-wrapper").addClass('side-nav');
+    }
+    $(window).scroll(function() {
+      var side_header_height = $(".page-header.type8").innerHeight();
+      var window_height = $(window).height();
+      if(side_header_height-window_height<$(window).scrollTop()){
+        if(!$(".page-header.type8").hasClass("fixed-bottom")) {
+          $(".page-header.type8").addClass("fixed-bottom");
+        }
+      }
+      if(side_header_height-window_height>=$(window).scrollTop()){
+        if($(".page-header.type8").hasClass("fixed-bottom")) {
+          $(".page-header.type8").removeClass("fixed-bottom");
+        }
+      }
+      if($(".page-wrapper.side-nav > .breadcrumbs").length) {
+        if(!$(".page-wrapper.side-nav > .breadcrumbs").hasClass("fixed-position")) {
+          breadcrumb_pos_top = $(".page-wrapper.side-nav > .breadcrumbs").offset().top;
+          if($(".page-wrapper.side-nav > .breadcrumbs").offset().top<$(window).scrollTop()) {
+            $(".page-wrapper.side-nav > .breadcrumbs").addClass("fixed-position");
+          }
+        }
+        else {
+          if($(window).scrollTop()<=1) {
+            $(".page-wrapper.side-nav > .breadcrumbs").removeClass("fixed-position");
+          }
+        }
+      }
+    });
+    if($(window).width() <= 991){
+      if($('.page-header.type8 .header-cart .minicart-wrapper')){
+        $('.page-header.type8 .header-cart .minicart-wrapper').after('<div class="minicart-place hide"></div>');
+        var minicart = $('.page-header.type8 .header-cart .minicart-wrapper').detach();
+        $('.page-header.type8 .header-main .header-right').append(minicart);
+      }
+    }
+    $(window).resize(function(){
+      var b_w = $(window).width();
+      if(b_w <= 991){
+        if($('.page-header.type8 .header-cart .minicart-wrapper')){
+          $('.page-header.type8 .header-cart .minicart-wrapper').after('<div class="minicart-place hide"></div>');
+          var minicart = $('.page-header.type8 .header-cart .minicart-wrapper').detach();
+          $('.page-header.type8 .header-main .header-right').append(minicart);
+        }
+      }
+      if(b_w > 991){
+        if($('.page-header.type8 .header-main .header-right .minicart-wrapper').length > 0) {
+          var minicart;
+          minicart = $('.page-header.type8 .header-main .header-right .minicart-wrapper').detach();
+          $('.minicart-place').after(minicart);
+          $('.minicart-place').remove();
+          $('.page-header .minicart-wrapper-moved').addClass("minicart-wrapper").removeClass("minicart-wrapper-moved").removeClass("hide");
+        }
+      }
+    });
+  });
+</script>
+<?php elseif($header_type == 9): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+                <div class="header-right">
+                  <?php echo $this->getChildHtml("navigation.sections"); ?>
+                  <?php echo $this->getChildHtml("currency"); ?>
+                  <?php echo $this->getChildHtml("store_language"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <div class="panel header my-account show-icon ml-lg-4 mr-1">
+          <div class="top-links-icon">
+            <a href="javascript:;"><i class="porto-icon-user-2"></i></a>
+          </div>
+          <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+        <span class="separator"></span>
+        <div class="header-contact mr-1">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <span class="separator"></span>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 10): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-right">
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="my-wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+</div>
+<?php elseif($header_type == 11): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+                <div class="header-right">
+                  <?php echo $this->getChildHtml("custom_block"); ?>
+                  <?php echo $this->getChildHtml("currency"); ?>
+                  <?php echo $this->getChildHtml("store_language"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right">
+        <div class="porto-popup-menu">
+          <button class="hamburguer-btn">
+            <span class="hamburguer">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <span class="close"><span></span><span></span></span>
+          </button>
+          <?php echo $this->getChildHtml("navigation.sections"); ?>
+        </div>
+        <span class="separator"></span>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <span class="separator"></span>
+        <div class="panel header my-account show-icon px-sm-1">
+          <div class="top-links-icon">
+            <a href="javascript:;"><i class="porto-icon-user-2"></i></a>
+          </div>
+          <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+        <span class="separator"></span>
+        <div class="header-contact mr-1">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <span class="separator"></span>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  require([
+      'jquery'
+  ], function ($) {
+    $('.porto-popup-menu .hamburguer-btn').on('click', function(e) {
+      e.preventDefault();
+      var $this = $(this);
+      if ($('.porto-popup-menu-spacer').length) {
+        $('.porto-popup-menu-spacer').remove();
+      } else {
+        $('<div class="porto-popup-menu-spacer"></div>').insertBefore($this.parent());
+        $('.porto-popup-menu-spacer').width($this.parent().width());
+      }
+      $this.parent().toggleClass('opened');
+      $this.toggleClass('active');
+    });
+    $('.porto-popup-menu .navigation li.parent > a').on('click', function(e) {
+      e.preventDefault();
+      $(this).parent().siblings('li.parent.opened').removeClass('opened');
+      $(this).parent().toggleClass('opened');
+    });
+  });
+</script>
+<?php elseif($header_type == 12): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                  <span class="separator"></span>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+                <div class="header-right">
+                  <?php echo $this->getChildHtml("custom_block"); ?>
+                  <span class="separator"></span>
+                  <div class="search-area show-icon">
+                    <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+                    <?php echo $this->getChildHtml("top.search"); ?>
+                  </div>
+                  <div class="panel header show-icon">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><i class="porto-icon-user-2"></i></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <div class="header-contact">
+                    <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+                  </div>
+                  <?php echo $this->getChildHtml("minicart"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left flex-1">
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-center">
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right flex-1">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 13): ?>
+    <div class="main-panel-top">
+        <div class="container">
+            <div class="main-panel-inner">
+                <div class="panel wrapper">
+                  <div class="header-left">
+                    <div class="search-area show-icon-tablet">
+                      <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+                      <?php echo $this->getChildHtml("top.search"); ?>
+                    </div>
+                  </div>
+                  <div class="header-right">
+                    <div class="items-inner d-flex align-items-center">
+                      <div class="panel header">
+                          <?php echo $this->getChildHtml("currency"); ?>
+                          <?php echo $this->getChildHtml("store_language"); ?>
+                      </div>
+                      <?php echo $this->getChildHtml("custom_block_top"); ?>
+                      <div class="panel header show-icon">
+                        <div class="top-links-icon">
+                          <a href="javascript:;"><i class="porto-icon-user-2"></i></a>
+                        </div>
+                        <?php echo $this->getChildHtml("header.links"); ?>
+                      </div>
+                      <div class="header-contact">
+                        <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+                      </div>
+                      <?php echo $this->getChildHtml("minicart"); ?>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-main">
+      <div class="header content header-row">
+        <div class="header-left flex-1">
+          <?php echo $this->getChildHtml("navigation.sections"); ?>
+        </div>
+        <div class="header-center">
+          <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+          <?php echo $this->getChildHtml("logo"); ?>
+        </div>
+        <div class="header-right d-flex flex-1"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+      if($(window).width() <= 991){
+        if($('.page-header.type13 .main-panel-top .header-right .items-inner') && $('.page-header.type13 .main-panel-top .header-left')){
+          $('.page-header.type13 .main-panel-top .header-right .items-inner').after('<div class="item-right-place hide"></div>');
+          $('.page-header.type13 .main-panel-top .header-left .search-area').after('<div class="item-left-place hide"></div>');
+          var items_right = $('.page-header.type13 .main-panel-top .header-right .items-inner').detach(),
+              items_left = $('.page-header.type13 .main-panel-top .header-left .search-area').detach();
+
+          $('.page-header.type13 .header-main .header-right').append(items_left);
+          $('.page-header.type13 .header-main .header-right').append(items_right);
+        }
+      }
+      $(window).resize(function(){
+        var b_w = $(window).width();
+        if(b_w <= 991){
+          if($('.page-header.type13 .main-panel-top .header-right .items-inner') && $('.page-header.type13 .main-panel-top .header-left')){
+            $('.page-header.type13 .main-panel-top .header-right .items-inner').after('<div class="item-right-place hide"></div>');
+            $('.page-header.type13 .main-panel-top .header-left .search-area').after('<div class="item-left-place hide"></div>');
+            var items_right = $('.page-header.type13 .main-panel-top .header-right .items-inner').detach(),
+                items_left = $('.page-header.type13 .main-panel-top .header-left .search-area').detach();
+
+            $('.page-header.type13 .header-main .header-right').append(items_left);
+            $('.page-header.type13 .header-main .header-right').append(items_right);
+          }
+        }
+        if(b_w > 991){
+          if($('.page-header.type13 .header-main .header-right').length > 0) {
+            var items_left = $('.page-header.type13 .header-main .header-right .search-area'),
+                items_right = $('.page-header.type13 .header-main .header-right .items-inner').detach();
+            $('.item-right-place').after(items_right);
+            $('.item-right-place').remove();
+            $('.item-left-place').after(items_left);
+            $('.item-left-place').remove();
+          }
+        }
+      });
+    });
+  </script>
+<?php elseif($header_type == 14): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left flex-1">
+        <div class="panel header">
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+        </div>
+      </div>
+      <div class="header-center">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right flex-1">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist ml-4" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom">
+    <div class="header-row">
+      <div class="header-col header-left flex-1"><?php echo $this->getChildHtml("custom_block_menu"); ?></div>
+      <div class="header-col header-center flex-1"><?php echo $this->getChildHtml("navigation.sections"); ?></div>
+      <div class="header-col header-right flex-1">
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i><span class="search-text"><?php echo __('Search')?></span></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+    <script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+      if($(window).width() <= 991){
+        if($('.page-header.type14 .header-bottom .header-right .search-area')){
+          $('.page-header.type14 .header-bottom .header-right .search-area').after('<div class="item-search-place hide"></div>');
+          var item_search = $('.page-header.type14 .header-bottom .header-right .search-area').detach();
+          $('.page-header.type14 .header-main .header-right').append(item_search);
+        }
+      }
+      $(window).resize(function(){
+        var b_w = $(window).width();
+        if(b_w <= 991){
+          if($('.page-header.type14 .header-bottom .header-right .search-area')){
+            $('.page-header.type14 .header-bottom .header-right .search-area').after('<div class="item-search-place hide"></div>');
+            var item_search = $('.page-header.type14 .header-bottom .header-right .search-area').detach();
+            $('.page-header.type14 .header-main .header-right').append(item_search);
+          }
+        }
+        if(b_w > 991){
+          if($('.page-header.type14 .header-main .header-right .search-area').length > 0) {
+            var item_search = $('.page-header.type14 .header-main .header-right .search-area').detach();
+            $('.item-search-place').after(item_search);
+            $('.item-search-place').remove();
+          }
+        }
+      });
+    });
+  </script>
+<?php elseif($header_type == 15): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                    <?php echo $this->getChildHtml("currency"); ?>
+                    <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+        <?php echo $this->getChildHtml("custom_block_menu"); ?>
+        <span class="separator"></span>
+      </div>
+      <div class="header-right">
+        <div class="search-area show-icon-tablet-large">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <span class="separator"></span>
+        <?php echo $this->getChildHtml("custom_block"); ?>
+        <div class="header-contact">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 16): ?>
+    <div class="main-panel-top">
+        <div class="container">
+            <div class="main-panel-inner">
+                <div class="panel wrapper">
+                  <div class="header-left">
+                    <div class="panel header">
+                        <?php echo $this->getChildHtml("currency"); ?>
+                        <?php echo $this->getChildHtml("store_language"); ?>
+                    </div>
+                  </div>
+                  <div class="header-right">
+                    <div class="panel header show-icon-tablet">
+                      <div class="top-links-icon">
+                        <a href="javascript:;"><?php echo __('Links');?></a>
+                      </div>
+                      <?php echo $this->getChildHtml("header.links"); ?>
+                    </div>
+                    <?php echo $this->getChildHtml("custom_block_top"); ?>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-main">
+      <div class="header content header-row">
+        <div class="header-col header-left">
+          <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+          <?php echo $this->getChildHtml("logo"); ?>
+          <div class="search-area show-icon-tablet">
+            <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+            <?php echo $this->getChildHtml("top.search"); ?>
+          </div>
+        </div>
+        <div class="header-col header-right">
+          <div class="header-contact">
+            <?php echo $this->getChildHtml("custom_block"); ?>
+            <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+          </div>
+          <?php echo $this->getChildHtml("minicart"); ?>
+        </div>
+      </div>
+    </div>
+    <?php echo $this->getChildHtml("navigation.sections"); ?>
+<?php elseif($header_type == 17): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-col header-left">
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-col header-center">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-col header-right">
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-sm-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 18): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-col header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <div class="header-contact">
+        <?php
+            $custom_block_id_18 =$this->getConfig('porto_settings/header/static_block_18');
+            $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+            if($block) $block->setBlockId($custom_block_id_18);
+            if($block) echo $block->toHtml();
+        ?>
+        </div>
+      </div>
+      <div class="header-col header-center">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-col header-right">
+        <?php echo $this->getChildHtml("custom_block"); ?>
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist ml-lg-4 mr-2" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom main-menu-wrap">
+    <div class="header-row container">
+      <div class="header-col header-left">
+        <div id="main-toggle-menu" class="closed">
+          <?php
+              $toggle_text = $this->getConfig('porto_settings/header/toggle_text_18');
+              $secondary_menu_18 =$this->getConfig('porto_settings/header/secondary_menu_18');
+          ?>
+          <div class="menu-title closed">
+            <div class="toggle"></div><?php echo $toggle_text;?>
+          </div>
+          <div class="toggle-menu-wrap side-nav-wrap" style="display: none;">
+            <?php echo $this->getChildHtml("navigation.sections"); ?>
+          </div>
+        </div>
+        <div class="second-menu-block">
+          <div class="sections nav-sections">
+            <nav class="navigation sw-megamenu ">
+              <?php
+                  $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                  if($block) $block->setBlockId($secondary_menu_18);
+                  if($block) echo $block->toHtml();
+              ?>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <div class="header-col header-right">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+      if($(window).width() <= 991){
+        if($('.page-header.type18 .header-bottom .header-right .search-area')){
+          $('.page-header.type18 .header-bottom .header-right .search-area').after('<div class="item-search-place hide"></div>');
+          var item_search = $('.page-header.type18 .header-bottom .header-right .search-area').detach();
+          $('.page-header.type18 .header-main .header-right .custom-block').after(item_search);
+        }
+      }
+      $(window).resize(function(){
+        var b_w = $(window).width();
+        if(b_w <= 991){
+          if($('.page-header.type18 .header-bottom .header-right .search-area')){
+            $('.page-header.type18 .header-bottom .header-right .search-area').after('<div class="item-search-place hide"></div>');
+            var item_search = $('.page-header.type18 .header-bottom .header-right .search-area').detach();
+            $('.page-header.type18 .header-main .header-right .custom-block').after(item_search);
+          }
+        }
+        if(b_w > 991){
+          if($('.page-header.type18 .header-main .header-right .search-area').length > 0) {
+            var item_search = $('.page-header.type18 .header-main .header-right .search-area').detach();
+            $('.item-search-place').after(item_search);
+            $('.item-search-place').remove();
+          }
+        }
+      });
+      $('#main-toggle-menu .menu-title').on('click', function() {
+        var $toggle_menu = $(this).parent();
+        var $this = $(this);
+        if ($this.hasClass('closed')) {
+          $this.removeClass('closed');
+          $toggle_menu.removeClass('closed');
+          $toggle_menu.find('.toggle-menu-wrap').stop().slideDown(400, function() {
+            $(this).attr('style', '').show();
+          });
+          if ($('#main-toggle-menu').length) {
+            if ($('#main-toggle-menu').hasClass('show-always')) {
+              $('#main-toggle-menu').data('show-always', true);
+              $('#main-toggle-menu').removeClass('show-always');
+            }
+          }
+        } else {
+          scrolled = false;
+          $this.addClass('closed');
+          $toggle_menu.addClass('closed');
+          $toggle_menu.find('.toggle-menu-wrap').stop().slideUp(400, function() {
+            $(this).attr('style', '').hide();
+          });
+        }
+      });
+      $(window).scroll(function(){
+        if($(window).width()>=992){
+          if(10<$(window).scrollTop()){
+            if (!$('#main-toggle-menu').hasClass('closed')) {
+              $('#main-toggle-menu .menu-title').trigger('click');
+            }
+          }
+        }
+      });
+    });
+  </script>
+<?php elseif($header_type == 19): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-col header-left">
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+                <div class="header-col header-right">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-col header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-col header-right">
+        <div class="panel header my-account show-icon">
+          <div class="top-links-icon">
+            <a href="javascript:;"><i class="porto-icon-user-2"></i></a>
+          </div>
+          <?php echo $this->getChildHtml("header.links"); ?>
+        </div>
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-2" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 20): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <div class="panel header">
+                    <?php echo $this->getChildHtml("currency"); ?>
+                    <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+        <?php echo $this->getChildHtml("navigation.sections"); ?>
+      </div>
+      <div class="header-right">
+        <div class="search-area show-icon">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+        <div class="header-contact">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account mr-1" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-2" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php elseif($header_type == 21): ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <?php if($this->getConfig('porto_settings/header/header21_text')) echo $this->getConfig('porto_settings/header/header21_text'); ?>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left d-none d-lg-block">
+        <div class="panel header">
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+        </div>
+      </div>
+      <div class="header-center">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-right">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom main-menu-wrap">
+    <div class="header-row container">
+      <div class="header-col header-left"><?php echo $this->getChildHtml("navigation.sections"); ?></div>
+      <div class="header-col header-right">
+        <div class="header-inner">
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+          <?php echo $this->getChildHtml("minicart"); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  require([
+      'jquery'
+  ], function ($) {
+    if($(window).width() <= 991){
+      if($('.page-header.type21 .header-bottom .header-right .header-inner')){
+        $('.page-header.type21 .header-bottom .header-right .header-inner').after('<div class="item-search-place hide"></div>');
+        var item_right = $('.page-header.type21 .header-bottom .header-right .header-inner').detach();
+        $('.page-header.type21 .header-main .header-right').append(item_right);
+      }
+    }
+    $(window).resize(function(){
+      var b_w = $(window).width();
+      if(b_w <= 991){
+        if($('.page-header.type21 .header-bottom .header-right .header-inner')){
+          $('.page-header.type21 .header-bottom .header-right .header-inner').after('<div class="item-search-place hide"></div>');
+          var item_right = $('.page-header.type21 .header-bottom .header-right .header-inner').detach();
+          $('.page-header.type21 .header-main .header-right').append(item_right);
+        }
+      }
+      if(b_w > 991){
+        if($('.page-header.type21 .header-main .header-right .header-inner').length > 0) {
+          var item_right = $('.page-header.type21 .header-main .header-right .header-inner').detach();
+          $('.item-search-place').after(item_right);
+          $('.item-search-place').remove();
+        }
+      }
+    });
+  });
+</script>
+<?php elseif($header_type == 22): ?>
+<div class="main-panel-top">
+    <div class="container">
+        <div class="main-panel-inner">
+            <div class="panel wrapper">
+              <div class="header-left">
+                <?php echo $this->getConfig('porto_settings/header/header22_text') ? $this->getConfig('porto_settings/header/header22_text') : '';?>
+              </div>
+              <div class="header-right">
+                <div class="panel header">
+                  <?php echo $this->getChildHtml("currency"); ?>
+                  <?php echo $this->getChildHtml("store_language"); ?>
+                </div>
+                <span class="separator"></span>
+                <div class="panel header show-icon-tablet">
+                  <div class="top-links-icon">
+                    <a href="javascript:;"><?php echo __('Links');?></a>
+                  </div>
+                  <?php echo $this->getChildHtml("header.links"); ?>
+                </div>
+                <span class="separator"></span>
+                <?php echo $this->getChildHtml("custom_block_top"); ?>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header-main">
+  <div class="header content header-row">
+    <div class="header-left">
+      <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+      <?php echo $this->getChildHtml("logo"); ?>
+      <div class="search-area show-icon-tablet">
+        <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+        <?php echo $this->getChildHtml("top.search"); ?>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-contact">
+        <?php echo $this->getChildHtml("custom_block"); ?>
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account" title="My Account"><i class="porto-icon-user-2"></i></a>
+      </div>
+      <?php echo $this->getChildHtml("minicart"); ?>
+    </div>
+  </div>
+</div>
+<div class="header-bottom main-menu-wrap">
+  <div class="header-row container">
+    <div class="header-col header-left">
+      <?php
+          $toggle_text = $this->getConfig('porto_settings/header/toggle_text_22');
+          $secondary_menu_22 =$this->getConfig('porto_settings/header/secondary_menu_22');
+          $toggle_action = $this->getConfig('porto_settings/header/toggle_action_22');
+      ?>
+      <div id="main-toggle-menu" class="main-toggle-menu closed<?php if($toggle_action == '2'):?> show-hover<?php endif;?>">
+        <div class="menu-title closed">
+          <div class="toggle"></div><?php echo $toggle_text;?>
+        </div>
+        <div class="toggle-menu-wrap side-nav-wrap">
+          <?php echo $this->getChildHtml("navigation.sections"); ?>
+        </div>
+      </div>
+      <div class="second-menu-block">
+        <div class="sections nav-sections">
+          <nav class="navigation sw-megamenu ">
+            <?php
+                $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                if($block) $block->setBlockId($secondary_menu_22);
+                if($block) echo $block->toHtml();
+            ?>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="header-col header-right">
+      <?php
+          $custom_block_id_22 =$this->getConfig('porto_settings/header/static_block_22');
+          $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+          if($block) $block->setBlockId($custom_block_id_22);
+          if($block) echo $block->toHtml();
+      ?>
+    </div>
+  </div>
+  <script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+      $('#main-toggle-menu:not(.show-hover) .menu-title').on('click', function() {
+        var $toggle_menu = $(this).parent();
+        var $this = $(this);
+        if ($this.hasClass('closed')) {
+          $this.removeClass('closed');
+          $toggle_menu.removeClass('closed');
+          $toggle_menu.find('.toggle-menu-wrap').stop().slideDown(400, function() {
+            $(this).attr('style', '').show();
+          });
+          if ($('#main-toggle-menu').length) {
+            if ($('#main-toggle-menu').hasClass('show-always')) {
+              $('#main-toggle-menu').data('show-always', true);
+              $('#main-toggle-menu').removeClass('show-always');
+            }
+          }
+        } else {
+          scrolled = false;
+          $this.addClass('closed');
+          $toggle_menu.addClass('closed');
+          $toggle_menu.find('.toggle-menu-wrap').stop().slideUp(400, function() {
+            $(this).attr('style', '').hide();
+          });
+        }
+      });
+      $(window).scroll(function(){
+        if($(window).width()>=992){
+          if(10<$(window).scrollTop()){
+            if (!$('#main-toggle-menu').hasClass('closed')) {
+              $('#main-toggle-menu .menu-title').trigger('click');
+            }
+          }
+        }
+      });
+    });
+  </script>
+</div>
+<?php else: ?>
+  <div class="main-panel-top">
+      <div class="container">
+          <div class="main-panel-inner">
+              <div class="panel wrapper">
+                <div class="header-left">
+                  <div class="panel header">
+                      <?php echo $this->getChildHtml("currency"); ?>
+                      <?php echo $this->getChildHtml("store_language"); ?>
+                  </div>
+                </div>
+                <div class="header-right">
+                  <div class="panel header show-icon-tablet">
+                    <div class="top-links-icon">
+                      <a href="javascript:;"><?php echo __('Links');?></a>
+                    </div>
+                    <?php echo $this->getChildHtml("header.links"); ?>
+                  </div>
+                  <?php echo $this->getChildHtml("custom_block_top"); ?>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="header-main">
+    <div class="header content header-row">
+      <div class="header-left">
+        <span data-action="toggle-nav" class="action nav-toggle"><span><?php echo __('Toggle Nav') ?></span></span>
+        <?php echo $this->getChildHtml("logo"); ?>
+      </div>
+      <div class="header-center">
+        <div class="search-area show-icon-tablet">
+          <a href="javascript:void(0);" class="search-toggle-icon"><span><i class="porto-icon-magnifier"></i></span></a>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-contact">
+          <?php echo $this->getChildHtml("custom_block"); ?>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'customer/account/' ?>" class="my-account m-l-xs mr-1 mr-lg-2" title="My Account"><i class="porto-icon-user-2"></i></a>
+          <a href="<?php echo $_helper->getBaseLinkUrl(). 'wishlist' ?>" class="wishlist mr-1 mr-lg-2 pr-lg-1" title="Wishlist"><i class="porto-icon-wishlist-2"></i></a>
+        </div>
+        <?php echo $this->getChildHtml("minicart"); ?>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
+</header>
+<?php if($header_type == 10): ?>
+</div>
+<?php endif; ?>
+<?php
+    if ($show_notice && $show_notice == 2)
+        echo $this->getChildHtml("porto_custom_notice");
+?>

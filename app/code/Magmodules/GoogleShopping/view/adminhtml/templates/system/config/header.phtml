@@ -1,0 +1,108 @@
+<?php
+/**
+ * Copyright © Magmodules.eu. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * @var $block Magmodules\GoogleShopping\Block\Adminhtml\Magmodules\Header
+ */
+?>
+<!--suppress ALL -->
+<div class="mm-block-googleshopping"
+     style="background-image: url(<?= $block->escapeUrl($block->getImage()); ?>)">
+    <a class="helpbutton" href="<?= $block->escapeUrl($block->getSupportLink()); ?>" target="_blank">
+        Manual & Support
+    </a>
+    <p>
+        <strong>Developed by Magmodules.</strong>
+        A Magento only eCommerce Agency located in the Netherlands.
+    </p>
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <div class="icon2"></div>
+                Magmodules.eu
+            </td>
+            <td>
+                <div class="icon1"></div>
+                <a href="<?= $block->escapeUrl($block->getContactLink()); ?>" target="_blank">Contact</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div id="conditionalInfo" style="display: none">
+    <h2>Use Conditional Attributes</h2>
+    <p>
+        Use conditional attributes to generate a value with an if then construction.
+        <br/>
+        You can generate an if then else construction using the question mark ? and the colon:
+    </p>
+    <p>
+        For example, if you use the following value;</p>
+    <p>
+        If the short description exists, then show short description or else description:
+        <br/>
+        <strong>{{short_description}} ? {{short_description}} : {{description}}</strong>
+    </p>
+    <p><br/>Another example;</p>
+    <p>
+        If description exists, then show description, else show name + ska + short description
+        <br/>
+        <strong>{{description}} ? {{description}} : {{name}} {{sku}} {{short_description}}</strong>
+    </p>
+</div>
+<div id="multisourceInfo" style="display: none">
+    <h2>Use Multiple Attributes</h2>
+    <p>
+        Use multiple attributes to generate a value with the first attribute that contains data.<br/>
+        You can separate them by using, the comma, for example this can be;<br/><br/>
+    </p>
+    <p>
+        <strong>Description, short-description, name</strong>
+    </p>
+    <p>
+        <br/>This will tell that;
+        <br/>
+        <br/>
+        If there is no description available; check the short-description;
+        <br/>
+        If there is no short-description available; check the name;
+        <br/>
+        If there is a name available; use the name
+    </p>
+</div>
+<!--suppress Annotator, JSUnusedGlobalSymbols -->
+<script>
+    // <![CDATA[
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function ($, modal) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: '',
+                buttons: [{
+                    text: $.mage.__('Continue'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+            var popup1 = modal(options, $('#conditionalInfo'));
+            $(".conditional-modal").on('click', function () {
+                $("#conditionalInfo").modal("openModal");
+            });
+            var popup2 = modal(options, $('#multisourceInfo'));
+            $(".multisource-modal").on('click', function () {
+                $("#multisourceInfo").modal("openModal");
+            });
+        }
+    );
+    // ]]>
+</script>

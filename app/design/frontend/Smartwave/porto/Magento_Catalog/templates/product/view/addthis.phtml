@@ -1,0 +1,10 @@
+<?php $_product = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Framework\Registry::class)->registry('product');?>
+<div class="product-share">
+  <div class="share-links">
+    <a href="https://www.facebook.com/sharer.php?u=<?php echo $_product->getProductUrl();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-facebook" data-original-title="Facebook">Facebook</a>
+		<a href="https://twitter.com/intent/tweet?text=<?php echo $_product->getName();?>&amp;url=<?php echo $_product->getProductUrl();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-twitter" data-original-title="Twitter">Twitter</a>
+		<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo $_product->getProductUrl();?>&amp;title=<?php echo $_product->getName();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-linkedin" data-original-title="LinkedIn">LinkedIn</a>
+		<a href="https://plus.google.com/share?url=<?php echo $_product->getProductUrl();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-googleplus" data-original-title="Google +">Google +</a>
+		<a href="mailto:?subject=<?php echo $_product->getName();?>&amp;body=<?php echo $_product->getProductUrl();?>" target="_blank" rel="nofollow" data-tooltip="" data-placement="bottom" title="" class="share-email" data-original-title="Email">Email</a>
+	</div>
+</div>

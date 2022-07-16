@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="WeSupply_Toolbox::WeSupply" title="WeSupply" sortOrder="500">
+                    <resource id="WeSupply_Toolbox::Toolbox_Label" sortOrder="100" title="Settings">
+                        <resource id="WeSupply_Toolbox::Toolbox" title="Configuration" sortOrder="10" />
+                    </resource>
+                    <resource id="WeSupply_Toolbox::HelpCenter" sortOrder="200" title="Help Center">
+                        <resource id="WeSupply_Toolbox::OrderTrackingNotifications" sortOrder="10" title="Order Tracking &amp; Notifications" />
+                        <resource id="WeSupply_Toolbox::ReturnsRMA" sortOrder="10" title="Returns &amp; RMA" />
+                        <resource id="WeSupply_Toolbox::EstimatedDeliveryDates" sortOrder="10" title="Estimated Delivery Dates" />
+                        <resource id="WeSupply_Toolbox::StoreLocator" sortOrder="10" title="Store Locator" />
+                        <resource id="WeSupply_Toolbox::StorePickupCurbside" sortOrder="10" title="Store Pickup &amp; Curbside" />
+                        <resource id="WeSupply_Toolbox::Reviews" sortOrder="10" title="Reviews" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

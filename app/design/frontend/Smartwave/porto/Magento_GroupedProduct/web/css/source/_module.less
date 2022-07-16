@@ -1,0 +1,116 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+
+.table-wrapper.grouped {
+    width: auto;
+}
+.page-product-grouped {
+  .box-tocart {
+    padding: 1.25rem 0 1rem;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+}
+.table.grouped {
+    .row-tier-price {
+        > td {
+            border-top: 0;
+        }
+    }
+    thead {
+      text-transform: uppercase;
+    }
+    .col.item {
+        width: 90%;
+        padding: 8px 0;
+        font-weight: 400;
+        border-color: #e7e7e7;
+    }
+    .col.qty {
+        width: 10%;
+        padding: 8px 0;
+        font-weight: 400;
+        border-color: #e7e7e7;
+    }
+    .product-item-name {
+        font-weight: @font-weight__regular;
+        margin-bottom: 0;
+        display: inline-block;
+    }
+    .price-box {
+        margin: 0;
+        line-height: 1;
+        p {
+            margin: 0;
+        }
+        .price {
+            font-weight: @font-weight__bold;
+            color: @product-view-product-info-price;
+        }
+        .old-price {
+            .price {
+                font-weight: normal;
+                color: @product-view-product-info-old-price;
+            }
+        }
+    }
+    .stock.unavailable {
+        margin: 0;
+        white-space: nowrap;
+        text-transform: none;
+        font-weight: normal;
+    }
+    .row-tier-price {
+    }
+}
+
+.page-product-grouped .product-info-price {
+    float: right;
+    display: none;
+    width: auto;
+    border: 0;
+}
+
+}
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .table-wrapper.grouped {border: none;}
+    .table.grouped {
+        > thead > tr > th {
+            display: table-cell;
+            border-bottom: @table__border-width @table__border-style #e7e7e7;
+        }
+        > tbody {
+            border-bottom: @table__border-width @table__border-style #e7e7e7;
+            > tr > td {
+                &:extend(.abs-col-no-prefix all);
+                border: 0;
+                display: table-cell;
+                padding: @table-cell__padding-vertical @table-cell__padding-horizontal;
+                &:last-child {
+                    border: 0 !important;
+                }
+                &.col.item,&.col.qty {
+                  padding: 8px 0 !important;
+                  width: 100%;
+                }
+            }
+            &:last-child {
+              border: none;
+            }
+        }
+    }
+}

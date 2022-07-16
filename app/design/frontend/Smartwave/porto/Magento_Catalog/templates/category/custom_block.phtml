@@ -1,0 +1,12 @@
+<?php
+    $product_view = $this->getConfig('porto_settings/category');
+    $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+    if($block) {
+        $block->setBlockId($product_view['side_custom_block']);
+    }
+    if($block){ ?>
+      <div class="side-custom-block">
+        <?php echo $block->toHtml(); ?>
+      </div>
+    <?php }
+?>

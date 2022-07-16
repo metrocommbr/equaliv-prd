@@ -1,0 +1,22 @@
+<?php
+    $sidebar_sticky = $this->getConfig('porto_settings/general/sidebar_sticky');
+?>
+<?php if($sidebar_sticky): ?>
+<script type="text/javascript">
+require([
+    'jquery',
+    'themeSticky'
+], function ($) {
+  if(!$("body").hasClass("page-layout-1column") && !$("body").hasClass("account")) {
+    $(".sidebar.sidebar-main .sidebar-content").themeSticky({
+      autoInit: true,
+      minWidth: 992,
+      containerSelector: '.page-main .columns',
+      autoFit: true,
+      paddingOffsetBottom: 10,
+      paddingOffsetTop: 60
+    });
+  }
+});
+</script>
+<?php endif; ?>

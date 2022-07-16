@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <meta charset="UTF-8">
+  <style>
+    html {
+      font-size: 100%;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    a:focus {
+      outline: thin dotted #333;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px;
+    }
+    a:hover,
+    a:active {
+      outline: 0;
+    }
+    input {
+      margin: 0;
+      font-size: 100%;
+      vertical-align: middle;
+      *overflow: visible;
+      line-height: normal;
+    }
+    input::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333;
+      background-color: #fff;
+    }
+    a {
+      color: #08c;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #005580;
+      text-decoration: underline;
+    }
+    .row {
+      margin-left: -20px;
+      *zoom: 1;
+    }
+    .row:before,
+    .row:after {
+      display: table;
+      content: "";
+      line-height: 0;
+    }
+    .row:after {
+      clear: both;
+    }
+    .span3 {
+      float: left;
+      min-height: 1px;
+      margin-left: 20px;
+      width: 220px;
+    }
+    .container {
+      width: 940px;
+      margin-right: auto;
+      margin-left: auto;
+      *zoom: 1;
+    }
+    .container:before,
+    .container:after {
+      display: table;
+      content: "";
+      line-height: 0;
+    }
+    .container:after {
+      clear: both;
+    }
+    small {
+      font-size: 85%;
+    }
+    h1 {
+      margin: 10px 0;
+      font-family: inherit;
+      font-weight: bold;
+      line-height: 20px;
+      color: inherit;
+      text-rendering: optimizelegibility;
+      line-height: 40px;
+      font-size: 38.5px;
+    }
+    h1 small {
+      font-weight: normal;
+      line-height: 1;
+      color: #999;
+      font-size: 24.5px;
+    }
+
+    body {
+      margin-top: 90px;
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      margin-left: -480px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding-top: 10px;
+      z-index: 10;
+    }
+    .footer {
+      color: #ddd;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .footer a {
+      color: #ccc;
+      text-decoration: underline;
+    }
+    .the-icons {
+      font-size: 14px;
+      line-height: 24px;
+    }
+    .switch {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      color: #666;
+    }
+    .switch input {
+      margin-right: 0.3em;
+    }
+    .codesOn .i-name {
+      display: none;
+    }
+    .codesOn .i-code {
+      display: inline;
+    }
+    .i-code {
+      display: none;
+    }
+    @font-face {
+      font-family: 'porto-icons';
+      src: url('./font/porto-icons.eot?35997185');
+      src: url('./font/porto-icons.eot?35997185#iefix') format('embedded-opentype'),
+           url('./font/porto-icons.woff?35997185') format('woff'),
+           url('./font/porto-icons.ttf?35997185') format('truetype'),
+           url('./font/porto-icons.svg?35997185#fontello') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+    .demo-icon {
+      font-family: "porto-icons";
+      font-style: normal;
+      font-weight: normal;
+      speak: never;
+     
+      display: inline-block;
+      text-decoration: inherit;
+      width: 1em;
+      margin-right: .2em;
+      text-align: center;
+      /* opacity: .8; */
+     
+      /* For safety - reset parent styles, that can break glyph codes*/
+      font-variant: normal;
+      text-transform: none;
+     
+      /* fix buttons height, for twitter bootstrap */
+      line-height: 1em;
+     
+      /* Animation center compensation - margins should be symmetric */
+      /* remove if not needed */
+      margin-left: .2em;
+     
+      /* You can be more comfortable with increased icons size */
+      /* font-size: 120%; */
+     
+      /* Font smoothing. That was taken from TWBS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+     
+      /* Uncomment for 3D effect */
+      /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    }
+    </style>
+    <link rel="stylesheet" href="css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="css/" + font.fontname + "-ie7.css"><![endif]-->
+    <script>
+      function toggleCodes(on) {
+        var obj = document.getElementById('icons');
+      
+        if (on) {
+          obj.className += ' codesOn';
+        } else {
+          obj.className = obj.className.replace(' codesOn', '');
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container header">
+      <h1>fontello <small>font demo</small></h1>
+      <label class="switch">
+        <input type="checkbox" onclick="toggleCodes(this.checked)">show codes
+      </label>
+    </div>
+    <div class="container" id="icons">
+      <div class="row">
+        <div class="span3" title="Code: 0xe800">
+          <i class="demo-icon porto-icon-spin1">&#xe800;</i> <span class="i-name">porto-icon-spin1</span><span class="i-code">0xe800</span>
+        </div>
+        <div class="span3" title="Code: 0xe801">
+          <i class="demo-icon porto-icon-spin2">&#xe801;</i> <span class="i-name">porto-icon-spin2</span><span class="i-code">0xe801</span>
+        </div>
+        <div class="span3" title="Code: 0xe802">
+          <i class="demo-icon porto-icon-spin3">&#xe802;</i> <span class="i-name">porto-icon-spin3</span><span class="i-code">0xe802</span>
+        </div>
+        <div class="span3" title="Code: 0xe803">
+          <i class="demo-icon porto-icon-spin4">&#xe803;</i> <span class="i-name">porto-icon-spin4</span><span class="i-code">0xe803</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe804">
+          <i class="demo-icon porto-icon-spin5">&#xe804;</i> <span class="i-name">porto-icon-spin5</span><span class="i-code">0xe804</span>
+        </div>
+        <div class="span3" title="Code: 0xe805">
+          <i class="demo-icon porto-icon-spin6">&#xe805;</i> <span class="i-name">porto-icon-spin6</span><span class="i-code">0xe805</span>
+        </div>
+        <div class="span3" title="Code: 0xe806">
+          <i class="demo-icon porto-icon-firefox">&#xe806;</i> <span class="i-name">porto-icon-firefox</span><span class="i-code">0xe806</span>
+        </div>
+        <div class="span3" title="Code: 0xe807">
+          <i class="demo-icon porto-icon-chrome">&#xe807;</i> <span class="i-name">porto-icon-chrome</span><span class="i-code">0xe807</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe808">
+          <i class="demo-icon porto-icon-opera">&#xe808;</i> <span class="i-name">porto-icon-opera</span><span class="i-code">0xe808</span>
+        </div>
+        <div class="span3" title="Code: 0xe809">
+          <i class="demo-icon porto-icon-ie">&#xe809;</i> <span class="i-name">porto-icon-ie</span><span class="i-code">0xe809</span>
+        </div>
+        <div class="span3" title="Code: 0xe80a">
+          <i class="demo-icon porto-icon-money">&#xe80a;</i> <span class="i-name">porto-icon-money</span><span class="i-code">0xe80a</span>
+        </div>
+        <div class="span3" title="Code: 0xe80b">
+          <i class="demo-icon porto-icon-shipping">&#xe80b;</i> <span class="i-name">porto-icon-shipping</span><span class="i-code">0xe80b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe80c">
+          <i class="demo-icon porto-icon-support">&#xe80c;</i> <span class="i-name">porto-icon-support</span><span class="i-code">0xe80c</span>
+        </div>
+        <div class="span3" title="Code: 0xe80d">
+          <i class="demo-icon porto-icon-cart-thick">&#xe80d;</i> <span class="i-name">porto-icon-cart-thick</span><span class="i-code">0xe80d</span>
+        </div>
+        <div class="span3" title="Code: 0xe80e">
+          <i class="demo-icon porto-icon-business-book">&#xe80e;</i> <span class="i-name">porto-icon-business-book</span><span class="i-code">0xe80e</span>
+        </div>
+        <div class="span3" title="Code: 0xe80f">
+          <i class="demo-icon porto-icon-percent-shape">&#xe80f;</i> <span class="i-name">porto-icon-percent-shape</span><span class="i-code">0xe80f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe810">
+          <i class="demo-icon porto-icon-sale-label">&#xe810;</i> <span class="i-name">porto-icon-sale-label</span><span class="i-code">0xe810</span>
+        </div>
+        <div class="span3" title="Code: 0xe811">
+          <i class="demo-icon porto-icon-wishlist">&#xe811;</i> <span class="i-name">porto-icon-wishlist</span><span class="i-code">0xe811</span>
+        </div>
+        <div class="span3" title="Code: 0xe812">
+          <i class="demo-icon porto-icon-sale-discount">&#xe812;</i> <span class="i-name">porto-icon-sale-discount</span><span class="i-code">0xe812</span>
+        </div>
+        <div class="span3" title="Code: 0xe813">
+          <i class="demo-icon porto-icon-phone-call">&#xe813;</i> <span class="i-name">porto-icon-phone-call</span><span class="i-code">0xe813</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe819">
+          <i class="demo-icon porto-icon-angle-left">&#xe819;</i> <span class="i-name">porto-icon-angle-left</span><span class="i-code">0xe819</span>
+        </div>
+        <div class="span3" title="Code: 0xe81a">
+          <i class="demo-icon porto-icon-angle-right">&#xe81a;</i> <span class="i-name">porto-icon-angle-right</span><span class="i-code">0xe81a</span>
+        </div>
+        <div class="span3" title="Code: 0xe81b">
+          <i class="demo-icon porto-icon-angle-up">&#xe81b;</i> <span class="i-name">porto-icon-angle-up</span><span class="i-code">0xe81b</span>
+        </div>
+        <div class="span3" title="Code: 0xe81c">
+          <i class="demo-icon porto-icon-angle-down">&#xe81c;</i> <span class="i-name">porto-icon-angle-down</span><span class="i-code">0xe81c</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe81d">
+          <i class="demo-icon porto-icon-down-1">&#xe81d;</i> <span class="i-name">porto-icon-down-1</span><span class="i-code">0xe81d</span>
+        </div>
+        <div class="span3" title="Code: 0xe81e">
+          <i class="demo-icon porto-icon-left-1">&#xe81e;</i> <span class="i-name">porto-icon-left-1</span><span class="i-code">0xe81e</span>
+        </div>
+        <div class="span3" title="Code: 0xe81f">
+          <i class="demo-icon porto-icon-right-1">&#xe81f;</i> <span class="i-name">porto-icon-right-1</span><span class="i-code">0xe81f</span>
+        </div>
+        <div class="span3" title="Code: 0xe820">
+          <i class="demo-icon porto-icon-up-1">&#xe820;</i> <span class="i-name">porto-icon-up-1</span><span class="i-code">0xe820</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe821">
+          <i class="demo-icon porto-icon-angle-double-left">&#xe821;</i> <span class="i-name">porto-icon-angle-double-left</span><span class="i-code">0xe821</span>
+        </div>
+        <div class="span3" title="Code: 0xe822">
+          <i class="demo-icon porto-icon-angle-double-right">&#xe822;</i> <span class="i-name">porto-icon-angle-double-right</span><span class="i-code">0xe822</span>
+        </div>
+        <div class="span3" title="Code: 0xe823">
+          <i class="demo-icon porto-icon-angle-double-up">&#xe823;</i> <span class="i-name">porto-icon-angle-double-up</span><span class="i-code">0xe823</span>
+        </div>
+        <div class="span3" title="Code: 0xe824">
+          <i class="demo-icon porto-icon-angle-double-down">&#xe824;</i> <span class="i-name">porto-icon-angle-double-down</span><span class="i-code">0xe824</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe827">
+          <i class="demo-icon porto-icon-skype-1">&#xe827;</i> <span class="i-name">porto-icon-skype-1</span><span class="i-code">0xe827</span>
+        </div>
+        <div class="span3" title="Code: 0xe82e">
+          <i class="demo-icon porto-icon-mail-alt-1">&#xe82e;</i> <span class="i-name">porto-icon-mail-alt-1</span><span class="i-code">0xe82e</span>
+        </div>
+        <div class="span3" title="Code: 0xe82f">
+          <i class="demo-icon porto-icon-fax">&#xe82f;</i> <span class="i-name">porto-icon-fax</span><span class="i-code">0xe82f</span>
+        </div>
+        <div class="span3" title="Code: 0xe830">
+          <i class="demo-icon porto-icon-lock">&#xe830;</i> <span class="i-name">porto-icon-lock</span><span class="i-code">0xe830</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe831">
+          <i class="demo-icon porto-icon-company">&#xe831;</i> <span class="i-name">porto-icon-company</span><span class="i-code">0xe831</span>
+        </div>
+        <div class="span3" title="Code: 0xe832">
+          <i class="demo-icon porto-icon-city">&#xe832;</i> <span class="i-name">porto-icon-city</span><span class="i-code">0xe832</span>
+        </div>
+        <div class="span3" title="Code: 0xe833">
+          <i class="demo-icon porto-icon-post">&#xe833;</i> <span class="i-name">porto-icon-post</span><span class="i-code">0xe833</span>
+        </div>
+        <div class="span3" title="Code: 0xe834">
+          <i class="demo-icon porto-icon-country">&#xe834;</i> <span class="i-name">porto-icon-country</span><span class="i-code">0xe834</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe837">
+          <i class="demo-icon porto-icon-mobile-1">&#xe837;</i> <span class="i-name">porto-icon-mobile-1</span><span class="i-code">0xe837</span>
+        </div>
+        <div class="span3" title="Code: 0xe83d">
+          <i class="demo-icon porto-icon-forward">&#xe83d;</i> <span class="i-name">porto-icon-forward</span><span class="i-code">0xe83d</span>
+        </div>
+        <div class="span3" title="Code: 0xe83f">
+          <i class="demo-icon porto-icon-cog">&#xe83f;</i> <span class="i-name">porto-icon-cog</span><span class="i-code">0xe83f</span>
+        </div>
+        <div class="span3" title="Code: 0xe840">
+          <i class="demo-icon porto-icon-cog-alt">&#xe840;</i> <span class="i-name">porto-icon-cog-alt</span><span class="i-code">0xe840</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe841">
+          <i class="demo-icon porto-icon-wrench">&#xe841;</i> <span class="i-name">porto-icon-wrench</span><span class="i-code">0xe841</span>
+        </div>
+        <div class="span3" title="Code: 0xe842">
+          <i class="demo-icon porto-icon-quote-left">&#xe842;</i> <span class="i-name">porto-icon-quote-left</span><span class="i-code">0xe842</span>
+        </div>
+        <div class="span3" title="Code: 0xe843">
+          <i class="demo-icon porto-icon-quote-right">&#xe843;</i> <span class="i-name">porto-icon-quote-right</span><span class="i-code">0xe843</span>
+        </div>
+        <div class="span3" title="Code: 0xe844">
+          <i class="demo-icon porto-icon-gift-1">&#xe844;</i> <span class="i-name">porto-icon-gift-1</span><span class="i-code">0xe844</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe846">
+          <i class="demo-icon porto-icon-euro">&#xe846;</i> <span class="i-name">porto-icon-euro</span><span class="i-code">0xe846</span>
+        </div>
+        <div class="span3" title="Code: 0xe847">
+          <i class="demo-icon porto-icon-pound">&#xe847;</i> <span class="i-name">porto-icon-pound</span><span class="i-code">0xe847</span>
+        </div>
+        <div class="span3" title="Code: 0xe848">
+          <i class="demo-icon porto-icon-rupee">&#xe848;</i> <span class="i-name">porto-icon-rupee</span><span class="i-code">0xe848</span>
+        </div>
+        <div class="span3" title="Code: 0xe849">
+          <i class="demo-icon porto-icon-yen">&#xe849;</i> <span class="i-name">porto-icon-yen</span><span class="i-code">0xe849</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe84a">
+          <i class="demo-icon porto-icon-rouble">&#xe84a;</i> <span class="i-name">porto-icon-rouble</span><span class="i-code">0xe84a</span>
+        </div>
+        <div class="span3" title="Code: 0xe84b">
+          <i class="demo-icon porto-icon-try">&#xe84b;</i> <span class="i-name">porto-icon-try</span><span class="i-code">0xe84b</span>
+        </div>
+        <div class="span3" title="Code: 0xe84c">
+          <i class="demo-icon porto-icon-won">&#xe84c;</i> <span class="i-name">porto-icon-won</span><span class="i-code">0xe84c</span>
+        </div>
+        <div class="span3" title="Code: 0xe84d">
+          <i class="demo-icon porto-icon-bitcoin">&#xe84d;</i> <span class="i-name">porto-icon-bitcoin</span><span class="i-code">0xe84d</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe84e">
+          <i class="demo-icon porto-icon-ok-1">&#xe84e;</i> <span class="i-name">porto-icon-ok-1</span><span class="i-code">0xe84e</span>
+        </div>
+        <div class="span3" title="Code: 0xe85b">
+          <i class="demo-icon porto-icon-users">&#xe85b;</i> <span class="i-name">porto-icon-users</span><span class="i-code">0xe85b</span>
+        </div>
+        <div class="span3" title="Code: 0xe85c">
+          <i class="demo-icon porto-icon-video">&#xe85c;</i> <span class="i-name">porto-icon-video</span><span class="i-code">0xe85c</span>
+        </div>
+        <div class="span3" title="Code: 0xe85e">
+          <i class="demo-icon porto-icon-desktop">&#xe85e;</i> <span class="i-name">porto-icon-desktop</span><span class="i-code">0xe85e</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe85f">
+          <i class="demo-icon porto-icon-doc-inv">&#xe85f;</i> <span class="i-name">porto-icon-doc-inv</span><span class="i-code">0xe85f</span>
+        </div>
+        <div class="span3" title="Code: 0xe860">
+          <i class="demo-icon porto-icon-circle">&#xe860;</i> <span class="i-name">porto-icon-circle</span><span class="i-code">0xe860</span>
+        </div>
+        <div class="span3" title="Code: 0xe862">
+          <i class="demo-icon porto-icon-circle-thin">&#xe862;</i> <span class="i-name">porto-icon-circle-thin</span><span class="i-code">0xe862</span>
+        </div>
+        <div class="span3" title="Code: 0xe864">
+          <i class="demo-icon porto-icon-paper-plane-1">&#xe864;</i> <span class="i-name">porto-icon-paper-plane-1</span><span class="i-code">0xe864</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe865">
+          <i class="demo-icon porto-icon-attention-alt">&#xe865;</i> <span class="i-name">porto-icon-attention-alt</span><span class="i-code">0xe865</span>
+        </div>
+        <div class="span3" title="Code: 0xe867">
+          <i class="demo-icon porto-icon-compare-link">&#xe867;</i> <span class="i-name">porto-icon-compare-link</span><span class="i-code">0xe867</span>
+        </div>
+        <div class="span3" title="Code: 0xe868">
+          <i class="demo-icon porto-icon-cat-default">&#xe868;</i> <span class="i-name">porto-icon-cat-default</span><span class="i-code">0xe868</span>
+        </div>
+        <div class="span3" title="Code: 0xe870">
+          <i class="demo-icon porto-icon-tag-line">&#xe870;</i> <span class="i-name">porto-icon-tag-line</span><span class="i-code">0xe870</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe871">
+          <i class="demo-icon porto-icon-bag">&#xe871;</i> <span class="i-name">porto-icon-bag</span><span class="i-code">0xe871</span>
+        </div>
+        <div class="span3" title="Code: 0xe872">
+          <i class="demo-icon porto-icon-search-1">&#xe872;</i> <span class="i-name">porto-icon-search-1</span><span class="i-code">0xe872</span>
+        </div>
+        <div class="span3" title="Code: 0xe877">
+          <i class="demo-icon porto-icon-online-support">&#xe877;</i> <span class="i-name">porto-icon-online-support</span><span class="i-code">0xe877</span>
+        </div>
+        <div class="span3" title="Code: 0xe878">
+          <i class="demo-icon porto-icon-shopping-bag">&#xe878;</i> <span class="i-name">porto-icon-shopping-bag</span><span class="i-code">0xe878</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe879">
+          <i class="demo-icon porto-icon-us-dollar">&#xe879;</i> <span class="i-name">porto-icon-us-dollar</span><span class="i-code">0xe879</span>
+        </div>
+        <div class="span3" title="Code: 0xe87a">
+          <i class="demo-icon porto-icon-shipped">&#xe87a;</i> <span class="i-name">porto-icon-shipped</span><span class="i-code">0xe87a</span>
+        </div>
+        <div class="span3" title="Code: 0xe87b">
+          <i class="demo-icon porto-icon-list">&#xe87b;</i> <span class="i-name">porto-icon-list</span><span class="i-code">0xe87b</span>
+        </div>
+        <div class="span3" title="Code: 0xe87f">
+          <i class="demo-icon porto-icon-bag-2">&#xe87f;</i> <span class="i-name">porto-icon-bag-2</span><span class="i-code">0xe87f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe880">
+          <i class="demo-icon porto-icon-grid">&#xe880;</i> <span class="i-name">porto-icon-grid</span><span class="i-code">0xe880</span>
+        </div>
+        <div class="span3" title="Code: 0xe881">
+          <i class="demo-icon porto-icon-bag-3">&#xe881;</i> <span class="i-name">porto-icon-bag-3</span><span class="i-code">0xe881</span>
+        </div>
+        <div class="span3" title="Code: 0xe882">
+          <i class="demo-icon porto-icon-direction">&#xe882;</i> <span class="i-name">porto-icon-direction</span><span class="i-code">0xe882</span>
+        </div>
+        <div class="span3" title="Code: 0xe883">
+          <i class="demo-icon porto-icon-home">&#xe883;</i> <span class="i-name">porto-icon-home</span><span class="i-code">0xe883</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe884">
+          <i class="demo-icon porto-icon-magnifier">&#xe884;</i> <span class="i-name">porto-icon-magnifier</span><span class="i-code">0xe884</span>
+        </div>
+        <div class="span3" title="Code: 0xe885">
+          <i class="demo-icon porto-icon-magnifier-add">&#xe885;</i> <span class="i-name">porto-icon-magnifier-add</span><span class="i-code">0xe885</span>
+        </div>
+        <div class="span3" title="Code: 0xe886">
+          <i class="demo-icon porto-icon-magnifier-remove">&#xe886;</i> <span class="i-name">porto-icon-magnifier-remove</span><span class="i-code">0xe886</span>
+        </div>
+        <div class="span3" title="Code: 0xe887">
+          <i class="demo-icon porto-icon-phone-1">&#xe887;</i> <span class="i-name">porto-icon-phone-1</span><span class="i-code">0xe887</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe888">
+          <i class="demo-icon porto-icon-clock-1">&#xe888;</i> <span class="i-name">porto-icon-clock-1</span><span class="i-code">0xe888</span>
+        </div>
+        <div class="span3" title="Code: 0xe889">
+          <i class="demo-icon porto-icon-heart-1">&#xe889;</i> <span class="i-name">porto-icon-heart-1</span><span class="i-code">0xe889</span>
+        </div>
+        <div class="span3" title="Code: 0xe88b">
+          <i class="demo-icon porto-icon-earphones-alt">&#xe88b;</i> <span class="i-name">porto-icon-earphones-alt</span><span class="i-code">0xe88b</span>
+        </div>
+        <div class="span3" title="Code: 0xe88c">
+          <i class="demo-icon porto-icon-credit-card">&#xe88c;</i> <span class="i-name">porto-icon-credit-card</span><span class="i-code">0xe88c</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe88d">
+          <i class="demo-icon porto-icon-action-undo">&#xe88d;</i> <span class="i-name">porto-icon-action-undo</span><span class="i-code">0xe88d</span>
+        </div>
+        <div class="span3" title="Code: 0xe88e">
+          <i class="demo-icon porto-icon-envolope">&#xe88e;</i> <span class="i-name">porto-icon-envolope</span><span class="i-code">0xe88e</span>
+        </div>
+        <div class="span3" title="Code: 0xe88f">
+          <i class="demo-icon porto-icon-chart">&#xe88f;</i> <span class="i-name">porto-icon-chart</span><span class="i-code">0xe88f</span>
+        </div>
+        <div class="span3" title="Code: 0xe8b9">
+          <i class="demo-icon porto-icon-user-1">&#xe8b9;</i> <span class="i-name">porto-icon-user-1</span><span class="i-code">0xe8b9</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe8ba">
+          <i class="demo-icon porto-icon-shopping-cart">&#xe8ba;</i> <span class="i-name">porto-icon-shopping-cart</span><span class="i-code">0xe8ba</span>
+        </div>
+        <div class="span3" title="Code: 0xe8bb">
+          <i class="demo-icon porto-icon-phone-2">&#xe8bb;</i> <span class="i-name">porto-icon-phone-2</span><span class="i-code">0xe8bb</span>
+        </div>
+        <div class="span3" title="Code: 0xe8c1">
+          <i class="demo-icon porto-icon-check-circle">&#xe8c1;</i> <span class="i-name">porto-icon-check-circle</span><span class="i-code">0xe8c1</span>
+        </div>
+        <div class="span3" title="Code: 0xe8c4">
+          <i class="demo-icon porto-icon-arrow-right-solid">&#xe8c4;</i> <span class="i-name">porto-icon-arrow-right-solid</span><span class="i-code">0xe8c4</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe8c5">
+          <i class="demo-icon porto-icon-check-solid">&#xe8c5;</i> <span class="i-name">porto-icon-check-solid</span><span class="i-code">0xe8c5</span>
+        </div>
+        <div class="span3" title="Code: 0xe900">
+          <i class="demo-icon porto-icon-category-home">&#xe900;</i> <span class="i-name">porto-icon-category-home</span><span class="i-code">0xe900</span>
+        </div>
+        <div class="span3" title="Code: 0xe901">
+          <i class="demo-icon porto-icon-category-motors">&#xe901;</i> <span class="i-name">porto-icon-category-motors</span><span class="i-code">0xe901</span>
+        </div>
+        <div class="span3" title="Code: 0xe902">
+          <i class="demo-icon porto-icon-category-music">&#xe902;</i> <span class="i-name">porto-icon-category-music</span><span class="i-code">0xe902</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe903">
+          <i class="demo-icon porto-icon-category-gifts">&#xe903;</i> <span class="i-name">porto-icon-category-gifts</span><span class="i-code">0xe903</span>
+        </div>
+        <div class="span3" title="Code: 0xe904">
+          <i class="demo-icon porto-icon-category-electronics">&#xe904;</i> <span class="i-name">porto-icon-category-electronics</span><span class="i-code">0xe904</span>
+        </div>
+        <div class="span3" title="Code: 0xe905">
+          <i class="demo-icon porto-icon-category-fashion">&#xe905;</i> <span class="i-name">porto-icon-category-fashion</span><span class="i-code">0xe905</span>
+        </div>
+        <div class="span3" title="Code: 0xe906">
+          <i class="demo-icon porto-icon-category-hot-deals">&#xe906;</i> <span class="i-name">porto-icon-category-hot-deals</span><span class="i-code">0xe906</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe907">
+          <i class="demo-icon porto-icon-tag-percent">&#xe907;</i> <span class="i-name">porto-icon-tag-percent</span><span class="i-code">0xe907</span>
+        </div>
+        <div class="span3" title="Code: 0xe908">
+          <i class="demo-icon porto-icon-console">&#xe908;</i> <span class="i-name">porto-icon-console</span><span class="i-code">0xe908</span>
+        </div>
+        <div class="span3" title="Code: 0xe909">
+          <i class="demo-icon porto-icon-category-furniture">&#xe909;</i> <span class="i-name">porto-icon-category-furniture</span><span class="i-code">0xe909</span>
+        </div>
+        <div class="span3" title="Code: 0xe90a">
+          <i class="demo-icon porto-icon-category-garden">&#xe90a;</i> <span class="i-name">porto-icon-category-garden</span><span class="i-code">0xe90a</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe90b">
+          <i class="demo-icon porto-icon-category-lanterns-lighting">&#xe90b;</i> <span class="i-name">porto-icon-category-lanterns-lighting</span><span class="i-code">0xe90b</span>
+        </div>
+        <div class="span3" title="Code: 0xe90c">
+          <i class="demo-icon porto-icon-category-mechanics">&#xe90c;</i> <span class="i-name">porto-icon-category-mechanics</span><span class="i-code">0xe90c</span>
+        </div>
+        <div class="span3" title="Code: 0xe90d">
+          <i class="demo-icon porto-icon-category-motorcycles">&#xe90d;</i> <span class="i-name">porto-icon-category-motorcycles</span><span class="i-code">0xe90d</span>
+        </div>
+        <div class="span3" title="Code: 0xe90e">
+          <i class="demo-icon porto-icon-category-sound-video">&#xe90e;</i> <span class="i-name">porto-icon-category-sound-video</span><span class="i-code">0xe90e</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe90f">
+          <i class="demo-icon porto-icon-category-steering">&#xe90f;</i> <span class="i-name">porto-icon-category-steering</span><span class="i-code">0xe90f</span>
+        </div>
+        <div class="span3" title="Code: 0xe910">
+          <i class="demo-icon porto-icon-category-external-accessories">&#xe910;</i> <span class="i-name">porto-icon-category-external-accessories</span><span class="i-code">0xe910</span>
+        </div>
+        <div class="span3" title="Code: 0xe911">
+          <i class="demo-icon porto-icon-category-fluids">&#xe911;</i> <span class="i-name">porto-icon-category-fluids</span><span class="i-code">0xe911</span>
+        </div>
+        <div class="span3" title="Code: 0xe912">
+          <i class="demo-icon porto-icon-category-internal-accessories">&#xe912;</i> <span class="i-name">porto-icon-category-internal-accessories</span><span class="i-code">0xe912</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe913">
+          <i class="demo-icon porto-icon-category-chains">&#xe913;</i> <span class="i-name">porto-icon-category-chains</span><span class="i-code">0xe913</span>
+        </div>
+        <div class="span3" title="Code: 0xe914">
+          <i class="demo-icon porto-icon-category-frames">&#xe914;</i> <span class="i-name">porto-icon-category-frames</span><span class="i-code">0xe914</span>
+        </div>
+        <div class="span3" title="Code: 0xe915">
+          <i class="demo-icon porto-icon-category-pedals">&#xe915;</i> <span class="i-name">porto-icon-category-pedals</span><span class="i-code">0xe915</span>
+        </div>
+        <div class="span3" title="Code: 0xe916">
+          <i class="demo-icon porto-icon-category-saddle">&#xe916;</i> <span class="i-name">porto-icon-category-saddle</span><span class="i-code">0xe916</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe917">
+          <i class="demo-icon porto-icon-category-tools">&#xe917;</i> <span class="i-name">porto-icon-category-tools</span><span class="i-code">0xe917</span>
+        </div>
+        <div class="span3" title="Code: 0xe918">
+          <i class="demo-icon porto-icon-search-4">&#xe918;</i> <span class="i-name">porto-icon-search-4</span><span class="i-code">0xe918</span>
+        </div>
+        <div class="span3" title="Code: 0xe919">
+          <i class="demo-icon porto-icon-secure-payment">&#xe919;</i> <span class="i-name">porto-icon-secure-payment</span><span class="i-code">0xe919</span>
+        </div>
+        <div class="span3" title="Code: 0xe91a">
+          <i class="demo-icon porto-icon-user-2">&#xe91a;</i> <span class="i-name">porto-icon-user-2</span><span class="i-code">0xe91a</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe91b">
+          <i class="demo-icon porto-icon-wishlist-2">&#xe91b;</i> <span class="i-name">porto-icon-wishlist-2</span><span class="i-code">0xe91b</span>
+        </div>
+        <div class="span3" title="Code: 0xe91c">
+          <i class="demo-icon porto-icon-gift2">&#xe91c;</i> <span class="i-name">porto-icon-gift2</span><span class="i-code">0xe91c</span>
+        </div>
+        <div class="span3" title="Code: 0xe91d">
+          <i class="demo-icon porto-icon-edit">&#xe91d;</i> <span class="i-name">porto-icon-edit</span><span class="i-code">0xe91d</span>
+        </div>
+        <div class="span3" title="Code: 0xe91e">
+          <i class="demo-icon porto-icon-chef">&#xe91e;</i> <span class="i-name">porto-icon-chef</span><span class="i-code">0xe91e</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe91f">
+          <i class="demo-icon porto-icon-smiling-girl">&#xe91f;</i> <span class="i-name">porto-icon-smiling-girl</span><span class="i-code">0xe91f</span>
+        </div>
+        <div class="span3" title="Code: 0xe920">
+          <i class="demo-icon porto-icon-tshirt">&#xe920;</i> <span class="i-name">porto-icon-tshirt</span><span class="i-code">0xe920</span>
+        </div>
+        <div class="span3" title="Code: 0xe921">
+          <i class="demo-icon porto-icon-boy-broad-smile">&#xe921;</i> <span class="i-name">porto-icon-boy-broad-smile</span><span class="i-code">0xe921</span>
+        </div>
+        <div class="span3" title="Code: 0xe922">
+          <i class="demo-icon porto-icon-smiling-baby">&#xe922;</i> <span class="i-name">porto-icon-smiling-baby</span><span class="i-code">0xe922</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe923">
+          <i class="demo-icon porto-icon-menu-button-of-three-lines-outline">&#xe923;</i> <span class="i-name">porto-icon-menu-button-of-three-lines-outline</span><span class="i-code">0xe923</span>
+        </div>
+        <div class="span3" title="Code: 0xf110">
+          <i class="demo-icon porto-icon-spinner">&#xf110;</i> <span class="i-name">porto-icon-spinner</span><span class="i-code">0xf110</span>
+        </div>
+        <div class="span3" title="Code: 0xf1de">
+          <i class="demo-icon porto-icon-sliders">&#xf1de;</i> <span class="i-name">porto-icon-sliders</span><span class="i-code">0xf1de</span>
+        </div>
+        <div class="span3" title="Code: 0xf291">
+          <i class="demo-icon porto-icon-shopping-basket">&#xf291;</i> <span class="i-name">porto-icon-shopping-basket</span><span class="i-code">0xf291</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf309">
+          <i class="demo-icon porto-icon-long-arrow-alt-down">&#xf309;</i> <span class="i-name">porto-icon-long-arrow-alt-down</span><span class="i-code">0xf309</span>
+        </div>
+        <div class="span3" title="Code: 0xf30a">
+          <i class="demo-icon porto-icon-long-arrow-alt-left">&#xf30a;</i> <span class="i-name">porto-icon-long-arrow-alt-left</span><span class="i-code">0xf30a</span>
+        </div>
+        <div class="span3" title="Code: 0xf30b">
+          <i class="demo-icon porto-icon-long-arrow-alt-right">&#xf30b;</i> <span class="i-name">porto-icon-long-arrow-alt-right</span><span class="i-code">0xf30b</span>
+        </div>
+        <div class="span3" title="Code: 0xf30c">
+          <i class="demo-icon porto-icon-long-arrow-alt-up">&#xf30c;</i> <span class="i-name">porto-icon-long-arrow-alt-up</span><span class="i-code">0xf30c</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf800">
+          <i class="demo-icon porto-icon-up-open">&#xf800;</i> <span class="i-name">porto-icon-up-open</span><span class="i-code">0xf800</span>
+        </div>
+        <div class="span3" title="Code: 0xf801">
+          <i class="demo-icon porto-icon-right-open">&#xf801;</i> <span class="i-name">porto-icon-right-open</span><span class="i-code">0xf801</span>
+        </div>
+        <div class="span3" title="Code: 0xf802">
+          <i class="demo-icon porto-icon-left-open">&#xf802;</i> <span class="i-name">porto-icon-left-open</span><span class="i-code">0xf802</span>
+        </div>
+        <div class="span3" title="Code: 0xf803">
+          <i class="demo-icon porto-icon-down-open">&#xf803;</i> <span class="i-name">porto-icon-down-open</span><span class="i-code">0xf803</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf804">
+          <i class="demo-icon porto-icon-up-open-mini">&#xf804;</i> <span class="i-name">porto-icon-up-open-mini</span><span class="i-code">0xf804</span>
+        </div>
+        <div class="span3" title="Code: 0xf805">
+          <i class="demo-icon porto-icon-right-open-mini">&#xf805;</i> <span class="i-name">porto-icon-right-open-mini</span><span class="i-code">0xf805</span>
+        </div>
+        <div class="span3" title="Code: 0xf806">
+          <i class="demo-icon porto-icon-left-open-mini">&#xf806;</i> <span class="i-name">porto-icon-left-open-mini</span><span class="i-code">0xf806</span>
+        </div>
+        <div class="span3" title="Code: 0xf807">
+          <i class="demo-icon porto-icon-down-open-mini">&#xf807;</i> <span class="i-name">porto-icon-down-open-mini</span><span class="i-code">0xf807</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf808">
+          <i class="demo-icon porto-icon-up-open-big">&#xf808;</i> <span class="i-name">porto-icon-up-open-big</span><span class="i-code">0xf808</span>
+        </div>
+        <div class="span3" title="Code: 0xf809">
+          <i class="demo-icon porto-icon-right-open-big">&#xf809;</i> <span class="i-name">porto-icon-right-open-big</span><span class="i-code">0xf809</span>
+        </div>
+        <div class="span3" title="Code: 0xf80a">
+          <i class="demo-icon porto-icon-left-open-big">&#xf80a;</i> <span class="i-name">porto-icon-left-open-big</span><span class="i-code">0xf80a</span>
+        </div>
+        <div class="span3" title="Code: 0xf80b">
+          <i class="demo-icon porto-icon-down-open-big">&#xf80b;</i> <span class="i-name">porto-icon-down-open-big</span><span class="i-code">0xf80b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf80c">
+          <i class="demo-icon porto-icon-up-open-huge">&#xf80c;</i> <span class="i-name">porto-icon-up-open-huge</span><span class="i-code">0xf80c</span>
+        </div>
+        <div class="span3" title="Code: 0xf80d">
+          <i class="demo-icon porto-icon-right-open-huge">&#xf80d;</i> <span class="i-name">porto-icon-right-open-huge</span><span class="i-code">0xf80d</span>
+        </div>
+        <div class="span3" title="Code: 0xf80e">
+          <i class="demo-icon porto-icon-left-open-huge">&#xf80e;</i> <span class="i-name">porto-icon-left-open-huge</span><span class="i-code">0xf80e</span>
+        </div>
+        <div class="span3" title="Code: 0xf80f">
+          <i class="demo-icon porto-icon-down-open-huge">&#xf80f;</i> <span class="i-name">porto-icon-down-open-huge</span><span class="i-code">0xf80f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf814">
+          <i class="demo-icon porto-icon-basket">&#xf814;</i> <span class="i-name">porto-icon-basket</span><span class="i-code">0xf814</span>
+        </div>
+        <div class="span3" title="Code: 0xf815">
+          <i class="demo-icon porto-icon-mini-cart">&#xf815;</i> <span class="i-name">porto-icon-mini-cart</span><span class="i-code">0xf815</span>
+        </div>
+        <div class="span3" title="Code: 0xf816">
+          <i class="demo-icon porto-icon-heart">&#xf816;</i> <span class="i-name">porto-icon-heart</span><span class="i-code">0xf816</span>
+        </div>
+        <div class="span3" title="Code: 0xf818">
+          <i class="demo-icon porto-icon-search">&#xf818;</i> <span class="i-name">porto-icon-search</span><span class="i-code">0xf818</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf819">
+          <i class="demo-icon porto-icon-cancel">&#xf819;</i> <span class="i-name">porto-icon-cancel</span><span class="i-code">0xf819</span>
+        </div>
+        <div class="span3" title="Code: 0xf81a">
+          <i class="demo-icon porto-icon-cancel-mini">&#xf81a;</i> <span class="i-name">porto-icon-cancel-mini</span><span class="i-code">0xf81a</span>
+        </div>
+        <div class="span3" title="Code: 0xf820">
+          <i class="demo-icon porto-icon-up-dir">&#xf820;</i> <span class="i-name">porto-icon-up-dir</span><span class="i-code">0xf820</span>
+        </div>
+        <div class="span3" title="Code: 0xf821">
+          <i class="demo-icon porto-icon-right-dir">&#xf821;</i> <span class="i-name">porto-icon-right-dir</span><span class="i-code">0xf821</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf822">
+          <i class="demo-icon porto-icon-left-dir">&#xf822;</i> <span class="i-name">porto-icon-left-dir</span><span class="i-code">0xf822</span>
+        </div>
+        <div class="span3" title="Code: 0xf823">
+          <i class="demo-icon porto-icon-down-dir">&#xf823;</i> <span class="i-name">porto-icon-down-dir</span><span class="i-code">0xf823</span>
+        </div>
+        <div class="span3" title="Code: 0xf824">
+          <i class="demo-icon porto-icon-phone">&#xf824;</i> <span class="i-name">porto-icon-phone</span><span class="i-code">0xf824</span>
+        </div>
+        <div class="span3" title="Code: 0xf825">
+          <i class="demo-icon porto-icon-pencil">&#xf825;</i> <span class="i-name">porto-icon-pencil</span><span class="i-code">0xf825</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf826">
+          <i class="demo-icon porto-icon-pencil-mini">&#xf826;</i> <span class="i-name">porto-icon-pencil-mini</span><span class="i-code">0xf826</span>
+        </div>
+        <div class="span3" title="Code: 0xf827">
+          <i class="demo-icon porto-icon-menu">&#xf827;</i> <span class="i-name">porto-icon-menu</span><span class="i-code">0xf827</span>
+        </div>
+        <div class="span3" title="Code: 0xf828">
+          <i class="demo-icon porto-icon-location">&#xf828;</i> <span class="i-name">porto-icon-location</span><span class="i-code">0xf828</span>
+        </div>
+        <div class="span3" title="Code: 0xf829">
+          <i class="demo-icon porto-icon-mail">&#xf829;</i> <span class="i-name">porto-icon-mail</span><span class="i-code">0xf829</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf82a">
+          <i class="demo-icon porto-icon-clock">&#xf82a;</i> <span class="i-name">porto-icon-clock</span><span class="i-code">0xf82a</span>
+        </div>
+        <div class="span3" title="Code: 0xf82b">
+          <i class="demo-icon porto-icon-ok">&#xf82b;</i> <span class="i-name">porto-icon-ok</span><span class="i-code">0xf82b</span>
+        </div>
+        <div class="span3" title="Code: 0xf82c">
+          <i class="demo-icon porto-icon-plus-squared-alt">&#xf82c;</i> <span class="i-name">porto-icon-plus-squared-alt</span><span class="i-code">0xf82c</span>
+        </div>
+        <div class="span3" title="Code: 0xf82d">
+          <i class="demo-icon porto-icon-minus-squared-alt">&#xf82d;</i> <span class="i-name">porto-icon-minus-squared-alt</span><span class="i-code">0xf82d</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf82e">
+          <i class="demo-icon porto-icon-plus-squared">&#xf82e;</i> <span class="i-name">porto-icon-plus-squared</span><span class="i-code">0xf82e</span>
+        </div>
+        <div class="span3" title="Code: 0xf82f">
+          <i class="demo-icon porto-icon-minus-squared">&#xf82f;</i> <span class="i-name">porto-icon-minus-squared</span><span class="i-code">0xf82f</span>
+        </div>
+        <div class="span3" title="Code: 0xf830">
+          <i class="demo-icon porto-icon-truck">&#xf830;</i> <span class="i-name">porto-icon-truck</span><span class="i-code">0xf830</span>
+        </div>
+        <div class="span3" title="Code: 0xf831">
+          <i class="demo-icon porto-icon-dollar">&#xf831;</i> <span class="i-name">porto-icon-dollar</span><span class="i-code">0xf831</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf832">
+          <i class="demo-icon porto-icon-lifebuoy">&#xf832;</i> <span class="i-name">porto-icon-lifebuoy</span><span class="i-code">0xf832</span>
+        </div>
+        <div class="span3" title="Code: 0xf833">
+          <i class="demo-icon porto-icon-facebook">&#xf833;</i> <span class="i-name">porto-icon-facebook</span><span class="i-code">0xf833</span>
+        </div>
+        <div class="span3" title="Code: 0xf834">
+          <i class="demo-icon porto-icon-twitter">&#xf834;</i> <span class="i-name">porto-icon-twitter</span><span class="i-code">0xf834</span>
+        </div>
+        <div class="span3" title="Code: 0xf835">
+          <i class="demo-icon porto-icon-linkedin-squared">&#xf835;</i> <span class="i-name">porto-icon-linkedin-squared</span><span class="i-code">0xf835</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf836">
+          <i class="demo-icon porto-icon-pinterest">&#xf836;</i> <span class="i-name">porto-icon-pinterest</span><span class="i-code">0xf836</span>
+        </div>
+        <div class="span3" title="Code: 0xf837">
+          <i class="demo-icon porto-icon-gplus">&#xf837;</i> <span class="i-name">porto-icon-gplus</span><span class="i-code">0xf837</span>
+        </div>
+        <div class="span3" title="Code: 0xf838">
+          <i class="demo-icon porto-icon-youtube">&#xf838;</i> <span class="i-name">porto-icon-youtube</span><span class="i-code">0xf838</span>
+        </div>
+        <div class="span3" title="Code: 0xf839">
+          <i class="demo-icon porto-icon-th">&#xf839;</i> <span class="i-name">porto-icon-th</span><span class="i-code">0xf839</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf83a">
+          <i class="demo-icon porto-icon-th-list">&#xf83a;</i> <span class="i-name">porto-icon-th-list</span><span class="i-code">0xf83a</span>
+        </div>
+        <div class="span3" title="Code: 0xf83b">
+          <i class="demo-icon porto-icon-chart-bar">&#xf83b;</i> <span class="i-name">porto-icon-chart-bar</span><span class="i-code">0xf83b</span>
+        </div>
+        <div class="span3" title="Code: 0xf83c">
+          <i class="demo-icon porto-icon-heart-empty">&#xf83c;</i> <span class="i-name">porto-icon-heart-empty</span><span class="i-code">0xf83c</span>
+        </div>
+        <div class="span3" title="Code: 0xf83d">
+          <i class="demo-icon porto-icon-instagram">&#xf83d;</i> <span class="i-name">porto-icon-instagram</span><span class="i-code">0xf83d</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf840">
+          <i class="demo-icon porto-icon-up">&#xf840;</i> <span class="i-name">porto-icon-up</span><span class="i-code">0xf840</span>
+        </div>
+        <div class="span3" title="Code: 0xf841">
+          <i class="demo-icon porto-icon-right">&#xf841;</i> <span class="i-name">porto-icon-right</span><span class="i-code">0xf841</span>
+        </div>
+        <div class="span3" title="Code: 0xf842">
+          <i class="demo-icon porto-icon-down">&#xf842;</i> <span class="i-name">porto-icon-down</span><span class="i-code">0xf842</span>
+        </div>
+        <div class="span3" title="Code: 0xf843">
+          <i class="demo-icon porto-icon-left">&#xf843;</i> <span class="i-name">porto-icon-left</span><span class="i-code">0xf843</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf844">
+          <i class="demo-icon porto-icon-star">&#xf844;</i> <span class="i-name">porto-icon-star</span><span class="i-code">0xf844</span>
+        </div>
+        <div class="span3" title="Code: 0xf845">
+          <i class="demo-icon porto-icon-star-empty">&#xf845;</i> <span class="i-name">porto-icon-star-empty</span><span class="i-code">0xf845</span>
+        </div>
+        <div class="span3" title="Code: 0xf846">
+          <i class="demo-icon porto-icon-ok-circled">&#xf846;</i> <span class="i-name">porto-icon-ok-circled</span><span class="i-code">0xf846</span>
+        </div>
+        <div class="span3" title="Code: 0xf847">
+          <i class="demo-icon porto-icon-cancel-circled">&#xf847;</i> <span class="i-name">porto-icon-cancel-circled</span><span class="i-code">0xf847</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf848">
+          <i class="demo-icon porto-icon-help-circled">&#xf848;</i> <span class="i-name">porto-icon-help-circled</span><span class="i-code">0xf848</span>
+        </div>
+        <div class="span3" title="Code: 0xf849">
+          <i class="demo-icon porto-icon-info-circled">&#xf849;</i> <span class="i-name">porto-icon-info-circled</span><span class="i-code">0xf849</span>
+        </div>
+        <div class="span3" title="Code: 0xf84a">
+          <i class="demo-icon porto-icon-attention">&#xf84a;</i> <span class="i-name">porto-icon-attention</span><span class="i-code">0xf84a</span>
+        </div>
+        <div class="span3" title="Code: 0xf84b">
+          <i class="demo-icon porto-icon-mobile">&#xf84b;</i> <span class="i-name">porto-icon-mobile</span><span class="i-code">0xf84b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf84c">
+          <i class="demo-icon porto-icon-mail-alt">&#xf84c;</i> <span class="i-name">porto-icon-mail-alt</span><span class="i-code">0xf84c</span>
+        </div>
+        <div class="span3" title="Code: 0xf84d">
+          <i class="demo-icon porto-icon-skype">&#xf84d;</i> <span class="i-name">porto-icon-skype</span><span class="i-code">0xf84d</span>
+        </div>
+        <div class="span3" title="Code: 0xf84e">
+          <i class="demo-icon porto-icon-doc">&#xf84e;</i> <span class="i-name">porto-icon-doc</span><span class="i-code">0xf84e</span>
+        </div>
+        <div class="span3" title="Code: 0xf850">
+          <i class="demo-icon porto-icon-user">&#xf850;</i> <span class="i-name">porto-icon-user</span><span class="i-code">0xf850</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf851">
+          <i class="demo-icon porto-icon-help">&#xf851;</i> <span class="i-name">porto-icon-help</span><span class="i-code">0xf851</span>
+        </div>
+        <div class="span3" title="Code: 0xf852">
+          <i class="demo-icon porto-icon-info">&#xf852;</i> <span class="i-name">porto-icon-info</span><span class="i-code">0xf852</span>
+        </div>
+        <div class="span3" title="Code: 0xf853">
+          <i class="demo-icon porto-icon-help-circled-alt">&#xf853;</i> <span class="i-name">porto-icon-help-circled-alt</span><span class="i-code">0xf853</span>
+        </div>
+        <div class="span3" title="Code: 0xf854">
+          <i class="demo-icon porto-icon-info-circled-alt">&#xf854;</i> <span class="i-name">porto-icon-info-circled-alt</span><span class="i-code">0xf854</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf855">
+          <i class="demo-icon porto-icon-chevron-left">&#xf855;</i> <span class="i-name">porto-icon-chevron-left</span><span class="i-code">0xf855</span>
+        </div>
+        <div class="span3" title="Code: 0xf856">
+          <i class="demo-icon porto-icon-chevron-right">&#xf856;</i> <span class="i-name">porto-icon-chevron-right</span><span class="i-code">0xf856</span>
+        </div>
+        <div class="span3" title="Code: 0xf857">
+          <i class="demo-icon porto-icon-reply">&#xf857;</i> <span class="i-name">porto-icon-reply</span><span class="i-code">0xf857</span>
+        </div>
+        <div class="span3" title="Code: 0xf858">
+          <i class="demo-icon porto-icon-paper-plane">&#xf858;</i> <span class="i-name">porto-icon-paper-plane</span><span class="i-code">0xf858</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf859">
+          <i class="demo-icon porto-icon-magnify">&#xf859;</i> <span class="i-name">porto-icon-magnify</span><span class="i-code">0xf859</span>
+        </div>
+        <div class="span3" title="Code: 0xf85a">
+          <i class="demo-icon porto-icon-zoom-in">&#xf85a;</i> <span class="i-name">porto-icon-zoom-in</span><span class="i-code">0xf85a</span>
+        </div>
+        <div class="span3" title="Code: 0xf85b">
+          <i class="demo-icon porto-icon-zoom-out">&#xf85b;</i> <span class="i-name">porto-icon-zoom-out</span><span class="i-code">0xf85b</span>
+        </div>
+        <div class="span3" title="Code: 0xf860">
+          <i class="demo-icon porto-icon-chat">&#xf860;</i> <span class="i-name">porto-icon-chat</span><span class="i-code">0xf860</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf861">
+          <i class="demo-icon porto-icon-folder">&#xf861;</i> <span class="i-name">porto-icon-folder</span><span class="i-code">0xf861</span>
+        </div>
+        <div class="span3" title="Code: 0xf862">
+          <i class="demo-icon porto-icon-folder-open">&#xf862;</i> <span class="i-name">porto-icon-folder-open</span><span class="i-code">0xf862</span>
+        </div>
+        <div class="span3" title="Code: 0xf863">
+          <i class="demo-icon porto-icon-tag">&#xf863;</i> <span class="i-name">porto-icon-tag</span><span class="i-code">0xf863</span>
+        </div>
+        <div class="span3" title="Code: 0xf864">
+          <i class="demo-icon porto-icon-tags">&#xf864;</i> <span class="i-name">porto-icon-tags</span><span class="i-code">0xf864</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf865">
+          <i class="demo-icon porto-icon-calendar">&#xf865;</i> <span class="i-name">porto-icon-calendar</span><span class="i-code">0xf865</span>
+        </div>
+        <div class="span3" title="Code: 0xf870">
+          <i class="demo-icon porto-icon-circle-empty">&#xf870;</i> <span class="i-name">porto-icon-circle-empty</span><span class="i-code">0xf870</span>
+        </div>
+        <div class="span3" title="Code: 0xf871">
+          <i class="demo-icon porto-icon-shirt">&#xf871;</i> <span class="i-name">porto-icon-shirt</span><span class="i-code">0xf871</span>
+        </div>
+        <div class="span3" title="Code: 0xf872">
+          <i class="demo-icon porto-icon-computer">&#xf872;</i> <span class="i-name">porto-icon-computer</span><span class="i-code">0xf872</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf873">
+          <i class="demo-icon porto-icon-toys">&#xf873;</i> <span class="i-name">porto-icon-toys</span><span class="i-code">0xf873</span>
+        </div>
+        <div class="span3" title="Code: 0xf874">
+          <i class="demo-icon porto-icon-garden">&#xf874;</i> <span class="i-name">porto-icon-garden</span><span class="i-code">0xf874</span>
+        </div>
+        <div class="span3" title="Code: 0xf875">
+          <i class="demo-icon porto-icon-couch">&#xf875;</i> <span class="i-name">porto-icon-couch</span><span class="i-code">0xf875</span>
+        </div>
+        <div class="span3" title="Code: 0xf876">
+          <i class="demo-icon porto-icon-sports">&#xf876;</i> <span class="i-name">porto-icon-sports</span><span class="i-code">0xf876</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf877">
+          <i class="demo-icon porto-icon-gift">&#xf877;</i> <span class="i-name">porto-icon-gift</span><span class="i-code">0xf877</span>
+        </div>
+        <div class="span3" title="Code: 0xf878">
+          <i class="demo-icon porto-icon-eye">&#xf878;</i> <span class="i-name">porto-icon-eye</span><span class="i-code">0xf878</span>
+        </div>
+        <div class="span3" title="Code: 0xf879">
+          <i class="demo-icon porto-icon-export">&#xf879;</i> <span class="i-name">porto-icon-export</span><span class="i-code">0xf879</span>
+        </div>
+        <div class="span3" title="Code: 0xf87a">
+          <i class="demo-icon porto-icon-bag-4">&#xf87a;</i> <span class="i-name">porto-icon-bag-4</span><span class="i-code">0xf87a</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf87b">
+          <i class="demo-icon porto-icon-search-3">&#xf87b;</i> <span class="i-name">porto-icon-search-3</span><span class="i-code">0xf87b</span>
+        </div>
+        <div class="span3" title="Code: 0xf87c">
+          <i class="demo-icon porto-icon-check">&#xf87c;</i> <span class="i-name">porto-icon-check</span><span class="i-code">0xf87c</span>
+        </div>
+        <div class="span3" title="Code: 0xf87d">
+          <i class="demo-icon porto-icon-check-empty">&#xf87d;</i> <span class="i-name">porto-icon-check-empty</span><span class="i-code">0xf87d</span>
+        </div>
+        <div class="span3" title="Code: 0xf880">
+          <i class="demo-icon porto-icon-search-2">&#xf880;</i> <span class="i-name">porto-icon-search-2</span><span class="i-code">0xf880</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf881">
+          <i class="demo-icon porto-icon-bag-1">&#xf881;</i> <span class="i-name">porto-icon-bag-1</span><span class="i-code">0xf881</span>
+        </div>
+        <div class="span3" title="Code: 0xf882">
+          <i class="demo-icon porto-icon-plus">&#xf882;</i> <span class="i-name">porto-icon-plus</span><span class="i-code">0xf882</span>
+        </div>
+        <div class="span3" title="Code: 0xf883">
+          <i class="demo-icon porto-icon-minus">&#xf883;</i> <span class="i-name">porto-icon-minus</span><span class="i-code">0xf883</span>
+        </div>
+      </div>
+    <div class="container footer">Generated by <a href="https://fontello.com">fontello.com</a></div>
+  </body>
+</html>

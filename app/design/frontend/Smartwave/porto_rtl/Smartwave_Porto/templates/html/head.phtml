@@ -1,0 +1,147 @@
+<?php
+    $_helper = $this->helper('Smartwave\Porto\Helper\Cssconfig');
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $_redirect_cart = $porto_helper->getConfig('checkout/cart/redirect_to_cart');
+?>
+<?php //Include Google fonts character subsets (such as extended latin, cyrillic)
+    $d = $this->getConfig('porto_design');
+    $charSubset = "";
+    if (isset($d['font']['char_latin_ext']) && $d['font']['char_latin_ext']==1 )
+        $charSubset .= ',latin-ext';
+    if (isset($d['font']['char_subset']) && $d['font']['char_subset'])
+        $charSubset .= ','.$d['font']['char_subset'];
+    $font_sizes = "%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic";
+?>
+<?php if (isset($d['font']['custom']) && $d['font']['custom'] && $d['font']['font_family'] == 'google'): ?>
+<link rel="stylesheet" href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $d['font']['google_font_family']).$font_sizes; echo $charSubset; ?>' type='text/css' />
+<?php else: ?>
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;v1&amp;subset=latin%2Clatin-ext" type="text/css" media="screen"/>
+<?php endif;?>
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800" rel="stylesheet">
+<?php if ($this->getConfig('porto_settings/optimization/bootstrap')): ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'bootstrap/css/bootstrap.rtl.min.css'; ?>">
+<?php else: ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'bootstrap/css/bootstrap.rtl.optimized.min.css'; ?>">
+<?php endif; ?>
+<?php if ($this->getConfig('porto_settings/optimization/bootstrap')): ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/animate.css'; ?>">
+<?php else: ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/animate.optimized.css'; ?>">
+<?php endif; ?>
+<?php
+    $header_type = $this->getConfig('porto_settings/header/header_type');
+?>
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/header/type'.$header_type.'.rtl.css'; ?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/custom.rtl.css'; ?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getDesignFile()?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getSettingsFile()?>">
+<script type="text/javascript">
+var redirect_cart = false;
+<?php if($_redirect_cart):?>
+    redirect_cart = true;
+<?php endif;?>
+var porto_config = {
+    paths: {
+        'parallax': 'js/jquery.parallax.min',
+        'owlcarousel': 'owl.carousel/owl.carousel',
+        'floatelement': 'js/jquery.floatelement'
+    },
+    shim: {
+        'owlcarousel': {
+          deps: ['jquery']
+        },
+        'owlcarousel_thumbs': {
+          deps: ['jquery','owlcarousel']
+        },
+        'floatelement': {
+          deps: ['jquery']
+        }
+    }
+};
+
+require.config(porto_config);
+</script>
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+<?php if ($this->getConfig('porto_settings/header/sticky_header')): ?>
+    var scrolled = false;
+    $(window).scroll(function(){
+        if($(window).width()>=992){
+          if(140<$(window).scrollTop() && !scrolled){
+              $('.page-header').addClass("sticky-header");
+              scrolled = true;
+              if($(".page-header").hasClass("type1") || $(".page-header").hasClass("type2") || $(".page-header").hasClass("type6")) {
+                $('.page-header .minicart-wrapper').after('<div class="minicart-place hide"></div>');
+                var minicart = $('.page-header .minicart-wrapper').detach();
+                $('.page-header .navigation').append(minicart);
+
+                <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                var logo_image = $('<div>').append($('.page-header .header .logo').clone()).html();
+                $('.page-header .navigation').prepend('<div class="sticky-logo">'+logo_image+'</div>');
+                <?php endif; ?>
+              }
+              <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+              <?php
+              if($logo_src = $this->getConfig('porto_settings/header/sticky_header_logo_src')){
+                  $folderName = \Smartwave\Porto\Model\Config\Backend\Image\Stickylogo::UPLOAD_DIR;
+                  $path = $folderName . '/' . $logo_src;
+                  $imageUrl = $porto_helper->getBaseUrl() . $path;
+              ?>
+              $(".sticky-logo img").attr("src","<?php echo $imageUrl; ?>");
+              <?php
+              }
+              ?>
+              <?php endif; ?>
+          }
+          if(140>=$(window).scrollTop() && scrolled){
+              $('.page-header').removeClass("sticky-header");
+              scrolled = false;
+              if($(".page-header").hasClass("type1") || $(".page-header").hasClass("type2") || $(".page-header").hasClass("type6")) {
+                var minicart;
+                minicart = $('.page-header .navigation .minicart-wrapper').detach();
+                $('.minicart-place').after(minicart);
+                $('.minicart-place').remove();
+                $('.page-header .minicart-wrapper-moved').addClass("minicart-wrapper").removeClass("minicart-wrapper-moved").removeClass("hide");
+
+                <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                  $('.page-header .navigation > .sticky-logo').remove();
+                <?php endif; ?>
+              }
+          }
+      }
+        if($('body').hasClass('mobile-sticky')) {
+            if($(window).width()<=991){
+                if(130<$(window).scrollTop() && !scrolled){
+                  $('.page-header:not(.sticky-header)').css("height",$('.page-header:not(.sticky-header)').height()+'px');
+                  $('.page-header').addClass("sticky-header");
+                  scrolled = true;
+                }
+                if(130>=$(window).scrollTop() && scrolled){
+                  $('.page-header.sticky-header').css("height",'auto');
+                  $('.page-header').removeClass("sticky-header");
+                  scrolled = false;
+                }
+            }
+        }
+        $(window).resize(function(){
+          var b_w = $(window).width();
+          if(b_w <= 991){
+            if($('.page-header .navigation .minicart-wrapper').length > 0) {
+              var minicart;
+              minicart = $('.page-header .navigation .minicart-wrapper').detach();
+              $('.minicart-place').after(minicart);
+              $('.minicart-place').remove();
+              $('.page-header .minicart-wrapper-moved').addClass("minicart-wrapper").removeClass("minicart-wrapper-moved").removeClass("hide");
+            }
+          }
+        });
+    });
+<?php endif; ?>
+});
+</script>
+<?php if($this->getConfig('porto_settings/general/smartlayers')): ?>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58378513496862c5"></script>
+<?php endif; ?>

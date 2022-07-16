@@ -1,0 +1,17 @@
+<?php
+  $_helper = $this->helper('Smartwave\Porto\Helper\Data');
+  $header_type = $this->getConfig('porto_settings/header/header_type');
+  if($header_type == 14) {
+    $static_block_id = $this->getConfig('porto_settings/header/header14_block');
+  }
+  if($header_type == 15) {
+    $static_block_id = $this->getConfig('porto_settings/header/header15_block');
+  }
+  $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+  if($block && $static_block_id) {
+      $block->setBlockId($static_block_id);
+  }
+  if($block && $static_block_id){
+      echo $block->toHtml();
+  }
+?>

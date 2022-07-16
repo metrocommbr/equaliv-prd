@@ -1,0 +1,11 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Form\Login\Info $block */
+?>
+<?php if ($block->getRegistration()->isAllowed()) : ?>
+<a href="<?= $block->escapeUrl($block->getCreateAccountUrl()) ?>" class="action create primary btn-v-dark py-3 text-md w-100"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></a>
+<?php endif; ?>

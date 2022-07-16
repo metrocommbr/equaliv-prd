@@ -1,0 +1,81 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .page-wrapper > .breadcrumbs {
+        padding: 0;
+        background-color: @breadcrumbs__background-color;
+        color: @breadcrumbs__font-color;
+        font-size: .75rem;
+        margin-bottom: 0;
+        .items {
+          padding: 12px 10px;
+          display: flex;
+          flex-wrap: wrap;
+          font-size: 1em;
+          color: inherit;
+          >li {
+            text-shadow: none;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            &.home a {
+              position: relative;
+              width: 14px;
+              text-indent: -9999px;
+              &:after {
+                font-family: porto-icons;
+                content: "\e883";
+                float: left;
+                text-indent: 0;
+              }
+            }
+            a {
+              display: inline-block;
+              border-color: transparent;
+              background: transparent;
+              color: inherit;
+              padding: 0;
+            }
+            &:not(:last-child)::after {
+              position: relative;
+              content: "\e81a";
+              font-family: porto-icons;
+              right: -1px;
+              display: block;
+              float: right;
+              margin: 0 4px;
+              width: 20px;
+              text-align: center;
+              font-style: normal;
+              font-size: 12px;
+              line-height: inherit;
+            }
+            strong {
+              font-weight: inherit;
+            }
+          }
+        }
+        a, a:hover, a:focus {
+            color: @breadcrumbs__font-color;
+        }
+        .item:not(:last-child):after {
+            line-height: 15px;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .breadcrumbs { }
+}

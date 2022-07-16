@@ -1,0 +1,70 @@
+.weltpixel-quickview-catalog-product-view, .weltpixel_quickview-catalog_product-view {
+  .box-tocart .action.tocart { width: 100%; }
+  .reviews-actions .add {display: none;}
+  .main-product-detail{padding:0}
+  .page-main{padding: 25px !important;
+  background: #fff;}
+  .sidebar{display:none}
+  .page-main{
+    max-width:100% !important;
+    .columns {
+      padding: 0 !important;
+    }
+  }
+  .page-wrapper {max-width: 100% !important;padding: 0 !important;min-height: auto;}
+  .column.main{width:100%;padding:0}
+}
+.box-gotoproduct #product-gotoproduct-button {
+  background: none;
+  color: #222529;
+  border: none;
+  height: auto;
+  margin-top: 10px;
+  display: inline-block;
+  min-width: auto;
+  padding: 0;
+}
+.product-item .weltpixel-quickview {display: none}
+.products-grid .product-item .product-item-info { position: relative; }
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+  .weltpixel-quickview-catalog-product-view {
+    &.catalog-product-view .breadcrumbs,
+    &.catalog-product-view .columns,
+    &.catalog-product-view .page.messages,
+    &.catalog-product-view .page-title-wrapper {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .products-grid .product-item {
+    position: relative;
+    .product-item-info {
+      .weltpixel-quickview.weltpixel_quickview_button_v1 span {padding: 18px; display: block;}
+      &:hover {
+        .weltpixel-quickview.weltpixel_quickview_button_v1 {
+          display: block;
+          position: absolute;
+          top: -66px;
+          z-index: 9;
+          width: 100%;
+          text-align: center;
+          color: #555;
+          background: rgba(255,255,255,0.7);
+          font-size: 14px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .weltpixel-quickview-catalog-product-view, .weltpixel_quickview-catalog_product-view {
+    .product-info-main,.product.media{
+      width:48% !important;
+      margin-bottom: 0;
+    }
+  }
+}

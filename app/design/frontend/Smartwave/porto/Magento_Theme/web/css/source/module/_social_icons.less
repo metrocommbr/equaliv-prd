@@ -1,0 +1,186 @@
+& when (@media-common = true) {
+.share-links {
+    vertical-align: middle;
+    a {
+        font-size: .8rem;
+        color: #fff;
+        text-indent: -9999em;
+        text-align: center;
+        width: 2.2857em;
+        height: 2.2857em;
+        display: inline-block;
+        margin: .2857em .5714em .2857em 0;
+        position: relative;
+        text-decoration: none;
+        vertical-align: middle;
+        transition: .25s;
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+
+        &:before {
+            font-family: 'Font Awesome 5 Brands';
+            text-indent: 0;
+            position: absolute;
+            left: 0; right: 0; top: 0; bottom: 0;
+            line-height: 23px;
+            height: 22px;
+            margin: auto;
+            z-index: 2;
+        }
+
+        &:hover, &:focus {
+            opacity: 0.9;
+            color: #fff;
+        }
+        .page-footer &:hover {
+            color: #fff;
+        }
+    }
+    &.disable-br {
+        a {
+            border-radius: 0 !important;
+        }
+    }
+    .share-twitter {
+        background: #1aa9e1;
+        &:before {content: "\f099";}
+    }
+    .share-facebook {
+        background: #3b5a9a;
+        &:before {content: "\f39e";}
+    }
+    .share-linkedin {
+        background: #0073b2;
+        &:before {content: "\f0e1";}
+    }
+    .share-rss {
+        background: #ff8201;
+        &:before {content: "\f09e";}
+    }
+    .share-googleplus {
+        background: #dd4b39;
+        &:before {content: "\f0d5";}
+    }
+    .share-pinterest {
+        background: #cc2127;
+        &:before {content: "\f0d2";}
+    }
+    .share-youtube {
+        background: #c3191e;
+        &:before {content: "\f167";}
+    }
+    .share-instagram {
+        background: #7c4a3a;
+        &:before {content: "\f16d";}
+    }
+    .share-skype {
+        background: #00b0f6;
+        &:before {content: "\f17e";}
+    }
+    .share-email {
+        background: #dd4b39;
+        &:before {font-family: porto-icons;content: "\e82e";font-weight: 400;}
+    }
+    .share-vk {
+        background: #6383a8;
+        &:before { content: "\f189"; }
+    }
+    .share-xing {
+        background: #1a7576;
+        &:before { content: "\f168"; }
+    }
+    .share-tumblr {
+        background: #304e6c;
+        &:before { content: "\f173"; }
+    }
+    .share-reddit {
+        background: #ff4107;
+        &:before { content: "\f1a1"; }
+    }
+    .share-vimeo {
+        background: #52b8ea;
+        &:before { content: "\f27d"; }
+    }
+    .share-telegram {
+        background: #0088cc;
+        &:before { content: "\f3fe"; }
+    }
+    .share-yelp {
+        background: #c41200;
+        &:before { content: "\f1e9"; }
+    }
+    .share-flickr {
+        background: #0063DC;
+        &:before { content: "\f16e"; }
+    }
+    .share-whatsapp {
+        background: #3c8a38; 
+        &:before { content: "\f232"; }
+    }
+    &.default-skin {
+        a {
+            color: #fff !important;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        .share-twitter {
+            background: #1aa9e1 !important;
+        }
+        .share-facebook {
+            background: #3b5a9a !important;
+        }
+        .share-linkedin {
+            background: #0073b2 !important;
+        }
+        .share-rss {
+            background: #ff8201 !important;
+        }
+        .share-googleplus {
+            background: #dd4b39 !important;
+        }
+        .share-pinterest {
+            background: #cc2127 !important;
+        }
+        .share-youtube {
+            background: #c3191e !important;
+        }
+        .share-instagram {
+            background: #7c4a3a !important;
+        }
+        .share-skype {
+            background: #00b0f6 !important;
+        }
+        .share-email {
+            background: #dd4b39 !important;
+        }
+        .share-vk {
+            background: #6383a8 !important;
+        }
+        .share-xing {
+            background: #1a7576 !important;
+        }
+        .share-tumblr {
+            background: #304e6c !important;
+        }
+        .share-reddit {
+            background: #ff4107 !important;
+        }
+        .share-vimeo {
+            background: #52b8ea !important;
+        }
+        .share-telegram {
+            background: #0088cc !important;
+        }
+        .share-yelp {
+            background: #c41200 !important;
+        }
+        .share-flickr {
+            background: #0063DC !important;
+        }
+        .share-whatsapp {
+            background: #3c8a38 !important;
+        }
+    }
+}
+}

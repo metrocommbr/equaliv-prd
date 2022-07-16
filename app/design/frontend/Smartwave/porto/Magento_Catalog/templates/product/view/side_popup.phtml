@@ -1,0 +1,42 @@
+<?php
+	$porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+	$page_layout = $porto_helper->getConfig('porto_settings/product/page_layout');
+?>
+<?php if (!isset($page_layout) || $page_layout == "2columns-right"): ?>
+	<a href="javascript:void(0);" class="right-side-open"><em class="porto-icon-reply"></em></a>
+	<script type="text/javascript">
+		require([
+		    'jquery'
+		], function ($) {
+			// filter popup events
+			$(document).on('click', '.right-side-open', function(e) {
+				e.preventDefault();
+				var $html = $('html');
+				var $obj = $('.columns .mobile-sidebar');
+				if (!$obj.parents().find('.sidebar-overlay').length) {
+					$('<div class="sidebar-overlay"></div>').insertBefore($obj);
+				}
+				if ($html.hasClass('sidebar-opened')) {
+					$html.removeClass('sidebar-opened');
+					$('.sidebar-overlay').removeClass('active');
+				} else {
+					$html.addClass('sidebar-opened');
+					$('.sidebar-overlay').addClass('active');
+				}
+			});
+
+			$(document.body).on('click', '.sidebar-overlay', function() {
+				$('html').removeClass('sidebar-opened');
+				$('html').removeClass('filter-sidebar-opened');
+				$(this).removeClass('active');
+			});
+
+			$(window).on('resize', function() {
+				if (window.innerWidth > 991) {
+					$('.sidebar-overlay').click();
+				}
+			});
+		});
+	</script>
+
+<?php endif; ?>

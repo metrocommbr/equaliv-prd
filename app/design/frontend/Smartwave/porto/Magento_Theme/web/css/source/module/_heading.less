@@ -1,0 +1,118 @@
+& when (@media-common = true) {
+.heading{
+  &.heading-border {
+    margin-bottom: 1.5625rem;
+    h1,h2,h3,h4,h5,h6 {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  &.heading-middle-border {
+    .heading-tag {
+      position: relative;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-align: center;
+      align-items: center;
+      &:before,&:after {
+        height: 0;
+        border-top: 1px solid;
+        border-top-color: inherit;
+        -ms-flex: 1;
+        flex: 1;
+      }
+      &:after {
+        content: '';
+      }
+    }
+    h1 {
+      &:before {
+        margin-right: 20px
+      }
+      &:after {
+        margin-left: 20px
+      }
+    }
+    h2,h3 {
+      &:before {
+        margin-right: 15px
+      }
+      &:after {
+        margin-left: 15px
+      }
+    }
+    h4,h5,h6 {
+      &:before {
+        margin-right: 8px
+      }
+      &:after {
+        margin-left: 8px
+      }
+    }
+  }
+  &.heading-middle-border-reverse {
+    .heading-tag {
+      &:before {
+        content: '';
+      }
+      &:after {
+        content: none;
+      }
+    }
+  }
+  &.heading-middle-border-center .heading-tag:before {
+    content: ''
+  }
+  &.heading-border-xs .heading-tag {
+    border-bottom-width: 1px;
+    &:before,&:after {
+      border-top-width: 1px
+    }
+  }
+  &.heading-border-sm .heading-tag {
+    border-bottom-width: 2px;
+    &:before,&:after {
+      border-top-width: 2px
+    }
+  }
+  &.heading-border-lg .heading-tag {
+    border-bottom-width: 3px;
+    &:before,&:after {
+      border-top-width: 3px
+    }
+  }
+  &.heading-border-xl .heading-tag {
+    border-bottom-width: 5px;
+    &:before,&:after {
+      border-top-width: 5px
+    }
+  }
+  &.heading-bottom-border {
+    h1 {
+      border-bottom: 5px solid;
+      padding-bottom: 10px;
+    }
+    h2, h3 {
+      border-bottom: 2px solid;
+      padding-bottom: 10px;
+    }
+    h4, h5, h6 {
+      border-bottom: 1px solid;
+      padding-bottom: 5px;
+    }
+  }
+  &.heading-bottom-double-border {
+    .heading-tag {
+      border-bottom: 3px double;
+      padding-bottom: 10px;
+    }
+    h4, h5, h6 {
+      padding-bottom: 5px;
+    }
+  }
+  &.heading-border .heading-tag {
+    border-top-color: #dbdbdb;
+    border-bottom-color: #dbdbdb
+  }
+}
+}

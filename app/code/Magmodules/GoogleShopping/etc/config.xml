@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magmodules.eu. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magmodules_googleshopping>
+            <general>
+                <enable>0</enable>
+            </general>
+            <data>
+                <id_attribute>entity_id</id_attribute>
+                <name_attribute>name</name_attribute>
+                <description_attribute>description</description_attribute>
+                <image>all</image>
+                <gtin_attribute>sku</gtin_attribute>
+                <brand_attribute>manufacturer</brand_attribute>
+                <identifier_exists>1</identifier_exists>
+                <condition_type>static</condition_type>
+                <condition_default>new</condition_default>
+                <color_attribute>color</color_attribute>
+                <size_attribute>size</size_attribute>
+                <gender_attribute>gender</gender_attribute>
+            </data>
+            <types>
+                <configurable>simple</configurable>
+                <configurable_link>1</configurable_link>
+                <configurable_image>2</configurable_image>
+                <configurable_parent_atts>description</configurable_parent_atts>
+                <configurable_nonvisible>1</configurable_nonvisible>
+                <bundle>parent</bundle>
+                <grouped>parent</grouped>
+            </types>
+            <advanced>
+                <weight>1</weight>
+            </advanced>
+            <generate>
+                <enable>1</enable>
+                <filename>googleshopping.xml</filename>
+                <cron>1</cron>
+                <cron_frequency>0 0 * * *</cron_frequency>
+                <custom_frequency>0 0 * * *</custom_frequency>
+                <paging>2500</paging>
+            </generate>
+        </magmodules_googleshopping>
+    </default>
+</config>

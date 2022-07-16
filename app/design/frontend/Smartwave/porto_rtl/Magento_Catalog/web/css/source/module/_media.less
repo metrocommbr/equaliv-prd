@@ -1,0 +1,108 @@
+.product.media {
+.fotorama__stage {
+  border: 1px solid #f4f4f4;
+}
+.fotorama__nav {
+  text-align: right;
+}
+.fotorama__arr {
+  width: 35px;
+  .fotorama__arr__arr {
+    background: none;
+    width: auto;
+    height: auto;
+    &::before {
+      content: '\e81a';
+      font-family: 'porto-icons';
+      font-size: 22px;
+      font-weight: 600;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 29px;
+      display: block;
+      color: #222529;
+    }
+  }
+  &--prev {
+    .fotorama__arr__arr {
+      &::before {
+        content: '\e819';
+      }
+    }
+  }
+  &--next {
+    right: 0 !important;
+  }
+}
+.fotorama__caption {display: none;}
+.fotorama__fullscreen-icon {
+  width: 35px;
+  height: 35px;
+  background: none;
+  display: block;
+  top: auto;
+  bottom: 0;
+  left: 0 !important;
+  text-align: center;
+  line-height: 34px;
+  color: #222529;
+  &::before {
+    content: '\f882';
+    font-family: 'Porto-Icons';
+    font-size: 15px;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  .fotorama--fullscreen & {
+    bottom: auto;
+    top: 0;
+    &::before {
+      content: '\f819';
+      font-size: 19px;
+    }
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+.fotorama__fullscreen {
+  .fotorama__zoom-in, .fotorama__zoom-out {
+    width: 40px;
+    height: 40px;
+    background: none;
+    line-height: 40px;
+    color: #222529;
+    text-align: center;
+    &::before {
+      font-family: 'porto-icons';
+      font-size: 15px;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+  .fotorama__zoom-in {
+    top: 10px;
+    &::before {
+      content: '\f882';
+    }
+  }
+  .fotorama__zoom-out {
+    top: 60px;
+    &::before {
+      content: '\f883';
+    }
+  }
+}
+.fotorama__nav-wrap--vertical {
+   .fotorama__nav__shaft {
+     margin-top: -8px;
+   }
+ }
+.fotorama__wrap--css3.fotorama__wrap--no-controls.fotorama__wrap--slide.fotorama__wrap--toggle-arrows .fotorama__fullscreen-icon:not(:focus) {
+   -webkit-transform: translate3d(-80px, 80px, 0);
+   -ms-transform: translate3d(-80px, 80px, 0);
+   -o-transform: translate3d(-80px, 80px, 0);
+   transform: translate3d(-80px, 80px, 0);
+}
+}

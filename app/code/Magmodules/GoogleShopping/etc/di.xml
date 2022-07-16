@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magmodules.eu. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="GoogleShoppingFeedGenerate" xsi:type="object">Magmodules\GoogleShopping\Console\Command\FeedGenerate</item>
+                <item name="GoogleShoppingConfig" xsi:type="object">Magmodules\GoogleShopping\Console\Command\Config</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magmodules\GoogleShopping\Logger\Handler\General">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Magmodules\GoogleShopping\Logger\General">
+        <arguments>
+            <argument name="name" xsi:type="string">GeneralLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Magmodules\GoogleShopping\Logger\Handler\General</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magmodules\GoogleShopping\Logger\Handler\Validation">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Magmodules\GoogleShopping\Logger\Validation">
+        <arguments>
+            <argument name="name" xsi:type="string">ValidationLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Magmodules\GoogleShopping\Logger\Handler\Validation</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magmodules\GoogleShopping\Logger\GeneralLoggerInterface"
+                type="Magmodules\GoogleShopping\Logger\General"/>
+    <preference for="Magmodules\GoogleShopping\Logger\ValidationLoggerInterface"
+                type="Magmodules\GoogleShopping\Logger\Validation"/>
+    <type name="Magmodules\GoogleShopping\Console\Command\Config">
+        <arguments>
+            <argument name="configHelper" xsi:type="object">Magmodules\GoogleShopping\Helper\Config\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magmodules\GoogleShopping\Console\Command\FeedGenerate">
+        <arguments>
+            <argument name="feedModel" xsi:type="object">Magmodules\GoogleShopping\Model\Feed\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Magmodules\GoogleShopping\Console\Command\FeedGenerate">
+        <arguments>
+            <argument name="generalHelper" xsi:type="object">Magmodules\GoogleShopping\Helper\General</argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,30 @@
+<?php
+  $sidebar_sticky = $this->getConfig('porto_settings/general/sidebar_sticky');
+  $block_view = $this->getConfig('porto_settings/general');
+  $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+  if($block) {
+      $block->setBlockId($block_view['sidebar_second_block']);
+  }
+  if($block){ ?>
+    <div class="side-custom-block">
+      <?php echo $block->toHtml(); ?>
+    </div>
+    <?php if($sidebar_sticky): ?>
+    <script type="text/javascript">
+    require([
+        'jquery',
+        'themeSticky'
+    ], function ($) {
+      $(".sidebar.sidebar-second .side-custom-block").themeSticky({
+        autoInit: true,
+        minWidth: 992,
+        containerSelector: '.page-main .columns',
+        autoFit: true,
+        paddingOffsetBottom: 10,
+        paddingOffsetTop: 60
+      });
+    });
+    </script>
+    <?php endif; ?>
+  <?php }
+?>

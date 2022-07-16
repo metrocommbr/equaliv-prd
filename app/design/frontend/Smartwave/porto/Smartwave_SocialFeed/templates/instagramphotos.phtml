@@ -1,0 +1,86 @@
+<?php
+$_enable = $this->getConfig('sw_socialfeeds/instagram_photos/enable');
+if($_enable==1){
+    $accesstoken = $this->getConfig('sw_socialfeeds/instagram_photos/accesstocken');
+    $count = $this->getConfig('sw_socialfeeds/instagram_photos/showing_counts') + 1;
+    $padding = $this->getData("padding_item")!=''?'padding:'.$this->getData("padding_item").';':'';
+    $template_type = $this->getData("template_type"); 
+    $desktop = $this->getData("desktop") !='' ? $this->getData("desktop") : '6';
+    $tablet = $this->getData("tablet") != '' ? $this->getData("tablet") : '4';
+    $mobile = $this->getData("mobile") != '' ? $this->getData("mobile") : '2';
+    $margin = $this->getData("margin") != '' ? $this->getData("margin") : '0';
+    $desktop_large = $this->getData("desktop_large") != '' ? $this->getData("desktop_large") : $desktop;
+?>
+    <div class="insta-items grid-items">
+      <?php if($template_type == 'carousel'):?>
+        <div id="instafeed" class="photo-instagrams owl-carousel mb-0" style="opacity:0;"></div>
+      <?php else: ?>
+        <div id="instafeed" class="photo-instagrams row" style="margin-left: -<?php echo $this->getData("padding_item"); ?>;margin-right: -<?php echo $this->getData("padding_item");?>;opacity:0;"></div>
+      <?php endif;?>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'imagesloaded',
+            'owl.carousel/owl.carousel.min'
+        ], function ($) {
+          var instagram = $('#instafeed'),
+              token = '<?php echo $accesstoken;?>',
+              count = '<?php echo $count;?>',
+              url = '//graph.instagram.com/me/media?fields=caption,id,media_type,media_url,permalink,thumbnail_url,timestamp,username&access_token=' + token,
+              desktop_large = '<?php echo $desktop_large;?>',
+              desktop = '<?php echo $desktop;?>',
+              tablet = '<?php echo $tablet;?>',
+              mobile = '<?php echo $mobile;?>',
+              margin = <?php echo $margin;?>;
+          $.ajax({
+            type: 'GET',
+            dataType: 'jsonp',
+            cache: false,
+            url: url,
+            success: function(data) {
+              for (var i = 0; i < count; i++) {
+                if (data.data[i]) {
+                  if(data.data[i].media_type == 'IMAGE') {
+                      <?php if($template_type == 'carousel'):?>
+                        instagram.append("<div class='item insta-item' data-date='"+data.data[i].timestamp+"' data-sortid='"+i*2+"'><a target='_blank' href='" + data.data[i].permalink +"'><span class='content'><i class='porto-icon-instagram'></i></span><img class='instagram-image' src='" + data.data[i].media_url +"' /></a></div>");
+                      <?php else: ?>
+                        instagram.append("<div class='item insta-item item col-xl-2 col-lg-3 col-sm4 col-6' style='<?php echo $padding;?>' data-date='"+data.data[i].timestamp+"' data-sortid='"+i*2+"'><a target='_blank' href='" + data.data[i].permalink +"'><span class='content'><i class='porto-icon-instagram'></i></span><img class='instagram-image' src='" + data.data[i].media_url +"' /></a></div>");
+                      <?php endif;?>
+                  }
+                }
+              }
+              instagram.imagesLoaded().animate({ 'opacity' : 1 }, 500);
+            <?php if($template_type == 'carousel'):?>
+                instagram.imagesLoaded(function(){
+                  instagram.owlCarousel({
+                    loop: true,
+                    margin: margin,
+                    responsiveClass: true,
+                    nav: false,
+                    autoplay: false,
+                    autoplayTimeout: 5000,
+                    dots: false,
+                    lazyLoad: false,
+                    responsive:{
+                      0:{
+                        items:mobile
+                      },
+                      600:{
+                        items:tablet
+                      },
+                      1000:{
+                        items:desktop
+                      },
+                      1400:{
+                        items:desktop_large
+                      }
+                    }
+                  });
+                });
+              <?php endif;?>
+            }
+          });
+        });
+    </script>
+<?php }?>

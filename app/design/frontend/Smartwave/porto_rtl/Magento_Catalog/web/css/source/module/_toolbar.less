@@ -1,0 +1,284 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@toolbar-mode-icon-font-size: 16px;
+@toolbar-background: transparent;
+@pager-action__background: @toolbar-element-background;
+@pager__font-weight: @font-weight__bold;
+
+//
+//    Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+.page-products .columns {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: -10px;
+    font-size: 13px;
+    > *{
+      margin: 0 0 10px 10px;
+    }
+    select {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 1em;
+        padding: 0 8px 0 25px;
+        box-shadow: none;
+        border: 1px solid #e4e4e4;
+        height: 34px;
+        border-radius: 0;
+    }
+
+    text-align: center;
+    &:extend(.abs-add-clearfix all);
+    &-amount {
+        position: static;
+        display: block;
+        float: right;
+        line-height: @toolbar-mode-icon-font-size+2;
+        padding: 6px 0;
+        margin: 0;
+        vertical-align: middle;
+        text-align: right;
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+    }
+    .page-with-filter & {
+        &-amount {
+            position: static;
+        }
+    }
+    &-products {
+        .lib-css(background-color, @toolbar-background);
+        .pages {
+            display: none;
+        }
+    }
+    .products.wrapper ~ & {
+      text-align: center;
+      border-top: 1px solid #e7e7e7;
+      padding-top: 25px;
+      margin: 0;
+      border-bottom: none;
+      .pages {
+        display: block;
+        margin-left: 0;
+        order: 2;
+        margin-right: auto;
+        margin-bottom: 15px;
+      }
+      .limiter {
+        margin-bottom: 15px;
+      }
+      .sorter,.modes {display: none;}
+      a.porto-product-filters-toggle {display: none !important;}
+    }
+    a.porto-product-filters-toggle {
+      -webkit-align-items: center;
+      align-items: center;
+      height: 36px;
+      background: #fff;
+      padding: 0 3px 0 10px;
+      text-transform: uppercase;
+      color: inherit;
+      border: 1px solid #e7e7e7;
+      svg {
+        fill: #fff;
+        stroke: #222529;
+        width: 28px;
+      }
+      .page-layout-1column & {display: none !important;}
+    }
+    &.sticky {
+      position: fixed!important;
+      z-index: 8;
+      right: 0;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 0;
+      padding-left: 10px;
+      padding-right: 20px;
+      border-bottom: 1px solid #e7e7e7;
+      transition: right 0.3s;
+      .sidebar-opened & {
+        right: 260px;
+      }
+      .onepage-category & {
+        right: 80px;
+        width: calc(~"100% - (80px)");
+      }
+    }
+}
+.sorter {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    .page-products & {
+        position: static;
+    }
+    &-label {
+        line-height: 26px;
+        font-weight: 400;
+        margin: 0 0 0 7px;
+        vertical-align: middle;
+        &::after {
+          content: ':';
+        }
+    }
+    &-options {
+        margin: 0 0 0 7px;
+        width: auto;
+    }
+    &-action {
+        display: inline-block;
+        vertical-align: top;
+
+        .lib-icon-font(
+            @icon-arrow-up,
+            @_icon-font-size: inherit,
+            @_icon-font-color: @header-icons-color,
+            @_icon-font-color-hover: @header-icons-color-hover
+        );
+        .lib-icon-text-hide();
+        &:before {
+            vertical-align: top;
+        }
+        &.sort-desc:before {
+            content: @icon-arrow-down;
+        }
+    }
+}
+.modes {
+    display: flex;
+    align-items: center;
+    & > a {
+        text-decoration: none;
+    }
+
+    &-label {
+        &:extend(.abs-visually-hidden);
+    }
+
+    &-mode {
+        display: inline-block;
+        font-size: 1rem;
+        width: 1.2em;
+        height: 1.2em;
+        line-height: 1;
+        text-decoration: none;
+        text-align: center;
+        vertical-align: middle;
+        transition: .25s;
+        margin-left: .25rem;
+        margin-top: 2px;
+        &:last-child {
+            margin-left: 0;
+        }
+        &.active, &:hover {
+            color: @theme-color;
+        }
+        &:not(.active){
+          color: #000;
+        }
+        .lib-icon-font(
+            @icon-grid,
+            @_icon-font-size: inherit,
+            @_icon-font-text-hide: true
+        );
+        &:before {
+            display: block;
+            overflow: visible;
+        }
+    }
+}
+.mode-list:before {
+    content: @icon-list;
+}
+.limiter {
+  display: flex;
+  align-items: center;
+    &-options {
+        width: auto;
+        margin: 0;
+    }
+    & .label {
+        margin: 0 0 0 7px;
+        vertical-align: middle;
+        span {
+          &::after {
+            content: ':';
+          }
+        }
+    }
+    .control {
+        display: inline-block;
+    }
+    .limiter-text {display: none;}
+}
+}
+
+//
+//    Mobile
+//--------------------------------------
+
+@media(max-width: 991px) {
+  .toolbar {
+    font-size: 11px;
+    letter-spacing: -.025em;
+    font-weight: 600;
+    color: #222529;
+    margin-bottom: 20px;
+    background: #f4f4f4;
+    padding: 10px 12px 0 2px;
+    margin-right: 0;
+    select {
+      text-transform: uppercase;
+      height: 36px;
+      max-width: 140px;
+      letter-spacing: inherit;
+      font-weight: inherit;
+      color: #222529;
+    }
+    .sorter-label,.limiter .label {font-weight: inherit;}
+    .products.wrapper ~ & {
+      background: none;
+      margin: 0;
+      padding: 0;
+      padding-top: 25px;
+      font-size: 13px;
+      font-weight: 400;
+      color: inherit;
+      letter-spacing: normal;
+      position: static !important;
+      select {
+        height: 34px;
+        max-width: auto;
+        color: inherit;
+      }
+    }
+  }
+}
+@media(max-width: 575px) {
+  .toolbar {
+    .modes,.sorter-label, .limiter .label {display: none;}
+  }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .page-products .columns {
+        position: relative;
+        z-index: 1;
+        padding-top: 0;
+    }
+}

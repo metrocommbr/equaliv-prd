@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**  @var $block \Magento\Checkout\Block\Cart */
+?>
+<div class="cart-empty text-center">
+    <i class="cart-empty porto-icon-bag-2"></i>
+    <?= $block->getChildHtml('checkout_cart_empty_widget') ?>
+    <p class="px-3 py-2 cart-empty"><?= $block->escapeHtml(__('You have no items in your shopping cart.')) ?></p>
+    <p class="return-to-shop">
+      <a class="action btn-go-shop" href="<?php echo $block->getContinueShoppingUrl();?>">
+        <?= $block->escapeHtml(__('Continue Shopping')) ?>
+      </a>
+    </p>
+    <?= $block->getChildHtml('shopping.cart.table.after') ?>
+</div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Checkout/js/empty-cart": {}
+    }
+}
+</script>

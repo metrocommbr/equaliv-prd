@@ -1,0 +1,21 @@
+{
+  "name": "magmodules/m2-googleshopping",
+  "description": "Google Shopping integration for Magento 2",
+  "type": "magento2-module",
+  "version": "1.2.6",
+  "require": {
+    "magento/framework": ">=100.1.0",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-dom": "*"
+  },
+  "license": [
+    "Commercial"
+  ],
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Magmodules\\GoogleShopping\\": ""
+    }
+  }
+}
