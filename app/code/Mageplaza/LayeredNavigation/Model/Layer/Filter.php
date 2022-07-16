@@ -25,7 +25,9 @@ use Magento\Catalog\Model\Layer\Filter\AbstractFilter;
 use Magento\Catalog\Model\Layer\Filter\Item;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Mageplaza\LayeredNavigation\Helper\Data as LayerHelper;
+use Mageplaza\LayeredNavigation\Model\Layer\Filter\Category;
 
 /**
  * Class Filter
@@ -89,12 +91,17 @@ class Filter
      * @param null $compareType
      *
      * @return bool|string
+     * @throws NoSuchEntityException
      */
     public function getFilterType($filter, $compareType = null)
     {
         $type = LayerHelper::FILTER_TYPE_LIST;
         if ($filter->getRequestVar() === 'price') {
             $type = LayerHelper::FILTER_TYPE_SLIDER;
+        } elseif ($filter->getRequestVar() === 'cat'
+            && $filter instanceof Category
+            && $filter->isRenderCategoryTree()) {
+            $type = LayerHelper::FILTER_TYPE_TREE;
         }
 
         return $compareType ? ($type === $compareType) : $type;
@@ -128,7 +135,7 @@ class Filter
     {
         $filterValue = $this->getFilterValue($item->getFilter());
 
-        return !empty($filterValue) && in_array((string) $item->getValue(), $filterValue, true);
+        return !empty($filterValue) && in_array((string)$item->getValue(), $filterValue, true);
     }
 
     /**

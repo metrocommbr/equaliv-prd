@@ -50,7 +50,7 @@ class Identifier
         Http $request,
         Data $helperData
     ) {
-        $this->request    = $request;
+        $this->request = $request;
         $this->helperData = $helperData;
     }
 
@@ -66,9 +66,7 @@ class Identifier
             return $result;
         }
 
-        $payload = Data::jsonDecode($this->request->getContent());
-        $isLayer = isset($payload['mp_layer']) ? $payload['mp_layer'] : false;
-        $result  .= $isLayer ? 'mplayer' : '';
+        $result .= 'mplayer';
 
         return $result;
     }

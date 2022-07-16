@@ -23,7 +23,8 @@ define([
     'Mageplaza_AjaxLayer/js/action/submit-filter',
     'Magento_Catalog/js/price-utils',
     'accordion',
-    'productListToolbarForm'
+    'productListToolbarForm',
+    'jquery/jquery-ui'
 ], function ($, submitFilterAction, ultil) {
     "use strict";
     var next_page = "";

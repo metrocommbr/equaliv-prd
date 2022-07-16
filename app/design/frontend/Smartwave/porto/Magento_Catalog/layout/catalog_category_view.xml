@@ -16,6 +16,8 @@
             <block class="Smartwave\Porto\Block\Template" name="catalog_view_config" after="-" template="Magento_Catalog::category/config.phtml"/>
         </referenceContainer>
         <move element="category.image" destination="content" before="category_desc_main_column"/>
+        <referenceBlock name="category.description" remove="1"/>
+        <referenceBlock name="category.cms" remove="1"/>
         <referenceContainer name="sidebar.main">
             <block class="Smartwave\Porto\Block\Template" name="category_view_custom_block" after="-" template="Magento_Catalog::category/custom_block.phtml"/>
         </referenceContainer>

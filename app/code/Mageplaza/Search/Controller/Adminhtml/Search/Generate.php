@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -32,20 +32,20 @@ use Mageplaza\Search\Helper\Data;
 class Generate extends Action
 {
     /**
-     * @var \Mageplaza\Search\Helper\Data
+     * @var Data
      */
     protected $moduleHelper;
 
     /**
      * Generate constructor.
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Mageplaza\Search\Helper\Data $dataHelper
+     *
+     * @param Context $context
+     * @param Data $dataHelper
      */
     public function __construct(
         Context $context,
         Data $dataHelper
-    )
-    {
+    ) {
         $this->moduleHelper = $dataHelper;
 
         parent::__construct($context);

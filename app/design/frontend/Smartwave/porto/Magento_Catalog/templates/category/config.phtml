@@ -3,7 +3,7 @@ require([
     'jquery'
 ], function ($) {
   // sticky filter on mobile
-    $(window).load(function(){
+    $(window).on('load',function(){
       if ($('.toolbar').length > 0) {
         var init_filter_sticky = function() {
           var $obj = $('#layer-product-list > .toolbar.toolbar-products,#layer-product-list .search.results > .toolbar.toolbar-products');

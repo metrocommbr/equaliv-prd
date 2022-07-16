@@ -16,14 +16,14 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
  -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="top.search">
-            <block class="Magento\Framework\View\Element\Template" name="mageplaza.top.search" template="Mageplaza_Search::search.phtml" />
+            <block class="Magento\Framework\View\Element\Template" name="mageplaza.top.search" template="Mageplaza_Search::search.phtml"/>
         </referenceBlock>
     </body>
 </page>

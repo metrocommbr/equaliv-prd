@@ -26,6 +26,7 @@ use Magento\Framework\Api\ObjectFactory;
 use Magento\Framework\Api\Search\FilterGroup;
 use Magento\Framework\Api\Search\FilterGroupBuilder as SourceFilterGroupBuilder;
 use Magento\Framework\App\RequestInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Builder for FilterGroup Data.
@@ -34,6 +35,10 @@ class FilterGroupBuilder extends SourceFilterGroupBuilder
 {
     /** @var RequestInterface */
     protected $_request;
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
 
     /**
      * FilterGroupBuilder constructor.
@@ -41,13 +46,16 @@ class FilterGroupBuilder extends SourceFilterGroupBuilder
      * @param ObjectFactory $objectFactory
      * @param FilterBuilder $filterBuilder
      * @param RequestInterface $request
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         ObjectFactory $objectFactory,
         FilterBuilder $filterBuilder,
-        RequestInterface $request
+        RequestInterface $request,
+        StoreManagerInterface $storeManager
     ) {
         $this->_request = $request;
+        $this->storeManager = $storeManager;
 
         parent::__construct($objectFactory, $filterBuilder);
     }
@@ -73,20 +81,43 @@ class FilterGroupBuilder extends SourceFilterGroupBuilder
 
     /**
      * @param $attributeCode
-     *
      * @return $this
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function removeFilter($attributeCode)
     {
         if (isset($this->data[FilterGroup::FILTERS]) && is_array($this->data[FilterGroup::FILTERS])) {
+            $count = 0;
             foreach ($this->data[FilterGroup::FILTERS] as $key => $filter) {
                 if ($filter->getField() === $attributeCode) {
                     if ($attributeCode === 'category_ids'
-                        && ($filter->getValue() === $this->_request->getParam('id'))
+                        && (($filter->getValue() === $this->_request->getParam('id') && !$count)
+                            || $filter->getValue() === $this->storeManager->getStore()->getRootCategoryId()
+                        )
                     ) {
+                        $count++;
                         continue;
                     }
                     unset($this->data[FilterGroup::FILTERS][$key]);
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $categoryIds
+     *
+     * @return $this
+     */
+    public function setCategoryFilter($categoryIds)
+    {
+        if (isset($this->data[FilterGroup::FILTERS]) && is_array($this->data[FilterGroup::FILTERS])) {
+            foreach ($this->data[FilterGroup::FILTERS] as $key => $filter) {
+                if ($filter->getField() === 'category_ids') {
+                    $filter->setValue($categoryIds);
+                    return $this;
                 }
             }
         }

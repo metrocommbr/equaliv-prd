@@ -235,8 +235,8 @@ $product_limit = count($product_grid_layout_arr);
                             }
                             if($_product_label_config['new_label']) {
                                 $now = date("Y-m-d");
-                                $newsFrom= substr($_product->getData('news_from_date'),0,10);
-                                $newsTo=  substr($_product->getData('news_to_date'),0,10);
+                                $newsFrom= substr($_product->getData('news_from_date')?$_product->getData('news_from_date'):'',0,10);
+                                $newsTo=  substr($_product->getData('news_to_date')?$_product->getData('news_to_date'):'',0,10);
 
                                 if ($newsTo != '' || $newsFrom != ''){
                                     if (($newsTo != '' && $newsFrom != '' && $now>=$newsFrom && $now<=$newsTo) || ($newsTo == '' && $now >=$newsFrom) || ($newsFrom == '' && $now<=$newsTo)) {

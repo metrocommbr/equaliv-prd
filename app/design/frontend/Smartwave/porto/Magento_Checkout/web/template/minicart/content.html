@@ -7,29 +7,16 @@
 <div class="block-title">
     <strong>
         <span class="text"><!-- ko i18n: 'My Cart' --><!-- /ko --></span>
-        <span
-            class="qty empty"
-            data-bind="css: { empty: !!getCartParam('summary_count') == false },
-                       attr: { title: $t('Items in Cart') }">
+        <span class="qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false }, attr: { title: $t('Items in Cart') }">
             <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
         </span>
     </strong>
 </div>
 
 <div class="block-content">
-  <button type="button"
-          id="btn-minicart-close"
-          class="action close"
-          data-action="close"
-          data-bind="
-              attr: {
-                  title: $t('Close')
-              },
-              click: closeMinicart()
-          ">
-      <span translate="'Close'"/>
+  <button type="button" id="btn-minicart-close" class="action close" data-action="close" data-bind=" attr: { title: $t('Close') }, click: closeMinicart()">
+      <span translate="'Close'"></span>
   </button>
-
   <!-- ko if: getCartParam('summary_count') -->
     <div class="total-count text-v-dark">
       <div class="items-total">
@@ -44,7 +31,7 @@
       <div class="actions">
           <div class="secondary">
               <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                  <span translate="'View Cart'"/>
+                  <span translate="'View Cart'"></span>
               </a>
           </div>
       </div>
@@ -66,19 +53,21 @@
   <!-- /ko -->
 
   <!-- ko ifnot: getCartParam('summary_count') -->
+    <!-- ko if: getCartParam('summary_count') -->
     <div class="total-count text-v-dark">
       <div class="items-total">
           <span class="count">0</span>
-          <span class="counter-label" translate="'Item'"/>
+          <span class="counter-label" translate="'Item'"></span>
       </div>
       <div class="actions">
           <div class="secondary">
               <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                  <span translate="'View Cart'"/>
+                  <span translate="'View Cart'"></span>
               </a>
           </div>
       </div>
     </div>
+    <!-- /ko -->
     <strong class="subtitle empty" translate="'You have no items in your shopping cart.'">
         <!-- ko i18n: 'You have no items in your shopping cart.' --><!-- /ko -->
     </strong>
@@ -104,20 +93,10 @@
   <!-- ko if: getCartParam('possible_onepage_checkout') -->
   <div class="actions">
     <div class="primary">
-        <button
-                id="top-cart-btn-checkout"
-                type="button"
-                class="action primary checkout"
-                data-action="close"
-                data-bind="
-                    attr: {
-                        title: $t('Go to Checkout')
-                    },
-                    click: closeMinicart()
-                "
-                translate="'Go to Checkout'"
-        />
+        <!-- ko if: getCartParam('summary_count') -->
+        <button id="top-cart-btn-checkout" type="button" class="action primary checkout" data-action="close" data-bind=" attr: { title: $t('Go to Checkout') }, click: closeMinicart()" translate="'Go to Checkout'"></button>
         <div data-bind="html: getCartParam('extra_actions')"></div>
+        <!-- /ko -->
     </div>
   </div>
   <!-- /ko -->

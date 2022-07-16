@@ -82,7 +82,7 @@ class Item
         $filter      = $item->getFilter();
         $filterModel = $this->_moduleHelper->getFilterModel();
         if ($filterModel->isSliderTypes($filter) || $filter->getData('range_mode')) {
-            $value = ["from-to"];
+            $value = ['from-to'];
         } elseif ($filterModel->isMultiple($filter)) {
             $requestVar = $filter->getRequestVar();
             if ($requestValue = $this->_request->getParam($requestVar)) {

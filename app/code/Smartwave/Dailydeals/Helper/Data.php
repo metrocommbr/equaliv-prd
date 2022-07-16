@@ -7,13 +7,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $scopeConfig;
     protected $productFactory;
     protected $loadedTimer;
-    
+
     public function __construct(
         \Smartwave\Dailydeals\Model\DailydealFactory $dailydealFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Catalog\Model\ProductFactory $productFactory
     ) {
-    
+
         $this->dailydealFactory = $dailydealFactory;
         $this->scopeConfig=$scopeConfig;
         $this->productFactory= $productFactory;
@@ -23,11 +23,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function chkEnableDailydeals()
     {
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-       
+
         $configPath = "sw_dailydeal/general/dailydeal_enabled";
-       
+
         $chkEnableDailydeals = $this->scopeConfig->getValue($configPath, $storeScope);
-        
+
         return $chkEnableDailydeals;
     }
 
@@ -37,7 +37,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         return $objectManager;
     }
-    
+
     //Check Dailydeal Product
     public function isDealProduct($productId)
     {
@@ -47,18 +47,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $productcollection->addAttributeToSelect('*');
         $productcollection->addAttributeToFilter('entity_id', ['eq'=>$productId]);
         $sku=$productcollection->getFirstItem()->getSku();
-        
+
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$sku]);
-        
+
         if ($dailydealcollection->getSize() ==1) {
             $objDate = $this->getObjectManagerInstance()->create('Magento\Framework\Stdlib\DateTime\DateTime');
-        
+            $_todate = $this->getDailydealToDate($sku) ? $this->getDailydealToDate($sku) : '';
+            $_fromdate = $this->getDailydealFromDate($sku) ? $this->getDailydealFromDate($sku) : '';
             $curdate=strtotime($this->getcurrentDate());
-            $Todate=strtotime($this->getDailydealToDate($sku));
-            $fromdate=strtotime($this->getDailydealFromDate($sku));
-            
+            $Todate=strtotime($_todate);
+            $fromdate=strtotime($_fromdate);
+
             if (( $curdate <= $Todate ) && ($curdate >= $fromdate)) {
                 return true;
             } else {
@@ -102,10 +103,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $productcollection->addAttributeToSelect('*');
         $productcollection->addAttributeToFilter('entity_id', ['eq'=>$productId]);
         $sku=$productcollection->getFirstItem()->getSku();
-        
+
         return $this->getDealProductPrice($sku);
     }
-    
+
     // Get Current Currency Symbol
     public function getcurrencySymbol()
     {
@@ -121,40 +122,40 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 
     // Get Collection of dailydeal
-   
+
     public function getDailydealcollection()
     {
         $dailydealcollection=$this->dailydealFactory->create()->getCollection();
         return $dailydealcollection;
     }
-    
+
     // Get Discount Value  of Dailydeal Product
     public function getDealProductDiscountValue($dealproductsku)
     {
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$dealproductsku]);
-        
+
         return $dailydealcollection->getFirstItem()->getSwDiscountAmount();
     }
-    
+
     // Get Dailydeal Product with Discount Price
     public function getDealProductPrice($dealproductsku)
     {
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$dealproductsku]);
-        
+
         return $dailydealcollection->getFirstItem()->getSwProductPrice();
     }
-    
+
     // Get Dailydeal Product TO date
     public function getDailydealToDate($dealproductsku)
     {
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$dealproductsku]);
-        
+
         return $dailydealcollection->getFirstItem()->getSwDateTo();
     }
     // Get Dailydeal Product FROM Date
@@ -163,17 +164,17 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$dealproductsku]);
-        
+
         return $dailydealcollection->getFirstItem()->getSwDateFrom();
     }
-            
+
     // Get "OFF value" (in percentage) of Dailydeal Product
     public function getDealOffValue($dealproductsku)
     {
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$dealproductsku]);
-        
+
         $discountType=$dailydealcollection->getFirstItem()->getSwDiscountType();
         if ($discountType ==1) {
             $off=(($this->getProductPrice($dealproductsku)-$this->getDealProductPrice($dealproductsku))* 100)/  $this->getProductPrice($dealproductsku) ;
@@ -182,14 +183,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             return $dailydealcollection->getFirstItem()->getSwDiscountAmount();
         }
     }
-    
+
     // Get "Save value" (In price) of dailydeal Product
     public function getDealSaveValue($dealproductsku)
     {
         $dailydealcollection=$this->getDailydealcollection();
         $dailydealcollection->addFieldToSelect('*');
         $dailydealcollection->addFieldToFilter('sw_product_sku', ['eq'=>$dealproductsku]);
-        
+
         $discountType=$dailydealcollection->getFirstItem()->getSwDiscountType();
         if ($discountType ==1) {
             return $dailydealcollection->getFirstItem()->getSwDiscountAmount();

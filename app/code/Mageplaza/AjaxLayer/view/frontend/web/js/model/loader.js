@@ -25,7 +25,7 @@ define(['jquery'], function ($) {
             /**
              * Start full page loader action
              */
-            startLoader: function () { 
+            startLoader: function () {
                 $('.ln_overlay').show();
             },
 

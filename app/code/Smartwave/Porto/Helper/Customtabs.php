@@ -6,7 +6,7 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
     protected $_filterProvider;
     protected $_storeManager;
     protected $_blockFactory;
-    
+
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
@@ -17,10 +17,10 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
         $this->_filterProvider = $filterProvider;
         $this->_blockFactory = $blockFactory;
         $this->_storeManager = $storeManager;
-        
+
         parent::__construct($context);
     }
-    
+
     public function getConfig($config_path)
     {
         return $this->scopeConfig->getValue(
@@ -28,7 +28,7 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
-    
+
     public function subval_sort($a,$subkey) {
         foreach($a as $k=>$v) {
             $b[$k] = strtolower($v[$subkey]);
@@ -52,7 +52,7 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
             return true;
         if(count($tab_cat_ids)>0 && count(array_intersect($tab_cat_ids, $parent_cat_ids))>0)
             return true;
-        
+
         return false;
     }
 
@@ -62,14 +62,14 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->_filterProvider->getBlockFilter()->filter(trim($content));
     }
     public function getCustomTabs($product){
-        $cms_tabs = $this->getConfig('porto_settings/product/custom_cms_tabs');
-        $attr_tabs = $this->getConfig('porto_settings/product/custom_attr_tabs');
+        $cms_tabs = $this->getConfig('porto_settings/product/custom_cms_tabs') ? $this->getConfig('porto_settings/product/custom_cms_tabs') : '';
+        $attr_tabs = $this->getConfig('porto_settings/product/custom_attr_tabs') ? $this->getConfig('porto_settings/product/custom_attr_tabs') : '';
         $_sku = $product->getSku();
         if($cms_tabs)
             $cms_tabs = unserialize($cms_tabs);
         if($attr_tabs)
             $attr_tabs = unserialize($attr_tabs);
-        
+
         $parents = array();
         if(count($cms_tabs)>0 || count($attr_tabs)>0) {
             foreach($product->getCategoryCollection() as $parent_cat) {
@@ -86,13 +86,13 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
                         continue;
                     $block = $this->_blockFactory->create();
                     $block->setStoreId($store_id)->load($block_id);
-                    
+
                     if(!$block) continue;
-                    
+
                     $block_content = $block->getContent();
-                    
+
                     if(!$block_content) continue;
-                            
+
                     $content = $this->_filterProvider->getBlockFilter()->setStoreId($store_id)->filter($block_content);
                     $arr = array();
                     $arr['tab_title'] = $_item['tab_title'];
@@ -106,13 +106,13 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
             foreach($attr_tabs as $_item) {
                 if($this->checkShowingTab($_item['category_ids'],$parents,$_item['product_skus'],$_sku)){
                     $attr_code = $_item['attribute_code'];
-                    
+
                     $attribute = $product->getResource()->getAttribute($attr_code);
                     if(!$attribute)
                         continue;
                     $attr_value = $attribute->getFrontend()->getValue($product);
                     if(!$attr_value) continue;
-                    
+
                     $content = $this->_filterProvider->getBlockFilter()->setStoreId($store_id)->filter($attr_value);
                     $arr = array();
                     $arr['tab_title'] = $_item['tab_title'];
@@ -124,7 +124,7 @@ class Customtabs extends \Magento\Framework\App\Helper\AbstractHelper
         }
         if(count($custom_tabs)>0)
             $custom_tabs = $this->subval_sort($custom_tabs,'sort_order');
-        
+
         return $custom_tabs;
     }
 }

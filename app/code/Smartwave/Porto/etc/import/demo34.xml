@@ -2,7 +2,7 @@
 <config>
     <web>
         <default>
-            <cms_home_page>porto_home_1</cms_home_page>
+            <cms_home_page>porto_home_34</cms_home_page>
             <cms_no_route>no-route-2</cms_no_route>
         </default>
     </web>

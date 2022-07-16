@@ -21,6 +21,7 @@
 
 namespace Mageplaza\LayeredNavigation\Model\Search;
 
+use Magento\Framework\Api\Filter;
 use Magento\Framework\Api\ObjectFactory;
 use Magento\Framework\Api\Search\SearchCriteria;
 use Magento\Framework\Api\Search\SearchCriteriaBuilder as SourceSearchCriteriaBuilder;
@@ -69,6 +70,18 @@ class SearchCriteriaBuilder extends SourceSearchCriteriaBuilder
     }
 
     /**
+     * @param $categoryIds
+     *
+     * @return $this
+     */
+    public function setCategoryFilter($categoryIds)
+    {
+        $this->filterGroupBuilder->setCategoryFilter($categoryIds);
+
+        return $this;
+    }
+
+    /**
      * @return SearchCriteriaBuilder
      */
     public function cloneObject()
@@ -95,5 +108,32 @@ class SearchCriteriaBuilder extends SourceSearchCriteriaBuilder
     protected function _getDataObjectType()
     {
         return SearchCriteria::class;
+    }
+
+    /**
+     * Builds the SearchCriteria Data Object
+     *
+     * @return SearchCriteria
+     */
+    public function create()
+    {
+        $this->data[SearchCriteria::FILTER_GROUPS] = [$this->filterGroupBuilder->create()];
+        $this->data[SearchCriteria::SORT_ORDERS] = [$this->sortOrderBuilder->create()];
+
+        return parent::create();
+    }
+
+    /**
+     * Create a filter group based on the filter array provided and add to the filter groups
+     *
+     * @param Filter $filter
+     *
+     * @return $this
+     */
+    public function addFilter(Filter $filter)
+    {
+        $this->filterGroupBuilder->addFilter($filter);
+
+        return $this;
     }
 }

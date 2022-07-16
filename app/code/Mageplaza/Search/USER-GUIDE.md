@@ -2,10 +2,9 @@
 
 - Installation guide: https://www.mageplaza.com/install-magento-2-extension/#solution-1-ready-to-paste
 - User Guide: https://docs.mageplaza.com/search-m2/
-- Product page: https://www.mageplaza.com/magento-2-search-extension/
 - FAQs: https://www.mageplaza.com/faqs/
 - Get Support: https://mageplaza.freshdesk.com/ or support@mageplaza.com
-- Changelog: https://www.mageplaza.com/changelog/m2-search.txt
+- Changelog: https://www.mageplaza.com/releases/search
 - License agreement: https://www.mageplaza.com/LICENSE.txt
 
 

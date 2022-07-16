@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -31,13 +31,14 @@ use Mageplaza\Search\Model\Config\Source\Reindex;
 class Job
 {
     /**
-     * @var \Mageplaza\Search\Helper\Data
+     * @var Data
      */
     protected $helperData;
 
     /**
      * Job constructor.
-     * @param \Mageplaza\Search\Helper\Data $helperData
+     *
+     * @param Data $helperData
      */
     public function __construct(Data $helperData)
     {
@@ -49,9 +50,15 @@ class Job
      */
     public function execute()
     {
+        /** Reindex all data*/
         $reindexConfig = $this->helperData->getConfigGeneral('reindex_search');
         if ($reindexConfig == Reindex::TYPE_CRON_JOB) {
             $this->helperData->createJsonFile();
+        }
+
+        /** Reindex New Product, Most Viewed Product and Bestsellers data*/
+        if ($reindexConfig != Reindex::TYPE_CRON_JOB) {
+            $this->helperData->createAdditionJsonFile();
         }
 
         return $this;

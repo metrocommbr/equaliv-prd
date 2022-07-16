@@ -24,7 +24,6 @@
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~1.1",
         "magento/product-community-edition": "2.4.3-p1",
-        "mageplaza/module-smtp": "^4.7",
         "rafaelstz/traducao_magento2_pt_br": "dev-master"
     },
     "autoload": {

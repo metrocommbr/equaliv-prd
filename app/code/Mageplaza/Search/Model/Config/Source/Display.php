@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -47,6 +47,10 @@ class Display implements ArrayInterface
                 'label' => $label
             ];
         }
+        array_unshift($options, [
+            'label' => __('-- Please select --'),
+            'value' => ''
+        ]);
 
         return $options;
     }
@@ -59,8 +63,8 @@ class Display implements ArrayInterface
     public function toArray()
     {
         return [
-            self::DISPLAY_PRICE       => __('Price'),
-            self::DISPLAY_IMAGE       => __('Image'),
+            self::DISPLAY_PRICE => __('Price'),
+            self::DISPLAY_IMAGE => __('Image'),
             self::DISPLAY_DESCRIPTION => __('Short Description')
         ];
     }

@@ -47,7 +47,7 @@ class CompareWishlist
         RequestInterface $request,
         Data $helperData
     ) {
-        $this->request    = $request;
+        $this->request = $request;
         $this->dataHelper = $helperData;
     }
 

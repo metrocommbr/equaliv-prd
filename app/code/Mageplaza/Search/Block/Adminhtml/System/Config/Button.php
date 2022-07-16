@@ -15,13 +15,16 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\Search\Block\Adminhtml\System\Config;
 
+use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+use Mageplaza\Search\Helper\Data;
 
 /**
  * Class Button
@@ -35,31 +38,55 @@ class Button extends Field
     protected $_template = 'system/config/button.phtml';
 
     /**
+     * @var Data
+     */
+    protected $helperData;
+
+    /**
+     * Button constructor.
+     *
+     * @param Context $context
+     * @param Data $helperData
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Data $helperData,
+        array $data = []
+    ) {
+        $this->helperData = $helperData;
+        parent::__construct($context, $data);
+    }
+
+    /**
      * Unset scope
      *
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param AbstractElement $element
+     *
      * @return string
      */
-    public function render(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    public function render(AbstractElement $element)
     {
         $element->unsScope();
+
         return parent::render($element);
     }
 
     /**
      * Get the button and scripts contents
      *
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
+     * @param AbstractElement $element
+     *
      * @return string
      */
-    protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    protected function _getElementHtml(AbstractElement $element)
     {
         $originalData = $element->getOriginalData();
         $this->addData(
             [
                 'button_label' => __($originalData['button_label']),
-                'button_url'   => $this->getUrl($originalData['button_url']),
-                'html_id'      => $element->getHtmlId(),
+                'button_url' => $this->getUrl($originalData['button_url']),
+                'html_id' => $element->getHtmlId(),
             ]
         );
 

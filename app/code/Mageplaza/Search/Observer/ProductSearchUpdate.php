@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -39,7 +39,8 @@ class ProductSearchUpdate implements ObserverInterface
 
     /**
      * ProductSearchUpdate constructor.
-     * @param \Mageplaza\Search\Helper\Data $helper
+     *
+     * @param Data $helper
      */
     public function __construct(Data $helper)
     {
@@ -47,18 +48,19 @@ class ProductSearchUpdate implements ObserverInterface
     }
 
     /**
-     * @param \Magento\Framework\Event\Observer $observer
-     * @return $this
+     * @param Observer $observer
+     *
+     * @return $this|void
      */
     public function execute(Observer $observer)
     {
-        if(!$this->_helper->isEnabled()){
+        if (!$this->_helper->isEnabled()) {
             return $this;
         }
 
         $reindexConfig = $this->_helper->getConfigGeneral('reindex_search');
         if ($reindexConfig == Reindex::TYPE_PRODUCT_SAVE) {
-            $this->_helper->getMediaHelper()->removeJsPath();
+            $this->_helper->createJsonFile();
         }
 
         return $this;

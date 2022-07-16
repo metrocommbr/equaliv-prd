@@ -31,10 +31,6 @@
                 <field id="ajax_enable" translate="label" canRestore="1">
                     <label>Enable Ajax</label>
                 </field>
-                <field id="infinite_scroller" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Infinite Scroller</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
             </group>
         </section>
     </system>

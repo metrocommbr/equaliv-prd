@@ -40,7 +40,7 @@
 require([
     'jquery'
 ], function ($) {
-    $(window).load(function(){
+    $(window).on('load',function(){
         var p_scrolled = false;
         var offset = $('.product.detailed').length > 0 ? $('.product.detailed').offset().top : '0';
         $(window).scroll(function(){

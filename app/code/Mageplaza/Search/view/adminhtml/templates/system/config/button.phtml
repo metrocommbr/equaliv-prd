@@ -15,12 +15,12 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 ?>
 <div class="pp-buttons-container">
-    <a class="action-default" href="<?php /* @noEscape */ echo $block->escapeUrl($block->getButtonUrl()); ?>">
-        <?php echo $block->escapeHtml($block->getButtonLabel()); ?>
+    <a class="action-default" href="<?= /** @noEscape */ $block->escapeUrl($block->getButtonUrl()) ?>">
+        <?= /** @noEscape */ $block->escapeHtml($block->getButtonLabel()) ?>
     </a>
 </div>

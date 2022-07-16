@@ -57,9 +57,9 @@ class RenderLayered
         Pager $htmlPagerBlock,
         Data $moduleHelper
     ) {
-        $this->_url            = $url;
+        $this->_url = $url;
         $this->_htmlPagerBlock = $htmlPagerBlock;
-        $this->_moduleHelper   = $moduleHelper;
+        $this->_moduleHelper = $moduleHelper;
     }
 
     /**
@@ -111,8 +111,7 @@ class RenderLayered
         //Sort param on Url
         sort($value);
 
-        $query = !empty($value) ? [$attributeCode => implode(',', $value)] : '';
-
+        $query = !empty($value) ? [$attributeCode => implode(',', $value)] : [$attributeCode => null];
         return $this->_url->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]);
     }
 }

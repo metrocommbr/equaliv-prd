@@ -38,20 +38,6 @@
             </argument>
         </arguments>
     </virtualType>
-    <virtualType name="elasticsearchLayerCategoryItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Category\ItemCollectionProvider">
-        <arguments>
-            <argument name="factories" xsi:type="array">
-                <item name="elasticsearch7" xsi:type="object">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\CollectionFactory</item>
-            </argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="elasticsearchLayerSearchItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Search\ItemCollectionProvider">
-        <arguments>
-            <argument name="factories" xsi:type="array">
-                <item name="elasticsearch7" xsi:type="object">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\CollectionFactory</item>
-            </argument>
-        </arguments>
-    </virtualType>
     <virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory" type="Magento\Catalog\Model\ResourceModel\Product\CollectionFactory">
         <arguments>
             <argument name="instanceName" xsi:type="string">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\Collection</argument>
@@ -65,14 +51,14 @@
     <virtualType name="elasticsearchLayerCategoryItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Category\ItemCollectionProvider">
         <arguments>
             <argument name="factories" xsi:type="array">
-                <item name="elasticsearch6" xsi:type="object">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\CollectionFactory</item>
+                <item name="elasticsearch7" xsi:type="object">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\CollectionFactory</item>
             </argument>
         </arguments>
     </virtualType>
     <virtualType name="elasticsearchLayerSearchItemCollectionProvider" type="Magento\Elasticsearch\Model\Layer\Search\ItemCollectionProvider">
         <arguments>
             <argument name="factories" xsi:type="array">
-                <item name="elasticsearch6" xsi:type="object">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\CollectionFactory</item>
+                <item name="elasticsearch7" xsi:type="object">Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\CollectionFactory</item>
             </argument>
         </arguments>
     </virtualType>

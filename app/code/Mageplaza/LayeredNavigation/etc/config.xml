@@ -22,6 +22,10 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <layered_navigation>
+            <module>
+        		<user_guide>layered-navigation-m2</user_guide>
+        		<change_log>layered-navigation</change_log>
+        	</module>
             <general>
                 <enabled>1</enabled>
             </general>

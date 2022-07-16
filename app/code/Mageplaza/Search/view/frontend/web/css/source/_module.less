@@ -14,34 +14,43 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
+@media only screen and (max-width: 600px) {
+    .minisearch .search-category{
+        top: 65% !important;
+        right: 15px !important;
+        height: 32px;
+        display: none;
+    }
+}
+
 .autocomplete-suggestions {
-  border: 1px solid #bbb;
-  background: #fff;
+  border: 1px solid #bbbbbb;
+  background: #ffffff;
   cursor: default;
   border-top: none;
+  height: auto;
   overflow: auto;
-  max-height: 10000px;
+  max-height: 2000px;
 }
 
 .autocomplete-suggestion {
   cursor: pointer;
-  //height: 67px;
   overflow: hidden;
   padding: 10px 5px 10px 5px;
   font-size: 1.2em;
-  //white-space: nowrap;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eeeeee;
   display: block;
+
   &:last-child {
     border-bottom: none;
   }
 }
 
-.search-category, #mpsearch-category{
+.search-category, #mpsearch-category {
   height: 100%;
 }
 
@@ -50,7 +59,7 @@
 }
 
 input#searchauto {
-  border: 1px solid #bbb;
+  border: 1px solid #bbbbbb;
   border-radius: 2px;
   width: 375px;
 }
@@ -83,9 +92,9 @@ input#searchauto {
 
 .product-des {
   font-size: 12px;
+
   p {
     display: block;
-    //white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -96,8 +105,6 @@ input#searchauto {
 }
 
 ul#ui-id-1 {
-  background: #fff;
-  width: 373px;
   font-family: inherit;
   padding: 0px;
   border-bottom: none;
@@ -106,7 +113,7 @@ ul#ui-id-1 {
 p.short-des {
   margin: 0px;
   font-size: 0.9em;
-  color: #aaa;
+  color: #aaaaaa;
 }
 
 #view_all {
@@ -119,5 +126,11 @@ p.short-des {
   #search_mini_form {
     width: 374px;
     float: right;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .block-search {
+    padding-left: 140px !important;
   }
 }

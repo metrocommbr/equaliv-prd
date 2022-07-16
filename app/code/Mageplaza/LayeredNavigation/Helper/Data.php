@@ -26,6 +26,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\View\Layout;
 use Magento\Store\Model\Store;
 use Mageplaza\LayeredNavigation\Model\Layer\Filter;
 
@@ -35,8 +36,14 @@ use Mageplaza\LayeredNavigation\Model\Layer\Filter;
  */
 class Data extends \Mageplaza\AjaxLayer\Helper\Data
 {
-    const FILTER_TYPE_SLIDER = 'slider';
-    const FILTER_TYPE_LIST   = 'list';
+    const ATTR_PREFIX                = 'attr_';
+    const FIELD_RENDER_CATEGORY_TREE = 'render_category_tree';
+    const CATEGORY_TREE_DEPTH        = 'category_tree_depth';
+    const CATEGORIES_LEVEL           = 'categories_level';
+    const EXPAND_SUBCATEGORIES       = 'expand_subcategories';
+    const FILTER_TYPE_SLIDER         = 'slider';
+    const FILTER_TYPE_LIST           = 'list';
+    const FILTER_TYPE_TREE           = 'tree';
 
     /** @var Filter */
     protected $filterModel;
@@ -48,9 +55,14 @@ class Data extends \Mageplaza\AjaxLayer\Helper\Data
      */
     public function getLayerConfiguration($filters)
     {
-        $filterParams = $this->_getRequest()->getParams();
-        foreach ($filterParams as $key => $param) {
-            $filterParams[$key] = htmlspecialchars($param);
+        $params       = $this->_getRequest()->getParams();
+        $filterParams = [];
+        foreach ($params as $key => $param) {
+            if ($key === 'amp;dimbaar') {
+                continue;
+            }
+            $param                            = htmlspecialchars($param, ENT_QUOTES, 'UTF-8');
+            $filterParams[htmlentities($key)] = htmlentities($param);
         }
 
         $config = new DataObject([
@@ -86,6 +98,19 @@ class Data extends \Mageplaza\AjaxLayer\Helper\Data
     }
 
     /**
+     * @return string[]
+     */
+    public function getCategoryTreeFields()
+    {
+        return [
+            self::FIELD_RENDER_CATEGORY_TREE,
+            self::CATEGORY_TREE_DEPTH,
+            self::CATEGORIES_LEVEL,
+            self::EXPAND_SUBCATEGORIES
+        ];
+    }
+
+    /**
      * @param FilterInterface $filter
      * @param null $storeId
      *
@@ -110,5 +135,14 @@ class Data extends \Mageplaza\AjaxLayer\Helper\Data
 
             return '';
         }
+    }
+
+    /**
+     *
+     * @return bool
+     */
+    public function getHtmlHighLight()
+    {
+        return false;// This Feature only on Ultimate.
     }
 }

@@ -15,90 +15,140 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\Search\Helper;
 
+use Exception;
 use Magento\Catalog\Model\CategoryFactory;
 use Magento\Catalog\Model\Config;
+use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\Product\Visibility;
-use Magento\Catalog\Model\ResourceModel\Product\Collection;
+use Magento\Catalog\Model\ResourceModel\Product\Collection as CatalogCollection;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as CatalogCollectionFactory;
+use Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable;
 use Magento\Customer\Model\ResourceModel\Group\CollectionFactory;
 use Magento\Customer\Model\Session;
+use Magento\Directory\Model\Currency;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\DataObject;
 use Magento\Framework\Escaper;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Locale\FormatInterface;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\Pricing\Helper\Data as PricingHelper;
-use Magento\Framework\Registry;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+use Magento\Reports\Model\ResourceModel\Product\Collection as ReportsCollection;
+use Magento\Reports\Model\ResourceModel\Product\CollectionFactory as ReportsCollectionFactory;
+use Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory as BestSellerProduct;
+use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Mageplaza\Core\Helper\AbstractData;
-use Mageplaza\Search\Model\Product\Url;
+use Mageplaza\Search\Model\Config\Source\Search;
 
 /**
- * Search helper
+ * Class Data
+ * @package Mageplaza\Search\Helper
  */
 class Data extends AbstractData
 {
     const CONFIG_MODULE_PATH = 'mpsearch';
+    const MAX_QUERY_RESULT   = 'max_query_results';
 
     /**
-     * @var \Magento\Catalog\Model\Product\Visibility
+     * @var Visibility
      */
     protected $productVisibility;
 
     /**
-     * @var \Magento\Catalog\Model\Config
+     * @var Config
      */
     protected $catalogConfig;
 
     /**
-     * @var \Magento\Framework\Pricing\Helper\Data
+     * @var PricingHelper
      */
     protected $_priceHelper;
 
     /**
-     * @var \Magento\Framework\Escaper
+     * @var Escaper
      */
     protected $_escaper;
 
     /**
-     * Customer session
-     *
-     * @var \Magento\Customer\Model\Session
+     * @var Session
      */
     protected $_customerSession;
 
     /**
-     * @var \Magento\Customer\Model\ResourceModel\Group\CollectionFactory
+     * @var CollectionFactory
      */
     protected $_customerGroupFactory;
 
     /**
-     * @var \Magento\Framework\Locale\FormatInterface
+     * @var FormatInterface
      */
     protected $localeFormat;
 
     /**
-     * @var \Magento\Catalog\Model\CategoryFactory
+     * @var CategoryFactory
+     */
+
+    /**
+     * @var CategoryFactory
      */
     protected $categoryFactory;
 
     /**
+     * @var CatalogCollectionFactory
+     */
+    protected $_productsFactory;
+
+    /**
+     * @var BestSellerProduct
+     */
+    protected $bestsellersCollection;
+
+    /**
+     * @var TimezoneInterface
+     */
+    protected $_localeDate;
+    /**
+     * @var ReportsCollectionFactory
+     */
+    protected $reportCollectionFactory;
+    /**
+     * @var Currency
+     */
+    protected $_currency;
+    /**
+     * @var Configurable
+     */
+    protected $_catalogProductTypeConfigurable;
+
+    /**
      * Data constructor.
-     * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
-     * @param \Magento\Customer\Model\ResourceModel\Group\CollectionFactory $customerGroupCollectionFactory
-     * @param \Magento\Framework\Escaper $escaper
-     * @param \Magento\Framework\Pricing\Helper\Data $priceHelper
-     * @param \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility
-     * @param \Magento\Catalog\Model\Config $catalogConfig
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Framework\Locale\FormatInterface $localeFormat
-     * @param \Magento\Catalog\Model\CategoryFactory $categoryFactory
+     *
+     * @param Context $context
+     * @param StoreManagerInterface $storeManager
+     * @param ObjectManagerInterface $objectManager
+     * @param CollectionFactory $customerGroupCollectionFactory
+     * @param Escaper $escaper
+     * @param PricingHelper $priceHelper
+     * @param Visibility $catalogProductVisibility
+     * @param Config $catalogConfig
+     * @param Session $customerSession
+     * @param FormatInterface $localeFormat
+     * @param CategoryFactory $categoryFactory
+     * @param CatalogCollectionFactory $productsFactory
+     * @param ReportsCollectionFactory $reportCollectionFactory
+     * @param BestSellerProduct $bestsellersCollection
+     * @param TimezoneInterface $localDate
+     * @param Currency $currency
+     * @param Configurable $catalogProductTypeConfigurable
      */
     public function __construct(
         Context $context,
@@ -111,52 +161,36 @@ class Data extends AbstractData
         Config $catalogConfig,
         Session $customerSession,
         FormatInterface $localeFormat,
-        CategoryFactory $categoryFactory
+        CategoryFactory $categoryFactory,
+        CatalogCollectionFactory $productsFactory,
+        ReportsCollectionFactory $reportCollectionFactory,
+        BestSellerProduct $bestsellersCollection,
+        TimezoneInterface $localDate,
+        Currency $currency,
+        Configurable $catalogProductTypeConfigurable
     )
     {
         $this->_customerGroupFactory = $customerGroupCollectionFactory;
-        $this->_escaper              = $escaper;
-        $this->_priceHelper          = $priceHelper;
-        $this->productVisibility     = $catalogProductVisibility;
-        $this->catalogConfig         = $catalogConfig;
-        $this->_customerSession      = $customerSession;
-        $this->localeFormat          = $localeFormat;
-        $this->categoryFactory       = $categoryFactory;
+        $this->_escaper = $escaper;
+        $this->_priceHelper = $priceHelper;
+        $this->productVisibility = $catalogProductVisibility;
+        $this->catalogConfig = $catalogConfig;
+        $this->_customerSession = $customerSession;
+        $this->localeFormat = $localeFormat;
+        $this->categoryFactory = $categoryFactory;
+        $this->_productsFactory = $productsFactory;
+        $this->bestsellersCollection = $bestsellersCollection;
+        $this->_localeDate = $localDate;
+        $this->reportCollectionFactory = $reportCollectionFactory;
+        $this->_currency = $currency;
+        $this->_catalogProductTypeConfigurable = $catalogProductTypeConfigurable;
 
         parent::__construct($context, $objectManager, $storeManager);
     }
 
     /**
-     * @param null $storeId
-     * @return bool
-     */
-    public function isEnabled($storeId = null)
-    {
-        return $this->getConfigGeneral('enabled', $storeId) && $this->isModuleOutputEnabled();
-    }
-
-    /**
-     * @param string $code
-     * @param null $storeId
-     * @return mixed
-     */
-    public function getConfigGeneral($code = '', $storeId = null)
-    {
-        $code = ($code !== '') ? '/' . $code : '';
-
-        return $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general' . $code, $storeId);
-    }
-
-    /**
-     * @return \Mageplaza\Search\Helper\Media
-     */
-    public function getMediaHelper()
-    {
-        return $this->objectManager->get(Media::class);
-    }
-
-    /**
      * @param null $store
+     *
      * @return string
      */
     public function getSearchBy($store = null)
@@ -167,7 +201,19 @@ class Data extends AbstractData
     }
 
     /**
+     * @return mixed
+     * @throws NoSuchEntityException
+     */
+    public function getCurrentCurrencyRate()
+    {
+        $currencyCode = $this->storeManager->getStore()->getCurrentCurrencyCode();
+
+        return $this->storeManager->getStore()->getBaseCurrency()->getRate($currencyCode);
+    }
+
+    /**
      * @param null $store
+     *
      * @return string
      */
     public function getDisplay($store = null)
@@ -178,7 +224,28 @@ class Data extends AbstractData
     }
 
     /**
+     * @param null $storeId
+     *
+     * @return bool
+     */
+    public function isEnableSuggestion($storeId = null)
+    {
+        return $this->getConfigGeneral('search_by/enable', $storeId);
+    }
+
+    /**
+     * @param null $storeId
+     *
+     * @return mixed
+     */
+    public function getSortBy($storeId = null)
+    {
+        return $this->getConfigGeneral('search_by/sort_by', $storeId);
+    }
+
+    /**
      * Create json file to contain product data
+     * @return array
      */
     public function createJsonFile()
     {
@@ -188,8 +255,13 @@ class Data extends AbstractData
             foreach ($customerGroups as $group) {
                 try {
                     $this->createJsonFileForStore($store, $group->getId());
-                } catch (\Exception $e) {
-                    $errors[] = __('Cannot generate data for store %1 and customer group %2, %3', $store->getCode(), $group->getCode(), $e->getMessage());
+                } catch (Exception $e) {
+                    $errors[] = __(
+                        'Cannot generate data for store %1 and customer group %2, %3',
+                        $store->getCode(),
+                        $group->getCode(),
+                        $e->getMessage()
+                    );
                 }
             }
         }
@@ -200,18 +272,182 @@ class Data extends AbstractData
     /**
      * @param $store
      * @param $group
+     *
      * @return $this
      */
     public function createJsonFileForStore($store, $group)
     {
-        if(!$this->isEnabled($store->getId())){
+        if (!$this->isEnabled($store->getId())) {
             return $this;
         }
 
-        $productList = [];
+        $products = $this->createJsonFileProduct($store, $this->getProducts($store, $group), Search::PRODUCT_SEARCH);
 
-        /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $collection */
-        $collection = $this->objectManager->create(Collection::class);
+        $newProducts = $this->createJsonFileProduct(
+            $store,
+            $this->getNewProducts($store, $group),
+            Search::NEW_PRODUCTS
+        );
+
+        $mostViewedProducts = $this->createJsonFileProduct(
+            $store,
+            $this->getMostViewedProducts($store),
+            Search::MOST_VIEWED_PRODUCTS
+        );
+
+        $bestsellers = $this->createJsonFileProduct($store, $this->getBestSellers($store, $group), Search::BESTSELLERS);
+
+        $this->getMediaHelper()->createJsFile(
+            $this->getJsFilePath($group, $store),
+            ';var mp_products_search = ' . $products . ';'
+        );
+        $this->getMediaHelper()->createJsFile(
+            $this->getAdditionJsFilePath($group, $store),
+            ';var mp_new_product_search = ' . $newProducts . ';
+            var mp_most_viewed_products = ' . $mostViewedProducts . ';
+            var mp_bestsellers = ' . $bestsellers . ';'
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param null $storeId
+     *
+     * @return bool
+     */
+    public function isEnabled($storeId = null)
+    {
+        return $this->getConfigGeneral('enabled', $storeId) && $this->isModuleOutputEnabled();
+    }
+
+    /**
+     * @param $store
+     * @param $collection
+     * @param $option
+     *
+     * @return $this|string
+     */
+    public function createJsonFileProduct($store, $collection, $option)
+    {
+        if (!$this->isEnabled($store->getId())) {
+            return $this;
+        }
+
+        $productList     = [];
+        $maxQueryResults = $this->getConfigGeneral(self::MAX_QUERY_RESULT);
+        $resultCount     = 0;
+
+        /** @var Product $product */
+        foreach ($collection as $product) {
+            /** The maximum results of [Most Viewed | New Products| Bestsellers] is $maxQueryResults*/
+            if ($option === Search::PRODUCT_SEARCH
+                || ($option !== Search::PRODUCT_SEARCH && $resultCount < $maxQueryResults)
+            ) {
+                if (!$product->getId() || !$product->getName()) {
+                    continue;
+                }
+
+                $productPrice = $product->getFinalPrice();
+                if ($product->getTypeId() === 'bundle') {
+                    $productPrice   = $product->getMinPrice() . '-' . $product->getMaxPrice();
+                    $currencySymbol = $this->_currency->getCurrencySymbol();
+                    $productPrice   = str_replace($currencySymbol, '', $productPrice);
+                } elseif ($product->getTypeId() === 'grouped') {
+                    $productPrice = $product->getMinimalPrice();
+                }
+
+                $parentIds  = [];
+                $categories = $this->categoryFactory->create();
+                foreach ($product->getCategoryIds() as $id) {
+                    $parentIds[]        = $id;
+                    $categoryCollection = $categories->load($id);
+                    foreach ($categoryCollection->getParentIds() as $parentId) {
+                        $parentIds[] = $parentId;
+                    }
+                }
+
+                $productList[] = [
+                    'value' => $product->getName(),
+                    //sku
+                    's'     => $product->getSku(),
+                    //categoryIds
+                    'c'     => $parentIds,
+                    //short description
+                    'd'     => $this->getProductDescription($product, $store),
+                    //price
+                    'p'     => $productPrice,
+                    //image
+                    'i'     => $this->getMediaHelper()->getProductImage($product),
+                    //product url
+                    'u'     => $this->getProductUrl($product),
+                    'o'     => $option
+                ];
+            }
+
+            $resultCount++;
+        }
+
+        return self::jsonEncode($productList);
+    }
+
+    /**
+     * @param $product
+     * @param $store
+     *
+     * @return array|bool|string
+     */
+    protected function getProductDescription($product, $store)
+    {
+        $attributeHtml = strip_tags($product->getShortDescription()?$product->getShortDescription():'');
+        $attributeHtml = trim($this->_escaper->escapeHtml($attributeHtml));
+
+        $limitDesLetter = (int) $this->getConfigGeneral('max_letter_numbers', $store->getId());
+        if ($limitDesLetter > 0 && strlen($attributeHtml) > $limitDesLetter) {
+            $attributeHtml = mb_substr($attributeHtml, 0, $limitDesLetter, mb_detect_encoding($attributeHtml));
+            $attributeHtml .= '...';
+        }
+
+        return $attributeHtml;
+    }
+
+    /**
+     * @return Media
+     */
+    public function getMediaHelper()
+    {
+        return $this->objectManager->get(Media::class);
+    }
+
+    /**
+     * @param Product $product
+     *
+     * @return bool|string
+     */
+    protected function getProductUrl($product)
+    {
+        $requestPath = $product->getRequestPath();
+        if (!$requestPath) {
+            $productUrl = $product->getProductUrl();
+            $pos        = strpos($productUrl, 'catalog/product/view');
+            if ($pos !== false) {
+                $requestPath = substr($productUrl, $pos + 20);
+            }
+        }
+
+        return $requestPath;
+    }
+
+    /**
+     * @param $store
+     * @param $group
+     *
+     * @return CatalogCollection
+     */
+    public function getProducts($store, $group)
+    {
+        /** @var CatalogCollection $collection */
+        $collection = $this->_productsFactory->create();
         $collection->addAttributeToSelect($this->catalogConfig->getProductAttributes())
             ->setStore($store)
             ->addPriceData($group)
@@ -222,65 +458,136 @@ class Data extends AbstractData
             ->addUrlRewrite()
             ->setVisibility($this->productVisibility->getVisibleInSearchIds());
 
-        /** @var \Magento\Catalog\Model\Product $product */
-        foreach ($collection as $product) {
-            $productList[] = [
-                'value' => $product->getName(),
-                'c'     => $product->getCategoryIds(), //categoryIds
-                'd'     => $this->getProductDescription($product, $store), //short description
-                'p'     => $this->_priceHelper->currencyByStore($product->getFinalPrice(), $store, false, false), //price
-                'i'     => $this->getMediaHelper()->getProductImage($product),//image
-                'u'     => $this->getProductUrl($product) //product url
-            ];
-        }
-
-        $this->getMediaHelper()->createJsFile(
-            $this->getJsFilePath($group, $store),
-            'var mageplazaSearchProducts = ' . self::jsonEncode($productList)
-        );
-
-        return $this;
+        return $collection;
     }
 
     /**
-     * @param \Magento\Catalog\Model\Product $product
-     * @return bool|string
-     */
-    protected function getProductUrl($product)
-    {
-        $productUrl  = $product->getProductUrl();
-        $requestPath = $product->getRequestPath();
-        if (!$requestPath) {
-            $pos = strpos($productUrl, 'catalog/product/view');
-            if ($pos !== false) {
-                $productUrl = substr($productUrl, $pos + 20);
-            }
-        } else {
-            $productUrl = $requestPath;
-        }
-
-        return $productUrl;
-    }
-
-    /**
-     * @param $product
      * @param $store
-     * @return array|bool|string
+     * @param $group
+     *
+     * @return CatalogCollection
      */
-    protected function getProductDescription($product, $store)
+    public function getNewProducts($store, $group)
     {
-        $attributeHtml = strip_tags($product->getShortDescription());
-        $attributeHtml = $this->_escaper->escapeHtml($attributeHtml);
-        if ($limitDesLetter = (int)$this->getConfigGeneral('max_letter_numbers', $store->getId())) {
-            $attributeHtml = substr($attributeHtml, 0, $limitDesLetter);
-        }
+        $collection          = $this->_productsFactory->create();
+        $todayStartOfDayDate = $this->_localeDate->date()->setTime(0, 0, 0)->format('Y-m-d H:i:s');
+        $todayEndOfDayDate   = $this->_localeDate->date()->setTime(23, 59, 59)->format('Y-m-d H:i:s');
+        $ids                 = [];
 
-        return $attributeHtml;
+        $collectionBoth = clone $collection;
+        $collectionBoth->addAttributeToFilter('news_from_date', ['date' => true, 'to' => $todayStartOfDayDate])
+            ->addAttributeToFilter('news_to_date', ['date' => true, 'from' => $todayEndOfDayDate]);
+
+        if ($collectionBoth->getSize() !== 0) {
+            foreach ($collectionBoth->getData() as $v) {
+                $ids[] = $v['entity_id'];
+            }
+        }
+        $collectionBoth->clear();
+
+        $collectionFrom = clone $collection;
+        $collectionFrom->addAttributeToFilter('news_from_date', ['date' => true, 'to' => $todayStartOfDayDate]);
+
+        if ($collectionFrom->getSize() !== 0) {
+            foreach ($collectionFrom->getData() as $v) {
+                $ids[] = $v['entity_id'];
+            }
+        }
+        $collectionFrom->clear();
+
+        $collectionTo = clone $collection;
+        $collectionTo->addAttributeToFilter('news_to_date', ['date' => true, 'from' => $todayEndOfDayDate]);
+
+        if ($collectionTo->getSize() !== 0) {
+            foreach ($collectionTo->getData() as $v) {
+                $ids[] = $v['entity_id'];
+            }
+        }
+        $collectionTo->clear();
+
+        $ids = array_unique($ids);
+        $entityId = implode(',', $ids);
+
+        $collection->addAttributeToFilter('entity_id', ['in' => $entityId])
+            ->addAttributeToSelect($this->catalogConfig->getProductAttributes())
+            ->setStore($store)
+            ->addPriceData($group)
+            ->addMinimalPrice()
+            ->addFinalPrice()
+            ->addTaxPercents()
+            ->addStoreFilter()
+            ->addUrlRewrite()
+            ->setVisibility($this->productVisibility->getVisibleInSiteIds());
+
+        return $collection;
     }
 
     /**
-     * @param int $customerGroupId
-     * @param \Magento\Store\Model\Store $store
+     * @param $store
+     *
+     * @return DataObject[]
+     */
+    public function getMostViewedProducts($store)
+    {
+        $productIds = [];
+        /** @var ReportsCollection $collection */
+        $mostViewedProducts = $this->reportCollectionFactory->create()->addViewsCount();
+
+        foreach ($mostViewedProducts as $product) {
+            $productIds[] = $product->getData()['entity_id'];
+        }
+
+        $collection = $this->_productsFactory->create()->addIdFilter($productIds);
+        $collection->addMinimalPrice()
+            ->addFinalPrice()
+            ->addTaxPercents()
+            ->addAttributeToSelect('*')
+            ->addUrlRewrite()
+            ->setVisibility($this->productVisibility->getVisibleInSiteIds());
+
+        return $collection->getItems();
+    }
+
+    /**
+     * @param $store
+     * @param $group
+     *
+     * @return DataObject[]
+     */
+    public function getBestSellers($store, $group)
+    {
+        $productIds  = [];
+        $bestSellers = $this->bestsellersCollection->create()
+            ->setModel('Magento\Catalog\Model\Product')
+            ->addStoreFilter($store->getId())
+            ->setPeriod('year')->addOrder('product_id');
+        foreach ($bestSellers as $product) {
+            $productParent = $this->_catalogProductTypeConfigurable->getParentIdsByChild($product->getProductId());
+            if (isset($productParent[0])) {
+                $productIds[]= $productParent[0];
+            } else
+                $productIds[] = $product->getProductId();
+        }
+
+        $collection = $this->_productsFactory->create()->addIdFilter($productIds);
+        $collection->addAttributeToSelect($this->catalogConfig->getProductAttributes())
+            ->setStore($store)
+            ->addPriceData($group)
+            ->addMinimalPrice()
+            ->addFinalPrice()
+            ->addTaxPercents()
+            ->addStoreFilter()
+            ->addUrlRewrite()
+            ->setVisibility($this->productVisibility->getVisibleInSiteIds());
+        $collection->getSelect()->order(new \Zend_Db_Expr('FIELD(e.entity_id, ' . implode(',', $productIds).')'));
+
+        return $collection->getItems();
+    }
+
+    /**
+     * @param $customerGroupId
+     * @param $store
+     *
      * @return string
      */
     public function getJsFilePath($customerGroupId, $store)
@@ -289,13 +596,86 @@ class Data extends AbstractData
     }
 
     /**
+     * @param $customerGroupId
+     * @param $store
+     *
      * @return string
+     */
+    public function getAdditionJsFilePath($customerGroupId, $store)
+    {
+        return Media::TEMPLATE_MEDIA_PATH . '/' . $store->getCode() . '_' . $customerGroupId . '_addition.js';
+    }
+
+    /**
+     * Create json file to contain new product, most viewed, bestsellers data
+     * @return array
+     */
+    public function createAdditionJsonFile()
+    {
+        $errors         = [];
+        $customerGroups = $this->_customerGroupFactory->create();
+        foreach ($this->storeManager->getStores() as $store) {
+            foreach ($customerGroups as $group) {
+                try {
+                    $this->createAdditionJsonFileForStore($store, $group->getId());
+                } catch (Exception $e) {
+                    $errors[] = __(
+                        'Cannot generate data for store %1 and customer group %2, %3',
+                        $store->getCode(),
+                        $group->getCode(),
+                        $e->getMessage()
+                    );
+                }
+            }
+        }
+
+        return $errors;
+    }
+
+    /**
+     * A cron job will run this function everyday
+     *
+     * @param $store
+     * @param $group
+     *
+     * @return $this
+     */
+    public function createAdditionJsonFileForStore($store, $group)
+    {
+        $newProducts = $this->createJsonFileProduct(
+            $store,
+            $this->getNewProducts($store, $group),
+            Search::NEW_PRODUCTS
+        );
+
+        $mostViewedProducts = $this->createJsonFileProduct(
+            $store,
+            $this->getMostViewedProducts($store),
+            Search::MOST_VIEWED_PRODUCTS
+        );
+
+        $bestsellers = $this->createJsonFileProduct($store, $this->getBestSellers($store, $group), Search::BESTSELLERS);
+
+        $this->getMediaHelper()->createJsFile(
+            $this->getAdditionJsFilePath($group, $store),
+            ';var mp_new_product_search = ' . $newProducts . ';
+            var mp_most_viewed_products = ' . $mostViewedProducts . ';
+            var mp_bestsellers = ' . $bestsellers . ';'
+        );
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function getJsFileUrl()
     {
         $customerGroupId = $this->_customerSession->getCustomerGroupId();
 
-        /** @var \Magento\Store\Model\Store $store */
+        /** @var Store $store */
         $store = $this->storeManager->getStore();
 
         $mediaDirectory = $this->getMediaHelper()->getMediaDirectory();
@@ -308,18 +688,48 @@ class Data extends AbstractData
     }
 
     /**
+     * @return string
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
+     */
+    public function getAdditionJsFileUrl()
+    {
+        $customerGroupId = $this->_customerSession->getCustomerGroupId();
+
+        /** @var Store $store */
+        $store = $this->storeManager->getStore();
+
+        $mediaDirectory = $this->getMediaHelper()->getMediaDirectory();
+        $filePath       = $this->getAdditionJsFilePath($customerGroupId, $store);
+        if (!$mediaDirectory->isFile($filePath)) {
+            $this->createJsonFileForStore($store, $customerGroupId);
+        }
+
+        return $this->getMediaHelper()->getMediaUrl($filePath);
+    }
+
+    /**
      * @return array
+     * @throws NoSuchEntityException
      */
     public function getCategoryTree()
     {
         $categoriesOptions = [0 => __('All Categories')];
 
-        $maxLevel   = max(0, (int)$this->getConfigGeneral('category/max_depth')) ?: 2;
-        $parent     = $this->storeManager->getStore()->getRootCategoryId();
-        $categories = $this->categoryFactory->create()
-            ->getCategories($parent, 1, false, true);
-        foreach ($categories as $category) {
-            $this->getCategoryOptions($category, $categoriesOptions, $maxLevel);
+        $maxLevel           = max(0, (int) $this->getConfigGeneral('category/max_depth')) ?: 2;
+        $parent             = $this->storeManager->getStore()->getRootCategoryId();
+        $categories         = $this->categoryFactory->create();
+        $categoryCollection = $categories->getCategories($parent, 1, false, true);
+        if ($categories->getUseFlatResource()) {
+            foreach ($categoryCollection as $category) {
+                if ($category->getParentId() == $parent) {
+                    $this->getCategoryOptions($category, $categoriesOptions, $maxLevel);
+                }
+            }
+        } else {
+            foreach ($categoryCollection as $category) {
+                $this->getCategoryOptions($category, $categoriesOptions, $maxLevel);
+            }
         }
 
         return $categoriesOptions;
@@ -330,6 +740,7 @@ class Data extends AbstractData
      * @param $options
      * @param $level
      * @param string $htmlPrefix
+     *
      * @return $this
      */
     protected function getCategoryOptions($category, &$options, $level, $htmlPrefix = '')
@@ -342,23 +753,22 @@ class Data extends AbstractData
         $options[$category->getId()] = $htmlPrefix . $category->getName();
 
         $htmlPrefix .= '- ';
-        foreach ($this->getChildCategories($category) as $childCategory) {
-            $this->getCategoryOptions($childCategory, $options, $level, $htmlPrefix);
+        if (!empty($this->getChildCategories($category))) {
+            foreach ($this->getChildCategories($category) as $childCategory) {
+                $this->getCategoryOptions($childCategory, $options, $level, $htmlPrefix);
+            }
         }
 
         return $this;
     }
 
     /**
-     * @param \Magento\Catalog\Model\Category $category
-     * @return array
+     * @param $category
+     *
+     * @return mixed
      */
     public function getChildCategories($category)
     {
-        if ($category->getUseFlatResource()) {
-            return $category->getChildrenNodes();
-        }
-
         return $category->getChildrenCategories();
     }
 

@@ -16,12 +16,12 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="catalog_product_save_after">
-        <observer name="mpsearch_catalog_product_save_after" instance="Mageplaza\Search\Observer\ProductSearchUpdate" />
+    <event name="catalog_product_save_commit_after">
+        <observer name="mpsearch_catalog_product_save_after" instance="Mageplaza\Search\Observer\ProductSearchUpdate"/>
     </event>
 </config>

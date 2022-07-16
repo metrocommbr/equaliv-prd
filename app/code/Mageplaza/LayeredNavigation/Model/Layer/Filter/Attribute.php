@@ -66,7 +66,7 @@ class Attribute extends AbstractFilter
         LayerHelper $moduleHelper,
         array $data = []
     ) {
-        $this->tagFilter     = $tagFilter;
+        $this->tagFilter = $tagFilter;
         $this->_moduleHelper = $moduleHelper;
 
         parent::__construct(
@@ -89,10 +89,13 @@ class Attribute extends AbstractFilter
         }
 
         $attributeValue = $request->getParam($this->_requestVar);
-        if (empty($attributeValue)) {
-            $this->_isFilter = false;
+        $attribute = $this->getAttributeModel();
 
-            return $this;
+        if (!($attributeValue === '0' && $attribute->getFrontendInput() === 'boolean')) {
+            if (empty($attributeValue)) {
+                $this->_isFilter = false;
+                return $this;
+            }
         }
 
         $attributeValue = explode(',', $attributeValue);
@@ -144,8 +147,8 @@ class Attribute extends AbstractFilter
         }
 
         $productSize = $productCollection->getSize();
-        $itemData    = [];
-        $checkCount  = false;
+        $itemData = [];
+        $checkCount = false;
 
         $options = $attribute->getFrontend()->getSelectOptions();
         foreach ($options as $option) {
@@ -156,7 +159,7 @@ class Attribute extends AbstractFilter
             $value = $option['value'];
 
             $count = isset($optionsFacetedData[$value]['count'])
-                ? (int) $optionsFacetedData[$value]['count']
+                ? (int)$optionsFacetedData[$value]['count']
                 : 0;
 
             // Check filter type

@@ -51,7 +51,7 @@ class ProcessRequest
         Http $request,
         Data $helperData
     ) {
-        $this->request    = $request;
+        $this->request = $request;
         $this->helperData = $helperData;
     }
 
@@ -60,13 +60,9 @@ class ProcessRequest
      */
     public function beforeLoad(Kernel $subject)
     {
-        if ($this->helperData->isEnabled()) {
-            $payload = Data::jsonDecode($this->request->getContent());
-            $isLayer = isset($payload['mp_layer']) ? $payload['mp_layer'] : false;
-
-            if ($isLayer) {
-                $this->request->setMethod('GET');
-            }
+        if ($this->helperData->isEnabled() &&
+            ($this->request->getFullActionName() === 'catalog_category_view') || $this->request->getFullActionName() === 'catalogsearch_result_index') {
+            $this->request->setMethod('GET');
         }
     }
 }

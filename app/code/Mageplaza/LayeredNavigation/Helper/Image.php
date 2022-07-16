@@ -40,7 +40,7 @@ use Mageplaza\Core\Helper\Media;
  */
 class Image extends Media
 {
-    const TEMPLATE_MEDIA_PATH    = 'mageplaza/layernavigation';
+    const TEMPLATE_MEDIA_PATH = 'mageplaza/layernavigation';
     const TOOLTIP_THUMBNAIL_PATH = 'tooltip/thumbnail';
 
     /**

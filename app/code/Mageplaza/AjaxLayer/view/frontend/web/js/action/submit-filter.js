@@ -32,7 +32,7 @@ define(
             layerContainer = $('.layered-filter-block-container'),
             quickViewContainer = $('#mpquickview-popup');
 
-        return function (submitUrl, isChangeUrl) {
+        return function (submitUrl, isChangeUrl, method) {
             /** save active state */
             var actives = [],
                 data;
@@ -50,14 +50,18 @@ define(
             if (typeof window.history.pushState === 'function' && (typeof isChangeUrl === 'undefined')) {
                 window.history.pushState({url: submitUrl}, '', submitUrl);
             }
-
-            if (isChangeUrl){
-                data = '{}';
-            }else{
-                data = JSON.stringify({'mp_layer': 1});
+            if (method === 'post') {// For 'add to wishlist' & 'add to compare' event
+                return storage.post(submitUrl).done(
+                ).fail(
+                    function () {
+                        window.location.reload();
+                    }
+                ).always(function () {
+                    loader.stopLoader();
+                });
             }
 
-            return storage.post(submitUrl, data).done(
+            return storage.get(submitUrl).done(
                 function (response) {
                     if (response.backUrl) {
                         window.location = response.backUrl;
@@ -85,7 +89,7 @@ define(
                 function () {
 
                     var colorAttr = $('.filter-options .filter-options-item .color .swatch-option-link-layered .swatch-option');
-    
+
                     colorAttr.each(function(){
                         var el  = $(this),
                             hex = el.attr('data-option-tooltip-value');
@@ -117,9 +121,9 @@ define(
                                 el.attr('style','background: '+el.attr('data-option-label')+';');
                             }
 
-                            el.attr('style','background: center center no-repeat rgb('+[r, g, b]+');'); 
+                            el.attr('style','background: center center no-repeat rgb('+[r, g, b]+');');
                         }
-                        
+
                     });
 
                     //selected

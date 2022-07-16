@@ -15,7 +15,7 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
@@ -59,9 +59,9 @@ class Reindex implements ArrayInterface
     public function toArray()
     {
         return [
-            self::TYPE_CRON_JOB     => __('Cron job'),
+            self::TYPE_CRON_JOB => __('Cron job'),
             self::TYPE_PRODUCT_SAVE => __('After Product Save'),
-            self::TYPE_MANUAL       => __('Manually (used reindex button bellow)')
+            self::TYPE_MANUAL => __('Manually (used reindex button bellow)')
         ];
     }
 }

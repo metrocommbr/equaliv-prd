@@ -15,14 +15,17 @@
  *
  * @category    Mageplaza
  * @package     Mageplaza_Search
- * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
 
 namespace Mageplaza\Search\Helper;
 
+use Exception;
 use Magento\Catalog\Helper\ImageFactory;
+use Magento\Catalog\Model\Product;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Image\AdapterFactory;
 use Magento\Framework\ObjectManagerInterface;
@@ -39,19 +42,22 @@ class Media extends CoreMedia
     const TEMPLATE_MEDIA_PATH = 'mageplaza/search';
 
     /**
-     * @var \Magento\Catalog\Helper\ImageFactory
+     * @var ImageFactory
      */
     protected $imageFactory;
 
     /**
      * Media constructor.
-     * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\Filesystem $filesystem
-     * @param \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory
-     * @param \Magento\Framework\Image\AdapterFactory $adapterFactory
-     * @param \Magento\Catalog\Helper\ImageFactory $imageFactory
+     *
+     * @param Context $context
+     * @param ObjectManagerInterface $objectManager
+     * @param StoreManagerInterface $storeManager
+     * @param Filesystem $filesystem
+     * @param UploaderFactory $uploaderFactory
+     * @param AdapterFactory $adapterFactory
+     * @param ImageFactory $imageFactory
+     *
+     * @throws FileSystemException
      */
     public function __construct(
         Context $context,
@@ -61,8 +67,7 @@ class Media extends CoreMedia
         UploaderFactory $uploaderFactory,
         AdapterFactory $adapterFactory,
         ImageFactory $imageFactory
-    )
-    {
+    ) {
         parent::__construct($context, $objectManager, $storeManager, $filesystem, $uploaderFactory, $adapterFactory);
 
         $this->imageFactory = $imageFactory;
@@ -71,8 +76,9 @@ class Media extends CoreMedia
     /**
      * Retrieve product image
      *
-     * @param \Magento\Catalog\Model\Product $product
+     * @param Product $product
      * @param string $imageId
+     *
      * @return string
      */
     public function getProductImage($product, $imageId = 'mpsearch_image')
@@ -105,13 +111,14 @@ class Media extends CoreMedia
     {
         try {
             $this->mediaDirectory->writeFile($fileName, $content);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->_logger->critical($e->getMessage());
         }
     }
 
     /**
      * @return $this
+     * @throws FileSystemException
      */
     public function removeJsPath()
     {

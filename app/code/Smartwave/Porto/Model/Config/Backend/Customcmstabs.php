@@ -35,7 +35,7 @@ class Customcmstabs extends \Magento\Framework\App\Config\Value
         $this->_customtabs = $customtabs;
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
-    
+
     /**
      * Process data after load
      *
@@ -43,7 +43,7 @@ class Customcmstabs extends \Magento\Framework\App\Config\Value
      */
     protected function _afterLoad()
     {
-        $value = $this->getValue();
+        $value = $this->getValue()?$this->getValue():'';
         $arr = unserialize($value);
 
         $this->setValue($arr);
@@ -56,10 +56,10 @@ class Customcmstabs extends \Magento\Framework\App\Config\Value
      */
     public function beforeSave()
     {
-        $value = $this->getValue();
+        $value = $this->getValue()?$this->getValue():'';
         unset($value['__empty']);
         $arr = serialize($value);
-        
+
         $this->setValue($arr);
     }
 }

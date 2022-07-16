@@ -105,9 +105,9 @@ class Price extends AbstractFilter
         );
 
         $this->priceCurrency = $priceCurrency;
-        $this->dataProvider  = $dataProviderFactory->create(['layer' => $this->getLayer()]);
+        $this->dataProvider = $dataProviderFactory->create(['layer' => $this->getLayer()]);
         $this->_moduleHelper = $moduleHelper;
-        $this->_taxHelper    = $taxHelper;
+        $this->_taxHelper = $taxHelper;
     }
 
     /**
@@ -125,7 +125,7 @@ class Price extends AbstractFilter
             return $this;
         }
         $filterParams = explode(',', $filter);
-        $filter       = $this->dataProvider->validateFilter($filterParams[0]);
+        $filter = $this->dataProvider->validateFilter($filterParams[0]);
         if (!$filter) {
             return $this;
         }
@@ -136,15 +136,15 @@ class Price extends AbstractFilter
             $this->dataProvider->setPriorIntervals($priorFilters);
         }
 
-        list($from, $to) = $this->_filterVal = $filter;
+        [$from, $to] = $this->_filterVal = $filter;
 
         $this->getLayer()->getProductCollection()->addFieldToFilter('price', [
             'from' => $from / $this->getCurrencyRate(),
-            'to'   => $to / $this->getCurrencyRate()
+            'to' => $to / $this->getCurrencyRate()
         ]);
 
         $this->getLayer()->getState()->addFilter(
-            $this->_createItem($this->_renderRangeLabel(empty($from) ? 0 : $from, $to), $filter)
+            $this->_createItem($this->_renderRangeLayerLabel(empty($from) ? 0 : $from, $to), $filter)
         );
 
         return $this;
@@ -153,11 +153,8 @@ class Price extends AbstractFilter
     /**
      * @inheritdoc
      */
-    protected function _renderRangeLabel($fromPrice, $toPrice, $isLast = false)
+    protected function _renderRangeLayerLabel($fromPrice, $toPrice)
     {
-        if (!$this->_moduleHelper->isEnabled()) {
-            return parent::_renderRangeLabel($fromPrice, $toPrice);
-        }
         $formattedFromPrice = $this->priceCurrency->format($fromPrice);
         if ($toPrice === '') {
             return __('%1 and above', $formattedFromPrice);
@@ -189,19 +186,19 @@ class Price extends AbstractFilter
         $min = $productCollection->getMinPrice();
         $max = $productCollection->getMaxPrice();
 
-        list($from, $to) = $this->_filterVal ?: [$min, $max];
+        [$from, $to] = $this->_filterVal ?: [$min, $max];
         $from = max(min($from, $max), $min);
-        $to   = min(max($to, $from), $max);
+        $to = min(max($to, $from), $max);
 
         $item = $this->getItems()[0];
 
         return [
             'selectedFrom' => $from,
-            'selectedTo'   => $to,
-            'minValue'     => $min,
-            'maxValue'     => $max,
-            'priceFormat'  => $this->_taxHelper->getPriceFormat(),
-            'ajaxUrl'      => $item->getUrl()
+            'selectedTo' => $to,
+            'minValue' => $min,
+            'maxValue' => $max,
+            'priceFormat' => $this->_taxHelper->getPriceFormat(),
+            'ajaxUrl' => $item->getUrl()
         ];
     }
 
@@ -218,7 +215,7 @@ class Price extends AbstractFilter
             return parent::_getItemsData();
         }
 
-        $attribute         = $this->getAttributeModel();
+        $attribute = $this->getAttributeModel();
         $this->_requestVar = $attribute->getAttributeCode();
 
         /** @var \Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection $productCollection */
@@ -254,18 +251,18 @@ class Price extends AbstractFilter
      */
     private function prepareData($key, $count)
     {
-        list($from, $to) = explode('_', $key);
+        [$from, $to] = explode('_', $key);
         if ($from === '*') {
             $from = $this->getFrom($to);
         }
         if ($to === '*') {
             $to = $this->getTo($to);
         }
-        $label = $this->_renderRangeLabel(
+        $label = $this->_renderRangeLayerLabel(
             empty($from) ? 0 : $from * $this->getCurrencyRate(),
             empty($to) ? $to : $to * $this->getCurrencyRate()
         );
-        $value = (float) $from * $this->getCurrencyRate() . '-' . (float) $to * $this->getCurrencyRate();
+        $value = (float)$from * $this->getCurrencyRate() . '-' . (float)$to * $this->getCurrencyRate();
 
         return compact('label', 'value', 'count', 'from', 'to');
     }
