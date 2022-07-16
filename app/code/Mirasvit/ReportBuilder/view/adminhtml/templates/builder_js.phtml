@@ -1,0 +1,10 @@
+<?php
+/** @var \Mirasvit\ReportBuilder\Block\Adminhtml\BuilderJs $block */
+?>
+<script>
+    var REPORT_BUILDER = true;
+    var REPORT_BUILDER_CONFIG = <?=\Zend_Json::encode($block->getConfig()) ?>;
+    var REPORT_BUILDER_DUPLICATE_URL = '<?=$block->getDuplicateUrl() ?>';
+    var REPORT_BUILDER_SAVE_URL = '<?=$block->getSaveUrl() ?>';
+    var REPORT_BUILDER_DELETE_URL = '<?=$block->getDeleteUrl() ?>';
+</script>

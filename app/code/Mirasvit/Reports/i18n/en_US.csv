@@ -1,0 +1,56 @@
+"Import Information","Import Information"
+"Files to import","Files to import"
+"Number of unknown postal codes","Number of unknown postal codes"
+"Every hour, the extension will fetch information for 100 postal codes (cron job)","Every hour, the extension will fetch information for 100 postal codes (cron job)"
+"Email Notifications","Email Notifications"
+"Manage Geo data","Manage Geo data"
+"%1 [%2] × %3","%1 [%2] × %3"
+"Advanced Reports","Advanced Reports"
+"Import Geo Data","Import Geo Data"
+"Manage Geo Data","Manage Geo Data"
+"Total of %1 record(s) were removed from the postcode table.","Total of %1 record(s) were removed from the postcode table."
+"The file %1 has been imported.","The file %1 has been imported."
+"Abandoned Carts","Abandoned Carts"
+"View Customer","View Customer"
+"Abandoned Carts Overview","Abandoned Carts Overview"
+"View Abandoned Carts","View Abandoned Carts"
+"Abandoned Products","Abandoned Products"
+"View Product","View Product"
+"View Quotes","View Quotes"
+"Sales by Attribute","Sales by Attribute"
+"Sales by Attribute Set","Sales by Attribute Set"
+"Sales by Category","Sales by Category"
+"Product Performance","Product Performance"
+"View Sales","View Sales"
+"Product Performance / %1","Product Performance / %1"
+Customers,Customers
+"Sales by Coupon","Sales by Coupon"
+"Sales by Customer","Sales by Customer"
+"Sales by Customer Group","Sales by Customer Group"
+"Sales by Day of Week","Sales by Day of Week"
+"Sales by Geo-data","Sales by Geo-data"
+"Sales by Hour","Sales by Hour"
+"New vs Returning Customers","New vs Returning Customers"
+"Sales Overview","Sales Overview"
+"View Orders","View Orders"
+"View Products","View Products"
+"Sales by Payment Type","Sales by Payment Type"
+Orders,Orders
+"View Order","View Order"
+"Sales by Cart Price Rules","Sales by Cart Price Rules"
+"Sales by Tax Rates","Sales by Tax Rates"
+"Record(s) were removed from the postcode table.","Record(s) were removed from the postcode table."
+Delete,Delete
+"Delete items","Delete items"
+"Are you sure you want to delete the selected items?","Are you sure you want to delete the selected items?"
+ID,ID
+Country,Country
+Postcode,Postcode
+Place,Place
+State,State
+Province,Province
+Community,Community
+Lat,Lat
+Lng,Lng
+Updated,Updated
+Original,Original

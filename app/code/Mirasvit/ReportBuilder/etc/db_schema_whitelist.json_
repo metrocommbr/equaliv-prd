@@ -1,0 +1,24 @@
+{
+    "mst_report_builder_report": {
+        "column": {
+            "report_id": true,
+            "title": true,
+            "config": true,
+            "user_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mst_report_builder_config": {
+        "column": {
+            "config_id": true,
+            "title": true,
+            "config": true,
+            "user_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

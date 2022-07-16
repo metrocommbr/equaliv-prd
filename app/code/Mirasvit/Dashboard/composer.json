@@ -1,0 +1,25 @@
+{
+    "name": "mirasvit/module-dashboard",
+    "description": "Dashboard",
+    "require": {
+        "magento/framework": "102.0.*|103.0.*",
+        "mirasvit/module-core": "dev-master|^1.2",
+        "mirasvit/module-report": "dev-master|>=1.3.101"
+    },
+    "conflict": {
+        "mirasvit/module-report": "<=1.3.100"
+    },
+    "type": "magento2-module",
+    "version": "1.3.2",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "src/Dashboard/registration.php"
+        ],
+        "psr-4": {
+            "Mirasvit\\Dashboard\\": "src/Dashboard"
+        }
+    }
+}

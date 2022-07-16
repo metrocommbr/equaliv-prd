@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mst_report_builder_report" resource="default" engine="innodb" comment="mst_report_builder_report">
+    <column xsi:type="int" name="report_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Report ID"/>
+    <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+    <column xsi:type="text" name="config" nullable="true" comment="Config"/>
+    <column xsi:type="int" name="user_id" padding="11" unsigned="false" nullable="false" identity="false" comment="User Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="report_id"/>
+    </constraint>
+  </table>
+  <table name="mst_report_builder_config" resource="default" engine="innodb" comment="mst_report_builder_config">
+    <column xsi:type="int" name="config_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Report ID"/>
+    <column xsi:type="varchar" name="title" nullable="true" length="255" comment="Title"/>
+    <column xsi:type="text" name="config" nullable="true" comment="Config"/>
+    <column xsi:type="int" name="user_id" padding="11" unsigned="false" nullable="false" identity="false" comment="User Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="config_id"/>
+    </constraint>
+  </table>
+</schema>

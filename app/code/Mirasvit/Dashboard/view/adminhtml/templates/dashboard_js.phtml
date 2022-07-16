@@ -1,0 +1,11 @@
+<?php
+/** @var \Mirasvit\Dashboard\Block\Adminhtml\DashboardJs $block */
+?>
+
+<script>
+    var REPORT_MODE = "DASHBOARD";
+
+    var REPORT_DASHBOARD_CONFIG = <?=\Zend_Json::encode($block->getConfig()) ?>;
+    var REPORT_DASHBOARD_SAVE_URL = '<?=$block->getApiSaveUrl() ?>';
+    var REPORT_DASHBOARD_REQUEST_URL = '<?=$block->getApiRequestUrl() ?>';
+</script>

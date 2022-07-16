@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_ReportBuilder::configBuilder" title="Config Builder" module="Mirasvit_ReportBuilder" sortOrder="3"
+             action="reportBuilder/config/index/"
+             resource="Mirasvit_ReportBuilder::configBuilder" parent="Mirasvit_Reports::advanced_reports"/>
+    </menu>
+</config>

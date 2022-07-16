@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mst_reports_postcode" resource="default" engine="innodb" comment="mst_reports_postcode">
+    <column xsi:type="int" name="postcode_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Postcode Id"/>
+    <column xsi:type="varchar" name="country_id" nullable="false" length="2" comment="Country Id"/>
+    <column xsi:type="varchar" name="postcode" nullable="false" length="20" comment="Postcode"/>
+    <column xsi:type="varchar" name="place" nullable="true" length="180" comment="Place"/>
+    <column xsi:type="varchar" name="state" nullable="true" length="100" comment="State"/>
+    <column xsi:type="varchar" name="province" nullable="true" length="100" comment="Province"/>
+    <column xsi:type="varchar" name="community" nullable="true" length="100" comment="Community"/>
+    <column xsi:type="decimal" name="lat" scale="4" precision="12" unsigned="false" nullable="false" comment="Lat"/>
+    <column xsi:type="decimal" name="lng" scale="4" precision="12" unsigned="false" nullable="false" comment="Lng"/>
+    <column xsi:type="int" name="updated" padding="11" unsigned="false" nullable="false" identity="false" comment="Updated"/>
+    <column xsi:type="text" name="original" nullable="true" comment="Original"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="postcode_id"/>
+    </constraint>
+    <index referenceId="MST_REPORTS_POSTCODE_POSTCODE" indexType="btree">
+      <column name="postcode"/>
+    </index>
+    <index referenceId="MST_REPORTS_POSTCODE_COUNTRY_ID" indexType="btree">
+      <column name="country_id"/>
+    </index>
+  </table>
+</schema>

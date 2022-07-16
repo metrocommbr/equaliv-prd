@@ -1,0 +1,24 @@
+{
+    "mst_reports_postcode": {
+        "column": {
+            "postcode_id": true,
+            "country_id": true,
+            "postcode": true,
+            "place": true,
+            "state": true,
+            "province": true,
+            "community": true,
+            "lat": true,
+            "lng": true,
+            "updated": true,
+            "original": true
+        },
+        "index": {
+            "MST_REPORTS_POSTCODE_POSTCODE": true,
+            "MST_REPORTS_POSTCODE_COUNTRY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

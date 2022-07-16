@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Reports::advanced_reports" title="Advanced Reports" module="Mirasvit_Reports" sortOrder="0" resource="Mirasvit_Reports::advanced_reports" parent="Magento_Reports::report"/>
+        <add id="Mirasvit_Reports::reports" title="Reports" module="Mirasvit_Reports" sortOrder="1" action="reports/report/view/report/" resource="Mirasvit_Reports::reports_view"
+             parent="Mirasvit_Reports::advanced_reports"/>
+        <add id="Mirasvit_Report::email" title="Email Notifications" module="Mirasvit_Report" sortOrder="2" action="report/email/index" resource="Mirasvit_Report::email"
+             parent="Mirasvit_Reports::advanced_reports"/>
+    </menu>
+</config>

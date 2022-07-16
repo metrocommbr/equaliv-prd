@@ -1,0 +1,57 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Mirasvit\Report\Api\Repository\ReportRepositoryInterface">
+        <arguments>
+            <argument name="reports" xsi:type="array">
+                <item name="order_overview" xsi:type="string">Mirasvit\Reports\Reports\Order\Overview</item>
+                <item name="order_plain" xsi:type="string">Mirasvit\Reports\Reports\Order\Plain</item>
+                <item name="order_hour" xsi:type="string">Mirasvit\Reports\Reports\Order\Hour</item>
+                <item name="order_day" xsi:type="string">Mirasvit\Reports\Reports\Order\Day</item>
+                <item name="order_coupon" xsi:type="string">Mirasvit\Reports\Reports\Order\Coupon</item>
+                <item name="order_priceRule" xsi:type="string">Mirasvit\Reports\Reports\Order\PriceRule</item>
+                <item name="order_customer" xsi:type="string">Mirasvit\Reports\Reports\Order\Customer</item>
+                <item name="order_customerGroup" xsi:type="string">Mirasvit\Reports\Reports\Order\CustomerGroup</item>
+                <item name="order_geo" xsi:type="string">Mirasvit\Reports\Reports\Order\Geo</item>
+                <item name="order_new2ret" xsi:type="string">Mirasvit\Reports\Reports\Order\NewVsReturningCustomer</item>
+                <item name="order_paymentType" xsi:type="string">Mirasvit\Reports\Reports\Order\PaymentType</item>
+                <item name="order_taxRate" xsi:type="string">Mirasvit\Reports\Reports\Order\TaxRate</item>
+                <item name="catalog_product" xsi:type="string">Mirasvit\Reports\Reports\Catalog\Product</item>
+                <item name="catalog_product_detail" xsi:type="string">Mirasvit\Reports\Reports\Catalog\Product\Detail</item>
+                <item name="catalog_category" xsi:type="string">Mirasvit\Reports\Reports\Catalog\Category</item>
+                <item name="catalog_attribute" xsi:type="string">Mirasvit\Reports\Reports\Catalog\Attribute</item>
+                <item name="catalog_attributeSet" xsi:type="string">Mirasvit\Reports\Reports\Catalog\AttributeSet</item>
+                <item name="customers_customers" xsi:type="string">Mirasvit\Reports\Reports\Customers\Customers</item>
+                <item name="cart_overview" xsi:type="string">Mirasvit\Reports\Reports\Cart\Overview</item>
+                <item name="cart_abandoned" xsi:type="string">Mirasvit\Reports\Reports\Cart\Abandoned</item>
+                <item name="cart_product" xsi:type="string">Mirasvit\Reports\Reports\Cart\Product</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="reportsImportCommand" xsi:type="object">Mirasvit\Reports\Console\Command\GeoImportCommand</item>
+                <item name="reportsCronCommand" xsi:type="object">Mirasvit\Reports\Console\Command\CronCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mirasvit_reports_geo_index_data_source" xsi:type="string">Mirasvit\Reports\Model\ResourceModel\Postcode\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- inject pills -->
+    <type name="Mirasvit\ReportApi\Service\SelectService">
+        <arguments>
+            <argument name="pills" xsi:type="array">
+                <item name="childItemPill" xsi:type="object">Mirasvit\Reports\Service\Pills\ChildItemPill</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

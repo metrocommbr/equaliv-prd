@@ -1,0 +1,27 @@
+{
+    "name": "mirasvit/module-reports",
+    "description": "Advanced Reports",
+    "require": {
+        "magento/framework": "102.0.*|103.0.*",
+        "mirasvit/module-core": "dev-master|^1.2",
+        "mirasvit/module-report": "dev-master|>=1.3.101",
+        "mirasvit/module-dashboard": "dev-master|>=1.2.26",
+        "mirasvit/module-report-builder": "dev-master|>=1.0.17"
+    },
+    "conflict": {
+        "mirasvit/module-report": "<=1.3.100"
+    },
+    "type": "magento2-module",
+    "version": "1.4.4",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "src/Reports/registration.php"
+        ],
+        "psr-4": {
+            "Mirasvit\\Reports\\": "src/Reports"
+        }
+    }
+}

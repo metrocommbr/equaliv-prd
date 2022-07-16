@@ -1,0 +1,18 @@
+{
+    "mst_report_email": {
+        "column": {
+            "email_id": true,
+            "title": true,
+            "is_active": true,
+            "subject": true,
+            "recipient": true,
+            "schedule": true,
+            "blocks_serialized": true,
+            "last_sent_at": true,
+            "is_attach_enabled": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

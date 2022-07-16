@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="empty" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <html>
+        <attribute name="class" value="dashboard-dashboard-mobile"/>
+    </html>
+    <head>
+        <meta content="width=device-width,initial-scale=1" name="viewport"/>
+    </head>
+
+    <update handle="report"/>
+
+    <body>
+        <referenceContainer name="menu.wrapper" remove="true"/>
+        <referenceContainer name="notices.wrapper" remove="true"/>
+        <referenceContainer name="header" remove="true"/>
+        <referenceContainer name="footer" remove="true"/>
+
+
+        <container name="content">
+            <block name="mst_dashboard.dashboard_js" class="Mirasvit\Dashboard\Ui\DashboardDataProvider" before="mst_report.block"/>
+        </container>
+    </body>
+</page>

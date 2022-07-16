@@ -1,0 +1,59 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!--DATA-->
+    <preference for="Mirasvit\ReportBuilder\Api\Data\ReportInterface" type="Mirasvit\ReportBuilder\Model\Report"/>
+    <preference for="Mirasvit\ReportBuilder\Api\Data\ConfigInterface" type="Mirasvit\ReportBuilder\Model\Config"/>
+
+    <!--REPOSITORY-->
+    <preference for="Mirasvit\ReportBuilder\Api\Repository\ReportRepositoryInterface" type="Mirasvit\ReportBuilder\Repository\ReportRepository"/>
+    <preference for="Mirasvit\ReportBuilder\Api\Repository\ConfigRepositoryInterface" type="Mirasvit\ReportBuilder\Repository\ConfigRepository"/>
+
+    <!--Entity Manager-->
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Mirasvit\ReportBuilder\Api\Data\ReportInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\ReportBuilder\Api\Data\ReportInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\ReportBuilder\Api\Data\ReportInterface::ID</item>
+                </item>
+                <item name="Mirasvit\ReportBuilder\Api\Data\ConfigInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\ReportBuilder\Api\Data\ConfigInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\ReportBuilder\Api\Data\ConfigInterface::ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Mirasvit\ReportBuilder\Api\Data\ReportInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Mirasvit\ReportBuilder\Api\Data\ConfigInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--UI Data Sources-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="reportBuilder_listing_data_source" xsi:type="string">Mirasvit\ReportBuilder\Model\ResourceModel\Report\Grid</item>
+                <item name="reportBuilder_config_listing_data_source" xsi:type="string">Mirasvit\ReportBuilder\Model\ResourceModel\Config\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--Add created reports through plugin-->
+    <type name="Mirasvit\Report\Api\Repository\ReportRepositoryInterface">
+        <plugin name="mstReportBuilderReports" type="Mirasvit\ReportBuilder\Plugin\ReportApi\Repository\ReportRepository\AddReportsPlugin" />
+    </type>
+
+    <!--Schema Plugin (add db tables, columns, relations)-->
+    <type name="Mirasvit\ReportApi\Config\Loader\Map">
+        <plugin name="mstReportBuilderAddDatabaseSchema" type="Mirasvit\ReportBuilder\Plugin\ReportApi\Config\Loader\Map\AddDatabaseSchemaPlugin" />
+    </type>
+
+    <type name="Mirasvit\ReportApi\Config\Loader\Reader">
+        <plugin name="mstReportBuilderReader" type="Mirasvit\ReportBuilder\Plugin\ReaderPlugin" />
+    </type>
+</config>

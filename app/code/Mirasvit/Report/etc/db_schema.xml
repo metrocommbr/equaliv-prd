@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mst_report_email" resource="default" engine="innodb" comment="Report Email">
+    <column xsi:type="int" name="email_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Email Id"/>
+    <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+    <column xsi:type="int" name="is_active" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Is Active"/>
+    <column xsi:type="varchar" name="subject" nullable="false" length="255" comment="Subject"/>
+    <column xsi:type="varchar" name="recipient" nullable="false" length="255" comment="Recipient"/>
+    <column xsi:type="varchar" name="schedule" nullable="false" length="255" comment="Schedule"/>
+    <column xsi:type="text" name="blocks_serialized" nullable="false" comment="Content"/>
+    <column xsi:type="timestamp" name="last_sent_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Last Sent At"/>
+    <column xsi:type="int" name="is_attach_enabled"  padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Is Attach Enabled"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="email_id"/>
+    </constraint>
+  </table>
+</schema>

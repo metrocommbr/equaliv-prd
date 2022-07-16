@@ -1,0 +1,21 @@
+{
+    "mst_dashboard_board": {
+        "column": {
+            "board_id": true,
+            "title": true,
+            "is_default": true,
+            "type": true,
+            "user_id": true,
+            "widgets_serialized": true,
+            "created_at": true,
+            "updated_at": true,
+            "is_mobile_enabled": true,
+            "mobile_token": true,
+            "identifier": true,
+            "blocks_serialized": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

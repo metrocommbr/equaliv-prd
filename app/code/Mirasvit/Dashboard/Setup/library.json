@@ -1,0 +1,278 @@
+[
+    {
+        "title": "Number of orders",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|entity_id__cnt",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Items ordered (single value)",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|total_qty_ordered__sum",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Items Ordered (table) ",
+        "description": "",
+        "config": {
+            "renderer": "table",
+            "table": {
+                "dimensions": [
+                    "sales_order_item|sku"
+                ],
+                "columns": [
+                    "catalog_product_entity|name",
+                    "sales_order|entity_id__cnt",
+                    "sales_order_item|qty_ordered__sum",
+                    "sales_order_item|row_total__sum"
+                ],
+                "sort_orders": [
+                    {
+                        "column": "sales_order_item|qty_ordered__sum",
+                        "direction": "desc"
+                    }
+                ],
+                "page_size": 30
+            }
+        }
+    },
+    {
+        "title": "Grand Total Summary",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|grand_total__sum",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Average Order Amount",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|grand_total__avg",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Profit (chart)",
+        "description": "",
+        "config": {
+            "renderer": "chart",
+            "chart": {
+                "dimension": "sales_order|created_at__day",
+                "columns": [
+                    "sales_order|grand_total__sum",
+                    "sales_order|gross_profit__sum"
+                ],
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Shipping",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|shipping_amount__sum",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Discount",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|discount_amount__sum",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Invoiced",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|total_invoiced__sum",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Refunded",
+        "description": "",
+        "config": {
+            "renderer": "single",
+            "single": {
+                "column": "sales_order|total_refunded__sum",
+                "spark_line": true,
+                "compare": "period"
+            }
+        }
+    },
+    {
+        "title": "Recent Orders (table)",
+        "description": "",
+        "config": {
+            "renderer": "table",
+            "table": {
+                "dimensions": [
+                    "sales_order|increment_id"
+                ],
+                "columns": [
+                    "sales_order|customer_name",
+                    "sales_order|total_qty_ordered",
+                    "sales_order|grand_total"
+                ],
+                "sort_orders": [
+                    {
+                        "column": "sales_order|increment_id",
+                        "direction": "desc"
+                    }
+                ],
+                "page_size": 25
+            }
+        }
+    },
+    {
+        "title": "Low Stock Items (table)",
+        "description": "",
+        "config": {
+            "renderer": "table",
+            "filters": [
+                {
+                    "column": "cataloginventory_stock_item|qty",
+                    "condition_type": "gt",
+                    "value": "1"
+                },
+                {
+                    "column": "cataloginventory_stock_item|qty",
+                    "condition_type": "lteq",
+                    "value": "10"
+                }
+            ],
+            "table": {
+                "dimensions": [
+                    "catalog_product_entity|sku"
+                ],
+                "columns": [
+                    "catalog_product_entity|name",
+                    "cataloginventory_stock_item|qty__sum"
+                ],
+                "sort_orders": [
+                    {
+                        "column": "cataloginventory_stock_item|qty__sum",
+                        "direction": "desc"
+                    }
+                ],
+                "page_size": 30
+            },
+            "date_range": {
+                "override": true,
+                "range": "life"
+            }
+        }
+    },
+    {
+        "title": "Sales by Customers",
+        "description": "",
+        "config": {
+            "renderer": "table",
+            "table": {
+                "dimensions": [
+                    "customer_entity|email"
+                ],
+                "columns": [
+                    "sales_order|customer_name",
+                    "sales_order|entity_id__cnt",
+                    "sales_order_item|qty_ordered__sum",
+                    "sales_order|grand_total__sum"
+                ],
+                "sort_orders": [
+                    {
+                        "column": "sales_order|grand_total__sum",
+                        "direction": "desc"
+                    }
+                ],
+                "page_size": 30
+            }
+        }
+    },
+    {
+        "title": "Search Queries",
+        "description": "",
+        "config": {
+            "renderer": "table",
+            "table": {
+                "dimensions": [
+                    "search_query|query_text"
+                ],
+                "columns": [
+                    "search_query|num_results",
+                    "search_query|popularity__sum"
+                ],
+                "sort_orders": [
+                    {
+                        "column": "search_query|popularity__sum",
+                        "direction": "desc"
+                    }
+                ],
+                "page_size": 30
+            },
+            "date_range": {
+                "override": true,
+                "range": "life"
+            }
+        }
+    },
+    {
+        "title": "Bestsellers",
+        "description": "",
+        "config": {
+            "renderer": "table",
+            "table": {
+                "columns": [
+                    "catalog_product_entity|name",
+                    "sales_order|entity_id__cnt",
+                    "sales_order_item|qty_ordered__sum",
+                    "sales_order_item|row_total__sum"
+                ],
+                "dimensions": [
+                    "sales_order_item|sku"
+                ],
+                "sort_orders": [
+                    {
+                        "column": "sales_order_item|row_total__sum",
+                        "direction": "desc"
+                    }
+                ],
+                "page_size": 30
+            }
+        }
+    }
+]

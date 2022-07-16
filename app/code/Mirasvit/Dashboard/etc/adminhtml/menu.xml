@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Dashboard::advanced_dashboard" title="Advanced Dashboard" translate="title"
+             module="Mirasvit_Dashboard" sortOrder="10" action="dashboard/dashboard/index"
+             resource="Mirasvit_Dashboard::dashboard" parent="Magento_Backend::dashboard"/>
+
+        <add id="Mirasvit_Dashboard::magento_dashboard" title="Magento Dashboard" translate="title"
+             module="Magento_Backend" sortOrder="20"
+             action="adminhtml/dashboard" resource="Magento_Backend::dashboard" parent="Magento_Backend::dashboard"/>
+    </menu>
+</config>

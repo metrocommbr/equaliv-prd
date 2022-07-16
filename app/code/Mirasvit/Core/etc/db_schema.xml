@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mst_core_urlrewrite" resource="default" engine="innodb" comment="mst_core_urlrewrite">
+    <column xsi:type="int" name="urlrewrite_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Url Rewrite Id"/>
+    <column xsi:type="varchar" name="url_key" nullable="false" length="255" comment="Url Key"/>
+    <column xsi:type="varchar" name="module" nullable="false" length="255" comment="Module"/>
+    <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Type"/>
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Entity Id"/>
+    <column xsi:type="int" name="store_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Store ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="urlrewrite_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="CORE_URLREWRITE_INDEX1_MODULE_TYPE_ENTITY_ID_STORE_ID">
+      <column name="module"/>
+      <column name="type"/>
+      <column name="entity_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="CORE_URLREWRITE_INDEX2_URL_KEY_MODULE_STORE_ID">
+      <column name="url_key"/>
+      <column name="module"/>
+      <column name="store_id"/>
+    </constraint>
+  </table>
+</schema>

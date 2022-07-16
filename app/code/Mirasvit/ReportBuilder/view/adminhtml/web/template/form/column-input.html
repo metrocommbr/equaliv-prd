@@ -1,0 +1,108 @@
+<div class="mst-report-builder__form-column-input">
+    <input class="admin__control-text" type="text"
+           data-bind="
+        event: {change: userChanges},
+        value: value,
+        hasFocus: focused,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            id: uid,
+            disabled: disabled,
+            maxlength: 255
+    }"/>
+
+    <!-- ko if: value() -->
+    <button data-bind="click: changeColumn">Change Column</button>
+    <!-- /ko -->
+
+    <div class="selector-wrapper">
+        <ul class="wizard">
+            <li data-bind="css: { _selected: group(), _active: true }, click: setGroup.bind(null, null)">
+                <!-- ko ifnot: group() -->
+                Group
+                <!-- /ko -->
+
+                <!-- ko if: group() -->
+                <span data-bind="text: group().label"/>
+                <!-- /ko -->
+            </li>
+            <li data-bind="css: { _selected: table(), _active: group() }, click: setTable.bind(null, null)">
+                <!-- ko ifnot: table() -->
+                Table
+                <!-- /ko -->
+
+                <!-- ko if: table() -->
+                <span data-bind="text: table().label"/>
+                <!-- /ko -->
+            </li>
+            <li data-bind="css: { _selected: field(), _active: table() }, click: setField.bind(null, null)">
+                <!-- ko ifnot: field() -->
+                Field
+                <!-- /ko -->
+
+                <!-- ko if: field() -->
+                <span data-bind="text: field().label"/>
+                <!-- /ko -->
+            </li>
+            <li data-bind="css: { _selected: aggregator(), _active: field() }, click: setAggregator.bind(null, null)">
+                <!-- ko ifnot: aggregator() -->
+                Aggregator
+                <!-- /ko -->
+
+                <!-- ko if: aggregator() -->
+                <span data-bind="text: aggregator().label"/>
+                <!-- /ko -->
+            </li>
+        </ul>
+
+        <div class="selector">
+
+            <div data-bind="if: !group()">
+                <p>Please select a group:</p>
+
+                <ul data-bind="foreach: { data: groups, as: 'group' }">
+                    <li data-bind="click: $parent.setGroup">
+                        <span text="group.label"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div data-bind="if: group() && !table()">
+                <p>Select a table:</p>
+
+                <ul data-bind="foreach: { data: tables, as: 'table' }">
+                    <li data-bind="click: $parent.setTable">
+                        <span text="table.label"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div data-bind="if: table() && !field()">
+                <p>Select a field:</p>
+
+                <ul data-bind="foreach: { data: fields, as: 'field' }">
+                    <li data-bind="click: $parent.setField, css: { _internal: field.isInternal }" class="_field">
+                        <span text="field.label"></span>
+
+                        <i data-bind="css: field.type"></i>
+                    </li>
+                </ul>
+            </div>
+
+            <div data-bind="if: field() && !aggregator()">
+                <p>Select a aggregator:</p>
+
+                <ul data-bind="foreach: { data: aggregators, as: 'aggregator' }">
+                    <li data-bind="click: $parent.setAggregator">
+                        <span text="aggregator.label"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <span class="column-name" data-bind="text: value"></span>
+</div>

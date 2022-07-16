@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../module-report-api/src/ReportApi/etc/mst_report.xsd">
+    <table name="sales_order" connection="sales">
+        <column name="by_new_customer" label="Quantity by new customers"
+                fields="created_at,customer_entity.created_at" type="number"
+                expr="IF(DATE_FORMAT(%1, '%Y-%m-%d') = DATE_FORMAT(customer_entity.created_at, '%Y-%m-%d') OR customer_entity.created_at IS NULL, 1, 0)"
+                tables="customer_entity"/>
+
+        <column name="by_returning_customer" label="Quantity by returning customers" fields="created_at"
+                type="number"
+                expr="IF(DATE_FORMAT(%1, '%Y-%m-%d') = DATE_FORMAT(customer_entity.created_at, '%Y-%m-%d') OR customer_entity.created_at IS NULL, 0, 1)"
+                tables="customer_entity"/>
+
+        <column name="grand_total_by_new_customer" label="Grand Total by new customers"
+                fields="created_at,base_grand_total"
+                type="money"
+                expr="IF(DATE_FORMAT(%1, '%Y-%m-%d') = DATE_FORMAT(customer_entity.created_at, '%Y-%m-%d') OR customer_entity.created_at IS NULL, %2, 0)"
+                tables="customer_entity"/>
+
+        <column name="grand_total_by_returning_customer" label="Grand Total by returning customers"
+                fields="created_at,base_grand_total"
+                type="money"
+                expr="IF(DATE_FORMAT(%1, '%Y-%m-%d') = DATE_FORMAT(customer_entity.created_at, '%Y-%m-%d') OR customer_entity.created_at IS NULL, 0, %2)"
+                tables="customer_entity"/>
+
+        <column name="grand_total_excl_tax" label="Grand Total excl. Tax"
+                fields="base_grand_total,base_tax_amount,base_to_global_rate"
+                type="money"
+                expr="(%1 - IFNULL(%2, 0)) * %3"/>
+
+        <column name="gross_profit" label="Gross Profit"
+                fields="base_subtotal_invoiced,base_total_invoiced_cost,base_to_global_rate" type="money"
+                expr="(%1 - IFNULL(%2, 0)) * %3"/>
+
+        <column name="gross_margin" label="Gross Margin"
+                fields="base_subtotal_invoiced,base_total_invoiced_cost" type="percent"
+                expr="(%1 - IFNULL(%2, 0)) / %1 * 100"/>
+
+        <!--<column name="last_order_at" label="Last Order Date"-->
+                <!--fields="created_at" type="date"-->
+                <!--expr="MAX(%1)"/>-->
+
+        <column name="products" fields="entity_id" label="Products"
+                type="Mirasvit\Reports\Config\Type\OrderProducts"/>
+
+        <!--<column name="orders_products" fields="entity_id" label="Products" type="html"-->
+        <!--expr="GROUP_CONCAT(%1)"-->
+        <!--/>-->
+        <!--class="Mirasvit\Reports\Model\Query\Column\OrdersProducts"-->
+
+    </table>
+
+    <table name="sales_order_item" connection="sales">
+        <column name="gross_margin" label="Gross Margin"
+                fields="base_row_total,base_cost,qty_ordered" type="percent"
+                expr="(%1 - IFNULL(%2, 0) * %3)/%1 * 100"/>
+
+        <column name="gross_profit" label="Gross Profit" fields="base_cost,qty_ordered,base_row_total"
+                type="money"
+                expr="(%3 - IFNULL(%1, 0) * %2) * sales_order.base_to_global_rate"
+                tables="sales_order"/>
+    </table>
+
+    <table name="quote" label="Quotes" connection="checkout">
+        <column name="products" fields="entity_id" label="Products"
+                type="Mirasvit\Reports\Config\Type\QuoteProducts"/>
+    </table>
+
+
+    <table name="mst_reports_postcode" label="Postcodes">
+        <pk name="postcode_id"/>
+
+        <column name="country" label="Country" fields="country_id" type="country"
+                options="Mirasvit\Report\Config\Source\Directory\Country"
+                tables="sales_order_address" expr="IFNULL(mst_reports_postcode.country_id, sales_order_address.country_id)"/>
+        <column name="postcode" label="Postcode" tables="sales_order_address" expr="IFNULL(mst_reports_postcode.postcode, sales_order_address.postcode)"/>
+        <column name="state" label="State" tables="sales_order_address" expr="IFNULL(mst_reports_postcode.state, sales_order_address.region)"/>
+        <column name="place" label="Place" tables="sales_order_address" expr="IFNULL(mst_reports_postcode.place, sales_order_address.city)"/>
+        <column name="province" label="Province"/>
+        <column name="community" label="Community"/>
+        <column name="lat" label="Lat"/>
+        <column name="lng" label="Lng"/>
+    </table>
+
+    <!--<table name="cataloginventory_stock_item">-->
+
+    <!--&lt;!&ndash;<column name="qty_date_estimate" label="Out of Stock Estimate" type="number" fields="qty"&ndash;&gt;-->
+    <!--&lt;!&ndash;tables="sales_order_item" expr="%1 / SUM(sales_order_item.qty_ordered)"&ndash;&gt;-->
+    <!--&lt;!&ndash;/>&ndash;&gt;-->
+    <!--&lt;!&ndash;class="Mirasvit\Reports\Model\Query\Column\OutStockEstimate"&ndash;&gt;-->
+
+    <!--</table>-->
+
+
+    <!--connection="Mirasvit\Reports\Service\TableDescriptor\SalesOrderItemAggregated"-->
+    <!--<table name="sales_order_item_aggregated">-->
+    <!--<columns>-->
+    <!--<column name="order_id" fields="order_id" label="Order ID" type="number" expr="%1"/>-->
+    <!--<column name="qty_refunded" fields="qty_refunded" label="Qty Refunded" type="number" expr="SUM(%1)"/>-->
+    <!--</columns>-->
+    <!--</table>-->
+
+
+    <!-- suffix "_aggregated" used for temporary tables, it's removed by module-report -->
+    <!--<relation name="sales_order_item_aggregated2sales_order">-->
+    <!--<leftTable>sales_order_item_aggregated</leftTable>-->
+    <!--<rightTable>sales_order</rightTable>-->
+    <!--<condition>%1.order_id=%2.entity_id</condition>-->
+    <!--<type>11</type>-->
+    <!--</relation>-->
+
+
+    <relation name="sales_order_address-mst_reports_postcode" type="1n">
+        <leftTable>sales_order_address</leftTable>
+        <rightTable>mst_reports_postcode</rightTable>
+        <condition>%1.postcode=%2.postcode AND %1.country_id=%2.country_id</condition>
+    </relation>
+</config>

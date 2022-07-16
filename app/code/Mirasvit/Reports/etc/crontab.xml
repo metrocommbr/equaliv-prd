@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="mst_reports_postcode_unknown" instance="Mirasvit\Reports\Cron\PostcodeUnknown" method="execute">
+            <schedule>0 0 * * *</schedule>
+        </job>
+
+        <job name="mst_reports_postcode_update" instance="Mirasvit\Reports\Cron\PostcodeUpdate" method="execute">
+            <schedule>1 * * * *</schedule>
+        </job>
+    </group>
+</config>
