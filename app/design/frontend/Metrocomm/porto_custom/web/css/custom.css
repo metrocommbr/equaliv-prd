@@ -1,0 +1,69 @@
+.cookie-status-message {
+    display: none;
+}
+
+.main-panel-top {
+    display: none;
+}
+
+.page-header.type2 .search-area {
+    padding-left: 0;
+    max-width: 618px;
+}
+
+@media only screen and (min-width: 768px) {
+    .block-search {
+        padding-left: 0 !important;
+    }
+}
+
+.page-header.type2 .nav-sections .nav-sections-items {
+    border-top: 1px solid #f4f4f4;
+}
+
+.page-header.type2 .navigation>ul:before {
+    border-top: 0 !important;
+}
+
+.page-header.type2 .navigation .level0 .level-top:before {
+    display: none;
+}
+
+.cms-index-index .container .porto-products .section-title .inline-title {
+    color: #707070;
+    font-size: 20px;
+}
+
+.cms-index-index .container .porto-products .thumb-info-wrap .thumb-info-title .sub-title {
+    color: #707070;
+    font-size: 18px;
+}
+
+.cms-index-index .container .porto-products .thumb-info-wrap .thumb-info-title .thumb-info-type {
+    font-size: 14px;
+}
+
+.product-item-info .product-item-details .product-item-name .product-item-link {
+    color: #707070;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.product-item-info .product-item-details .price-box .price {
+    color: #707070;
+    font-weight: 400;
+}
+
+.product-item-info .product-item-details .product-item-actions .tocart {
+    background: transparent;
+    color: #707070;
+    font-weight: 400;
+}
+
+.product-item-info .product-item-details .product-item-actions .actions-secondary.towishlist,
+.product-item-info .product-item-details .product-item-actions .actions-secondary.tocompare {
+    background: transparent;
+    color: #707070;
+    opacity: 1;
+    visibility: visible;
+}
