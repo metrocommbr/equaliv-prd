@@ -25,7 +25,7 @@
 
 .cms-index-index .container .porto-products .section-title .inline-title {
     color: #707070;
-    font-size: 20px;
+    font-size: 26px;
 }
 
 .cms-index-index .container .porto-products .thumb-info-wrap .thumb-info-title .sub-title {
@@ -181,6 +181,45 @@
 
 .page-footer .footer-bottom .payment-icons img {
     max-width: 430px;
+}
+
+.product-info-main .page-title-wrapper h1,
+.product-options-bottom,
+.product-info-price,
+.qty.field .input-text.qty,
+.col.qty .input-text.qty {
+    color: #707070;
+}
+
+.box-tocart .action.tocart {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #707070;
+    font-weight: 400;
+}
+
+.box-tocart .action.tocart:hover {
+    background: #00C1D4;
+    color: #fff;
+    border: 1px solid #00C1D4;
+}
+
+.action.tocompare,
+.product-addto-links .action.tocompare,
+.moved-add-to-links .action.tocompare,
+.product-addto-links .action.towishlist {
+    color: #7A7A7A
+}
+
+.product-social-links {
+    display: none;
+}
+
+@media only screen and (min-width: 992px) {
+    .page-header.type2 .navigation:not(.side-megamenu) .level0:last-child {
+        float: right;
+        margin-right: 0;
+    }
 }
 
 @media only screen and (min-width: 768px) {
