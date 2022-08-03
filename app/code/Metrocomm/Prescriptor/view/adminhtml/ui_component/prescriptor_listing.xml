@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">prescriptor_listing.prescriptor_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>prescriptor_listing_columns</spinner>
+        <deps>
+            <dep>prescriptor_listing.prescriptor_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="prescriptor_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">prescriptor_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" path="mui/index/render" xsi:type="url"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="fulltext"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="prescriptor_listing_columns">
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>entity_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id">
+            <settings>
+                <visible>false</visible>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="firstname">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">First Name</label>
+            </settings>
+        </column>
+        <column name="lastname">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Last Name</label>
+            </settings>
+        </column>
+        <column name="email">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+            </settings>
+        </column>
+<!--        <column name="order_date" class="Magento\Ui\Component\Listing\Columns\Date">-->
+<!--            <settings>-->
+<!--                <filter>dateRange</filter>-->
+<!--                <dataType>date</dataType>-->
+<!--                <label translate="true">Data Pedido</label>-->
+<!--            </settings>-->
+<!--        </column>-->
+<!--        <column name="approved_at" class="Magento\Ui\Component\Listing\Columns\Date">-->
+<!--            <settings>-->
+<!--                <filter>dateRange</filter>-->
+<!--                <dataType>date</dataType>-->
+<!--                <label translate="true">Data Aprovação</label>-->
+<!--            </settings>-->
+<!--        </column>-->
+<!--        <column name="order_increment_id">-->
+<!--            <settings>-->
+<!--                <filter>text</filter>-->
+<!--                <label translate="true">Número Pedido Magento</label>-->
+<!--            </settings>-->
+<!--        </column>-->
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Metrocomm\Prescriptor\Ui\Component\Listing\Config\Status\Options"/>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+<!--        <column name="description">-->
+<!--            <settings>-->
+<!--                <filter>text</filter>-->
+<!--                <label translate="true">Description</label>-->
+<!--            </settings>-->
+<!--        </column>-->
+<!--        <column name="attempts">-->
+<!--            <settings>-->
+<!--                <filter>text</filter>-->
+<!--                <label translate="true">Attempts</label>-->
+<!--            </settings>-->
+<!--        </column>-->
+<!--        <column name="is_locked" component="Magento_Ui/js/grid/columns/select">-->
+<!--            <settings>-->
+<!--                <filter>select</filter>-->
+<!--                <options class="DigitalHub\Exodus\Ui\Component\Listing\Config\Locked\Options"/>-->
+<!--                <dataType>select</dataType>-->
+<!--                <label translate="true">Locked</label>-->
+<!--            </settings>-->
+<!--        </column>-->
+
+        <actionsColumn name="actions" class="Metrocomm\Prescriptor\Ui\Component\Listing\Config\Actions">
+            <settings>
+                <indexField>id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

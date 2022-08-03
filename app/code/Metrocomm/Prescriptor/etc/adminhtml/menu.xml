@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Metrocomm_Prescriptor::prescriptor" title="Cadastro de Prescritores" translate="title" module="Metrocomm_Prescriptor" sortOrder="100" action="prescriptor/account/index" parent="Magento_Customer::customer" resource="Magento_Customer::customer" />
+    </menu>
+</config>
+
