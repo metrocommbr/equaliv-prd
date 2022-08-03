@@ -183,6 +183,55 @@
     max-width: 430px;
 }
 
+.wrp-category-banner {
+    background-position: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.wrp-category-banner:before {
+    content: '';
+    background: #000;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+    z-index: 8;
+}
+
+.wrp-category-banner .category-description {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wrp-category-banner .description-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 700px;
+    z-index: 9;
+}
+
+.wrp-category-banner .description-content .category-name {
+    color: #fff;
+    font-size: 72px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    display: block;
+    line-height: 110%;
+}
+
+.wrp-category-banner .description-content p {
+    color: #fff;
+    font-size: 18px;
+    line-height: 120%;
+}
+
 .product-info-main .page-title-wrapper h1,
 .product-options-bottom,
 .product-info-price,
@@ -242,6 +291,9 @@
     .page-footer .wrp-newsletter .logo_block {
         margin-bottom: 30px !important;
     }
+    .wrp-category-banner .category-description {
+        max-width: 960px;
+    }
 }
 
 @media only screen and (max-width: 767px) {
@@ -258,5 +310,8 @@
     }
     .footer-bottom>.container>address {
         line-height: 160% !important;
+    }
+    .wrp-category-banner .description-content {
+        width: 100%;
     }
 }
