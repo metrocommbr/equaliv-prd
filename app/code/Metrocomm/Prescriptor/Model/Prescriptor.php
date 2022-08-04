@@ -4,6 +4,7 @@ namespace Metrocomm\Prescriptor\Model;
 
 use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Customer\Model\AddressFactory;
 use Magento\Customer\Model\ResourceModel\Customer\CollectionFactory;
 use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\Message\ManagerInterface;
@@ -34,8 +35,13 @@ class Prescriptor extends AbstractModel
      * @var ManagerInterface
      */
     private $messageManager;
+    /**
+     * @var AddressFactory
+     */
+    private $addressFactory;
 
     public function __construct(
+        AddressFactory $addressFactory,
         ManagerInterface $messageManager,
         CollectionFactory $collectionFactory,
         Config $config,
@@ -53,6 +59,7 @@ class Prescriptor extends AbstractModel
         $this->config = $config;
         $this->collectionFactory = $collectionFactory;
         $this->messageManager = $messageManager;
+        $this->addressFactory = $addressFactory;
     }
 
     protected function _construct()
@@ -69,7 +76,27 @@ class Prescriptor extends AbstractModel
         $this->customer->setDob($this->getData('dob'));
         $this->customer->setGroupId($this->config->getCustomerGroup());
         try {
-            $this->accountManagement->createAccount($this->customer);
+            $newCustomer = $this->accountManagement->createAccount($this->customer);
+            $newAddress = $this->addressFactory->create();
+            $fullStreet = [
+                $this->getData('street'),
+                $this->getData('number'),
+                $this->getData('complement'),
+                $this->getData('neighborhood'),
+
+            ];
+            $newAddress->setCustomerId($newCustomer->getId());
+            $newAddress->setFirstname($this->getData('firstname'));
+            $newAddress->setLastname($this->getData('lastname'));
+            $newAddress->setStreetFull($fullStreet);
+            $newAddress->setPostcode($this->getData('postcode'));
+            $newAddress->setCity($this->getData('city'));
+            $newAddress->setCountryId($this->getData('country'));
+            $newAddress->setTelephone($this->getData('telephone'));
+            $newAddress->setIsDefaultBilling(true);
+            $newAddress->setIsDefaultShipping(true);
+            $newAddress->setSaveInAddressBook(true);
+            $newAddress->save();
             $this->setData('status', 'approved');
             $this->messageManager->addSuccessMessage('Cliente criado com sucesso.');
         } catch (\Exception $e) {
@@ -83,5 +110,16 @@ class Prescriptor extends AbstractModel
     {
         $customerCollection = $this->collectionFactory->create()->addFieldToFilter('email', $email);
         return !$customerCollection->getSize();
+    }
+
+    public function getName()
+    {
+        return $this->getData('firstname') . ' ' . $this->getData('lastname');
+    }
+    public function getFullStreet()
+    {
+        return $this->getData('street') . ', '
+            . $this->getData('number') . ' - '
+            . $this->getData('complement');
     }
 }

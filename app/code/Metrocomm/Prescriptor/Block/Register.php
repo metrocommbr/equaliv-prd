@@ -4,6 +4,7 @@ namespace Metrocomm\Prescriptor\Block;
 
 use Magento\Customer\Model\Session;
 use Magento\Directory\Model\Config\Source\Country;
+use Magento\Directory\Model\CountryFactory;
 use Magento\Framework\DataObject;
 use Magento\Framework\View\Element\Template;
 use Metrocomm\Prescriptor\Model\Config\Speciality;
@@ -22,8 +23,13 @@ class Register extends Template
      * @var Session
      */
     private $session;
+    /**
+     * @var CountryFactory
+     */
+    private $countryFactory;
 
     public function __construct(
+        CountryFactory $countryFactory,
         Session $session,
         Speciality $speciality,
         Country $country,
@@ -34,6 +40,7 @@ class Register extends Template
         $this->country = $country;
         $this->speciality = $speciality;
         $this->session = $session;
+        $this->countryFactory = $countryFactory;
     }
 
     public function getAllCountries()
@@ -62,6 +69,11 @@ class Register extends Template
             $this->setData('form_data', $data);
         }
         return $data;
+    }
+
+    public function getRegionsOfCountry($countryCode) {
+        $regionCollection = $this->countryFactory->create()->loadByCode($countryCode)->getRegions();
+        return $regionCollection->loadData()->toOptionArray();
     }
 
 }

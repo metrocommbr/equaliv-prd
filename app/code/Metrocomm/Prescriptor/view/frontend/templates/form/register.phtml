@@ -129,9 +129,11 @@ $formData = $block->getFormData();
 
             <div class="field required">
                 <label class="label" for="state"><?= $escaper->escapeHtml(__('Estado')) ?></label>
-                <input name="state"
-                       type="text"
-                       data-validate="{ required:true }">
+                <select name="state" id="state" data-validate="{ required:true }">
+                    <?php foreach ($block->getRegionsOfCountry('BR') as $state): ?>
+                        <option value="<?= $state['value'] ?>"><?= $state['label'] ?></option>
+                    <?php endforeach ?>
+                </select>
             </div>
         </div>
 
@@ -146,9 +148,8 @@ $formData = $block->getFormData();
             <div class="field required">
                 <label class="label" for="country"><?= $escaper->escapeHtml(__('País')) ?></label>
                 <select name="country" id="country" data-validate="{ required:true }">
-                    <?php foreach ($block->getAllCountries() as $country): ?>
-                        <option value="<?= $country['value'] ?>"><?= $country['label'] ?></option>
-                    <?php endforeach ?>
+                    <option value="">-- Por favor, selecione --</option>
+                    <option value="BR">Brasil</option>
                 </select>
             </div>
         </div>

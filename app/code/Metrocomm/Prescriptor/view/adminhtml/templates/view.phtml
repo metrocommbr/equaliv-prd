@@ -5,4 +5,101 @@ $prescriptor = $block->getPrescriptor();
 
 ?>
 
-<h1><?= $prescriptor->getFirstname() ?></h1>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Dados pessoais')); ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section">
+            <div class="admin__page-section-item">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary cancao-nova-bseller-log-table">
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Name')); ?></th>
+                            <td><?= $block->escapeHtml($prescriptor->getName()); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Email')); ?></th>
+                            <td><?= $block->escapeHtml($prescriptor->getEmail()); ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Data de nascimento')); ?></th>
+                            <td><?= $prescriptor->getDob() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('CPF')); ?></th>
+                            <td><?= $prescriptor->getTaxvat() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('RG')); ?></th>
+                            <td><?= $prescriptor->getRg() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Telephone')); ?></th>
+                            <td><?= $prescriptor->getTelephone() ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Endereço')); ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section">
+            <div class="admin__page-section-item">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary">
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Endereço')); ?></th>
+                            <td><?= $prescriptor->getFullStreet() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Bairro')); ?></th>
+                            <td><?= $prescriptor->getNeighborhood() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Cidade')); ?></th>
+                            <td><?= $prescriptor->getCity() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Estado')); ?></th>
+                            <td><?= $prescriptor->getState() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('País')); ?></th>
+                            <td><?= $prescriptor->getCountry() ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Dados Profissionais')); ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section">
+            <div class="admin__page-section-item">
+                <div class="admin__page-section-item-content">
+                    <table class="admin__table-secondary">
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Documento')); ?></th>
+                            <td><?= $prescriptor->getDocument() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Especialidade')); ?></th>
+                            <td><?= $prescriptor->getSpeciality() ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
