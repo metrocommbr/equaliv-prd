@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="metrocomm_prescriptor_entity" resource="default" engine="innodb" comment="Prescriptor Entity">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="smallint" name="website_id" unsigned="true" nullable="true" identity="false"
+                comment="Website ID"/>
+        <column xsi:type="varchar" name="email" nullable="true" length="255" comment="Email"/>
+
+        <column xsi:type="varchar" name="firstname" nullable="true" length="255" comment="First Name"/>
+        <column xsi:type="varchar" name="middlename" nullable="true" length="255" comment="Middle Name/Initial"/>
+        <column xsi:type="varchar" name="lastname" nullable="true" length="255" comment="Last Name"/>
+        <column xsi:type="date" name="dob" comment="Date of Birth"/>
+        <column xsi:type="varchar" name="taxvat" nullable="true" length="50" comment="Tax/VAT Number"/>
+        <column xsi:type="varchar" name="rg" nullable="true" length="50" comment="RG"/>
+        <column xsi:type="varchar" name="telephone" nullable="true" length="50" comment="Telephone"/>
+        <column xsi:type="smallint" name="gender" unsigned="true" nullable="true" identity="false"
+                comment="Gender"/>
+
+        <column xsi:type="varchar" name="street" nullable="true" length="255" comment="Street"/>
+        <column xsi:type="varchar" name="number" nullable="true" length="20" comment="number"/>
+        <column xsi:type="varchar" name="complement" nullable="true" length="255" comment="complement"/>
+        <column xsi:type="varchar" name="neighborhood" nullable="true" length="255" comment="neighborhood"/>
+        <column xsi:type="varchar" name="city" nullable="true" length="255" comment="city"/>
+        <column xsi:type="varchar" name="state" nullable="true" length="255" comment="state"/>
+        <column xsi:type="varchar" name="postcode" nullable="true" length="20" comment="postcode"/>
+        <column xsi:type="varchar" name="country" nullable="true" length="255" comment="country"/>
+        <column xsi:type="int" name="speciality" unsigned="true" nullable="false" comment="speciality"/>
+        <column xsi:type="varchar" name="document" nullable="true" length="255" comment="document"/>
+
+        <column xsi:type="varchar" name="status" nullable="true" length="20" comment="Email" default="pending"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="PRESCRIPTOR_ENTITY_EMAIL_WEBSITE_ID">
+            <column name="email"/>
+            <column name="website_id"/>
+        </constraint>
+
+        <index referenceId="PRESCRIPTOR_ENTITY_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="PRESCRIPTOR_ENTITY_FIRSTNAME" indexType="btree">
+            <column name="firstname"/>
+        </index>
+        <index referenceId="PRESCRIPTOR_ENTITY_LASTNAME" indexType="btree">
+            <column name="lastname"/>
+        </index>
+    </table>
+</schema>

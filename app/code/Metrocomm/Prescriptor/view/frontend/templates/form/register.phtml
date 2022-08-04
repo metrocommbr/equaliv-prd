@@ -1,0 +1,205 @@
+<?php
+/** @var \Metrocomm\Prescriptor\Block\Register $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$formData = $block->getFormData();
+?>
+<form action="<?= $block->getUrl('prescriptor/account/createpost') ?>"
+      method="post"
+      class="form"
+      id="form-validate"
+      autocomplete="off">
+    <fieldset class="fieldset create info">
+        <strong>Dados do Usuário</strong>
+        <hr>
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="firstname"><?= $escaper->escapeHtml(__('First Name')) ?></label>
+                <input name="firstname"
+
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+
+            <div class="field required">
+                <label class="label" for="lastname"><?= $escaper->escapeHtml(__('Last Name')) ?></label>
+                <input name="lastname"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+        </div>
+
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="rg"><?= $escaper->escapeHtml(__('RG')) ?></label>
+                <input name="rg"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+
+            <div class="field required">
+                <label class="label" for="taxvat"><?= $escaper->escapeHtml(__('CPF')) ?></label>
+                <input name="taxvat"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+        </div>
+
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label for="email_address" class="label"><span><?= $escaper->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input type="email"
+                           name="email"
+                           autocomplete="email"
+                           id="email_address"
+                           title="<?= $escaper->escapeHtmlAttr(__('Email')) ?>"
+                           data-mage-init='{"mage/trim-input":{}}'
+                           data-validate="{required:true, 'validate-email':true}">
+                </div>
+            </div>
+
+            <div class="field required">
+                <label class="label" for="telephone"><?= $escaper->escapeHtml(__('Telefone')) ?></label>
+                <input name="telephone"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+        </div>
+
+        <div class="fieldset input-group">
+            <?php $_dob = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Dob::class) ?>
+            <?php if ($_dob->isEnabled()): ?>
+                <?= $_dob->setDate($formData->getDob())->toHtml() ?>
+            <?php endif ?>
+
+            <div class="field required">
+                <label class="label" for="gender"><?= $escaper->escapeHtml(__('Gênero')) ?></label>
+                <select name="gender" id="gender" data-validate="{ required:true }">
+                    <option value="1">Masculino</option>
+                    <option value="2">Feminino</option>
+                    <option value="3">Outros</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset create info">
+        <strong>Endereço</strong>
+        <hr>
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="street"><?= $escaper->escapeHtml(__('Rua')) ?></label>
+                <input name="street"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+
+            <div class="field required">
+                <label class="label" for="number"><?= $escaper->escapeHtml(__('Número')) ?></label>
+                <input name="number"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+        </div>
+
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="complement"><?= $escaper->escapeHtml(__('Complemento')) ?></label>
+                <input name="complement"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+
+            <div class="field required">
+                <label class="label" for="neighborhood"><?= $escaper->escapeHtml(__('Bairro')) ?></label>
+                <input name="neighborhood"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+        </div>
+
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="city"><?= $escaper->escapeHtml(__('Cidade')) ?></label>
+                <input name="city"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+
+            <div class="field required">
+                <label class="label" for="state"><?= $escaper->escapeHtml(__('Estado')) ?></label>
+                <select name="state" id="state" data-validate="{ required:true }">
+                    <?php foreach ($block->getRegionsOfCountry('BR') as $state): ?>
+                        <option value="<?= $state['value'] ?>"><?= $state['label'] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+        </div>
+
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="postcode"><?= $escaper->escapeHtml(__('CEP')) ?></label>
+                <input name="postcode"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+
+            <div class="field required">
+                <label class="label" for="country"><?= $escaper->escapeHtml(__('País')) ?></label>
+                <select name="country" id="country" data-validate="{ required:true }">
+                    <option value="">-- Por favor, selecione --</option>
+                    <option value="BR">Brasil</option>
+                </select>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="fieldset create info">
+        <strong>Dados do Profissional</strong>
+        <hr>
+        <div class="fieldset input-group">
+            <div class="field required">
+                <label class="label" for="speciality"><?= $escaper->escapeHtml(__('Especialidade')) ?></label>
+                <select name="speciality" id="speciality" data-validate="{ required:true }">
+                    <?php foreach ($block->getAllSpecialities() as $speciality): ?>
+                        <option value="<?= $speciality['value'] ?>"><?= $speciality['label'] ?></option>
+                    <?php endforeach ?>
+                </select>
+            </div>
+
+            <div class="field required">
+                <label class="label" for="document"><?= $escaper->escapeHtml(__('CRN/CRM/CRF/CRO')) ?></label>
+                <input name="document"
+                       type="text"
+                       data-validate="{ required:true }">
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit"
+                    class="action submit primary"
+                    title="<?= $escaper->escapeHtmlAttr(__('Finalizar Cadastro')) ?>">
+                <span><?= $escaper->escapeHtml(__('Finalizar Cadastro')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    require([
+        'jquery',
+        'mage/mage'
+    ], function($){
+
+        var dataForm = $('#form-validate');
+        var ignore = null;
+
+        dataForm.mage('validation', {
+                ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+            }).find('input:text').attr('autocomplete', 'off');
+
+    });
+</script>

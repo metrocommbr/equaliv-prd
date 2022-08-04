@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="metrocomm" translate="label" sortOrder="20">
+            <label>Metrocomm</label>
+        </tab>
+
+        <section id="prescriptor" showInDefault="1" showInWebsite="1" showInStore="1" type="text" translate="label" sortOrder="10">
+            <label>Prescriptor</label>
+            <tab>metrocomm</tab>
+            <resource>Metrocomm_Prescriptor::general</resource>
+
+            <group id="general" showInDefault="1" sortOrder="5">
+                <label>General</label>
+
+                <field id="customer_group" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Customer Group</label>
+                    <source_model>Magento\Customer\Model\Config\Source\Group</source_model>
+                    <comment>Customer group to set after convert.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

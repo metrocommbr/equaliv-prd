@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Prescritor</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block
+                class="Metrocomm\Prescriptor\Block\Adminhtml\View"
+                name="prescriptor.view"
+                template="Metrocomm_Prescriptor::view.phtml" />
+        </referenceContainer>
+    </body>
+</page>
