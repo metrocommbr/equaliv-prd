@@ -41,6 +41,21 @@
     color: #707070;
     font-weight: 700;
     font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.product-item-info .product-item-details .category-name {
+    color: #00C1D4;
+    font-size: 12px;
+    line-height: 110%;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.product-item-info .product-item-details .qty-units {
+    color: #7A7A7A;
+    font-size: 15px;
+    margin-bottom: 10px;
 }
 
 .product-item-info .product-item-details .price-box .price {
